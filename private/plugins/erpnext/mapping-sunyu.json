@@ -1,0 +1,184 @@
+{
+  "configuration": {
+    "url": "demo-erp.activbm.com",
+    "username": "Administrator",
+    "password": "demo123"
+  },
+  "models": {
+    "customers": {
+      "doctype": "Customer",
+      "mapping": {
+        "Name": "CustomerID",
+        "customer_name": "Customers_Name",
+        "website": "Customers_Website",
+        "customer_group": "customer_group"
+      }
+    },
+    "Customer Group": {
+      "doctype": "Customer Group",
+      "mapping": {
+        "customer_group_name": "customer_group_name"
+      }
+    },
+    "products": {
+      "doctype": "Item",
+      "mapping": {
+        "item_name": "Product_name",
+        "item_code": "item_code",
+        "item_group": "item_group",
+        "image": {
+          "key": "image",
+          "prefix": "http://salesdemo-erp.nextaction.co"
+        },
+        "brand": "brand",
+        "default_warehouse": "default_warehouse",
+        "stock_uom": "stock_uom",
+        "default_supplier": "default_supplier"
+      }
+    },
+    "suppliers": {
+      "doctype": "Supplier",
+      "mapping": {
+        "default_currency": "Defaultcurrency",
+        "default_price_list": "Pricelist",
+        "credit_days": "credit_days",
+        "website": "Website",
+        "company": "Company",
+        "supplier_name": "Suppliername",
+        "supplier_type": "Suppliertype",
+        "supplier_details": "Othersupplierdetails"
+      }
+    },
+    "users": {
+      "doctype": "User",
+      "mapping": {
+        "email": "email",
+        "user_image": "image",
+        "first_name": "display_name",
+        "last_name": "surname"
+      }
+    },
+    "JobOpening": {
+      "doctype": "Job Opening",
+      "mapping": {
+        "job_title": "JobOpening_Jobtitle",
+        "description": "JobOpening_Description",
+        "status": "JobOpening_Status"
+      }
+    },
+    "Company": {
+      "doctype": "Company",
+      "mapping": {
+        "name": "Company_Name",
+        "phone_no": "Company_Phone_no",
+        "address": "Company_Address",
+        "domain": "Company_Domain",
+        "website": "Company_Website"
+      }
+
+    },
+    "Contact": {
+      "doctype": "Contact",
+      "mapping": {
+        "first_name": "contact_firstname",
+        "designation": "contact_designation",
+        "phone": "contact_phone",
+        "email_id": "contact_emailid"
+      }
+
+    },
+    "JobApplicant": {
+      "doctype": "Job Applicant",
+      "mapping": {
+        "name": "JobApplicant_name",
+        "email_id": "JobApplicant_emailid"
+      }
+    },
+    "Lead": {
+      "doctype": "Lead",
+      "mapping": {
+        "website": "Lead_website",
+        "email_id": "Lead_email_id",
+        "naming_series": "Lead_naming_series",
+        "fiscal_year": "Lead_fiscal_year",
+        "lead_name": "Lead_lead_name",
+        "company_name": "Lead_company_name",
+        "docstatus": "Lead_docstatus",
+        "territory": "Lead_territory",
+        "type": "Lead_type",
+        "unsubscribed": "Lead_unsubscribed",
+        "status": "Lead_status",
+        "fax": "Lead_fax",
+        "company": "Lead_company",
+        "market_segment": "Lead_market_segment",
+        "lead_owner": "Lead_lead_owner",
+        "phone": "Lead_phone",
+        "request_type": "Lead_request_type",
+        "blog_subscriber": "Lead_blog_subscriber",
+        "name": "Lead_name",
+        "industry": "Lead_industry"
+      }
+    },
+    "Address": {
+      "doctype": "Address",
+      "mapping": {
+        "address_line1": "Address_address_line1",
+        "customer_name": "customer_name",
+        "phone": "phone",
+        "fax": "fax",
+        "email_id": "email_id",
+        "supplier_name": "supplier_name"
+      }
+    },
+    "uomconversiondetails": {
+      "doctype": "UOM Conversion Detail",
+      "mapping": {
+        "parent": "parent",
+        "uom": "uom"
+      }
+    },
+    "itemprice": {
+      "doctype": "Item Price",
+      "mapping": {
+        "item_name": "Itemname",
+        "price_list": "Pricelist",
+        "price_list_rate": "Price",
+        "item_code": "Itemcode",
+        "selling": "Selling"
+
+      }
+    },
+    "purchase_receipt": {
+      "doctype": "Purchase Receipt Item",
+      "mapping": {
+        "item_code": "item_code",
+        "received_qty": "received_qty",
+        "modified": "modified"
+      }
+    },
+    "delivery_note_item": {
+      "doctype": "Delivery Note Item",
+      "mapping": {
+        "actual_qty": "actual_qty",
+        "item_code": "item_code",
+        "qty": "qty",
+        "modified": "modified",
+        "item_name": "item_name"
+
+      }
+    },
+    "actions": [{
+      "doctype": "Job Applicant",
+      "filter": {
+        "state": "APPLICANTS_1",
+        "lastState": "APPLICANTS_1"
+      },
+      "mapping": {
+        "name": "JobApplicant_name",
+        "email_id": "JobApplicant_emailid"
+
+      }
+    }]
+
+  }
+}

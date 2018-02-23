@@ -1,0 +1,348 @@
+{
+  "configuration": {
+    "url": "openbnet.erp.openb.net",
+    "port": 443,
+    "username": "Administrator",
+    "password": "workonThe8"
+  },
+  "models": {
+    "warehouse": {
+      "doctype": "Warehouse",
+      "mapping": {
+        "name": "erpnext_warehouse_id",
+        "company": "erpnext_company_id",
+        "warehouse_name": "warehouse_name"
+      }
+    },
+    "supplier_type": {
+      "doctype": "Supplier Type",
+      "mapping": {
+        "name": "erpnext_supplier_type_id",
+        "credit_days": "credit_days",
+        "docstatus": "docstatus",
+        "supplier_type": "supplier_type"
+      }
+    },
+    "supplier": {
+      "doctype": "Supplier",
+      "mapping": {
+        "name": "erpnext_supplier_id",
+        "default_currency": "erpnext_currency_id",
+        "default_price_list": "erpnext_price_list_id",
+        "credit_days": "credit_days",
+        "website": "website",
+        "supplier_name": "supplier_name",
+        "supplier_type": "erpnext_supplier_type_id",
+        "supplier_details": "supplier_details"
+      }
+    },
+    "item": {
+      "doctype": "Item",
+      "mapping": {
+        "name": "erpnext_item_id",
+        "item_code": "item_code",
+        "item_name": "item_name",
+        "size": "size",
+        "brand": "brand",
+        "description": "item_desc",
+        "item_group": "erpnext_item_group_id",
+        "default_warehouse": "erpnext_warehouse_id",
+        "actual_qty": "actual_qty",
+        "stock_uom": "erpnext_uom_id",
+        "default_supplier": "erpnext_supplier_id",
+        "uoms_workaround": "uoms",
+        "has_batch_no": "has_batch_no",
+        "has_serial_no": "has_serial_no",
+        "serial_no_series": "serial_no_series"
+      }
+    },
+    "item_group": {
+      "doctype": "Item Group",
+      "mapping": {
+        "name": "erpnext_item_group_id",
+        "item_group_name": "item_group_name"
+      }
+    },
+    "price_list": {
+      "doctype": "Price List",
+      "mapping": {
+        "name": "erpnext_price_list_id",
+        "enabled": "enabled",
+        "price_list_name": "price_list_name",
+        "currency": "erpnext_currency_id",
+        "buying": "buying",
+        "selling": "selling"
+      }
+    },
+    "item_price": {
+      "doctype": "Item Price",
+      "mapping": {
+        "name": "erpnext_item_price_id",
+        "price_list": "erpnext_price_list_id",
+        "buying": "buying",
+        "selling": "selling",
+        "item_code": "item_code",
+        "item_group": "erpnext_item_group_id",
+        "price_list_rate": "price_list_rate",
+        "currency": "currency",
+        "item_name": "item_name"
+      }
+    },
+    "uom": {
+      "doctype": "UOM",
+      "mapping": {
+        "name": "erpnext_uom_id",
+        "uom_name": "uom_name"
+      }
+    },
+    "stock_ledger_entry": {
+      "doctype": "Stock Ledger Entry",
+      "mapping": {
+        "name": "erpnext_stock_ledger_entry_id",
+        "item_code": "item_code",
+        "stock_uom": "erpnext_uom_id",
+        "warehouse": "erpnext_warehouse_id",
+        "voucher_type": "voucher_type",
+        "voucher_no": "voucher_no",
+        "actual_qty": "actual_qty",
+        "qty_after_transaction": "qty_after_transaction",
+        "docstatus": "docstatus",
+        "modified": "modified"
+      }
+    },
+    "batch": {
+      "doctype": "Batch",
+      "mapping": {
+        "name": "erpnext_batch_id",
+        "batch_id": "batch_id",
+        "item": "erpnext_batch_item_code",
+        "batch_tag": "batch_tag"
+      }
+    },
+    "serial_no": {
+      "doctype": "Serial No",
+      "mapping": {
+        "name": "erpnext_serial_no_id",
+        "serial_no": "serial_no",
+        "item_code": "item_code"
+      }
+    },
+    "stock_reconciliation": {
+      "doctype": "Stock Reconciliation",
+      "mapping": {
+        "name": "erpnext_stock_reconciliation_id",
+        "difference_amount": "difference_amount",
+        "company": "company",
+        "expense_account": "expense_account",
+        "fiscal_year": "fiscal_year",
+        "docstatus": "docstatus",
+        "items_workaround": "items",
+        "cost_center": "cost_center"
+      }
+    },
+    "fiscal_year": {
+      "doctype": "Fiscal Year",
+      "mapping": {
+        "name": "erpnext_fiscal_year_id",
+        "year_start_date": "year_start_date",
+        "year_end_date": "year_end_date",
+        "disable": "disable",
+        "year": "year",
+        "docstatus": "docstatus"
+      }
+    },
+    "company": {
+      "doctype": "Company",
+      "mapping": {
+        "name": "erpnext_company_id",
+        "domain": "domain",
+        "default_receivable_account": "default_receivable_account",
+        "default_payable_account": "default_payable_account",
+        "stock_adjustment_account": "stock_adjustment_account",
+        "abbr": "abbr",
+        "stock_received_but_not_billed": "stock_received_but_not_billed",
+        "cost_center": "cost_center",
+        "default_currency": "default_currency",
+        "credit_limit": "credit_limit",
+        "country": "country",
+        "credit_days": "credit_days",
+        "company_name": "company_name",
+        "expenses_included_in_valuation": "expenses_included_in_valuation",
+        "docstatus": "docstatus",
+        "round_off_account": "round_off_account",
+        "default_cash_account": "default_cash_account"
+      }
+    },
+    "quotation": {
+      "doctype": "Quotation",
+      "mapping": {
+        "name": "erpnext_quotation_id",
+        "company": "erpnext_company_id",
+        "customer_name": "customer_name",
+        "transaction_date": "transaction_date",
+        "total": "total"
+      }
+    },
+    "quotation_item": {
+      "doctype": "Quotation Item",
+      "mapping": {
+        "parent": "parent",
+        "item_code": "item_code",
+        "qty": "qty",
+        "rate": "price",
+        "stock_uom": "erpnext_uom_id"
+      }
+    },
+    "purchase_order": {
+      "doctype": "Purchase Order",
+      "mapping": {
+        "name": "erpnext_purchase_order_id",
+        "fiscal_year": "fiscal_year",
+        "currency": "currency",
+        "conversion_rate": "conversion_rate",
+        "base_taxes_and_charges_deducted": "base_taxes_and_charges_deducted",
+        "total": "total",
+        "is_subcontracted": "is_subcontracted",
+        "title": "title",
+        "base_total": "base_total",
+        "supplied_items_workaround": "supplied_items",
+        "base_taxes_and_charges_added": "base_taxes_and_charges_added",
+        "transaction_date": "transaction_date",
+        "recurring_type": "recurring_type",
+        "supplier_address": "supplier_address",
+        "supplier": "erpnext_supplier_id",
+        "docstatus": "docstatus",
+        "buying_price_list": "erpnext_price_list_id",
+        "base_in_words": "base_in_words",
+        "ignore_pricing_rule": "ignore_pricing_rule",
+        "company": "erpnext_company_id",
+        "base_net_total": "base_net_total",
+        "base_discount_amount": "base_discount_amount",
+        "base_rounded_total": "base_rounded_total",
+        "base_total_taxes_and_charges": "base_total_taxes_and_charges",
+        "supplier_name": "erpnext_supplier_id",
+        "taxes_and_charges_added": "taxes_and_charges_added",
+        "grand_total": "grand_total",
+        "is_recurring": "is_recurring",
+        "taxes_and_charges_deducted": "taxes_and_charges_deducted",
+        "items_workaround": "items",
+        "price_list_currency": "price_list_currency",
+        "net_total": "net_total",
+        "plc_conversion_rate": "plc_conversion_rate",
+        "total_taxes_and_charges": "total_taxes_and_charges",
+        "status": "status",
+        "apply_discount_on": "apply_discount_on",
+        "in_words": "in_words",
+        "base_grand_total": "base_grand_total"
+      }
+    },
+    "purchase_order_item": {
+      "doctype": "Purchase Order Item",
+      "mapping": {
+        "name": "erpnext_purchase_order_item_id",
+        "parent": "erpnext_purchase_order_id",
+        "item_code": "erpnext_item_id",
+        "item_name": "item_name",
+        "schedule_date": "schedule_date",
+        "qty": "qty",
+        "stock_uom": "erpnext_uom_id",
+        "conversion_factor": "conversion_factor",
+        "price_list_rate": "price_list_rate",
+        "discount_percentage": "discount_percentage",
+        "base_price_list_rate": "base_price_list_rate",
+        "rate": "rate",
+        "amount": "amount",
+        "base_rate": "base_rate",
+        "base_amount": "base_amount",
+        "pricing_rule": "erpnext_pricing_rule_id",
+        "net_rate": "net_rate",
+        "net_amount": "net_amount",
+        "base_net_rate": "base_net_rate",
+        "warehouse": "erpnext_warehouse_id",
+        "prevdoc_doctype": "prevdoc_doctype",
+        "prevdoc_docname": "prevdoc_docname",
+        "supplier_quotation": "erpnext_supplier_quotation_id",
+        "item_group": "erpnext_item_group_id",
+        "brand": "erpnext_brand_id",
+        "bom": "erpnext_bom_id",
+        "stock_qty": "stock_qty",
+        "received_qty": "received_qty",
+        "returned_qty": "returned_qty",
+        "billed_amt": "billed_amt"
+      }
+    },
+    "purchase_order_item_supplied": {
+      "doctype": "Purchase Order Item Supplied",
+      "mapping": {
+        "item_code": "item_code",
+        "rm_item_code": "rm_item_code",
+        "required_qty": "required_qty",
+        "rate": "rate",
+        "amount": "amount",
+        "bom_detail_no": "bom_detail_no",
+        "reference_name": "reference_name",
+        "stock_uom": "erpnext_uom_id"
+      }
+    },
+    "purchase_receipt": {
+      "doctype": "Purchase Receipt",
+      "mapping": {
+        "name": "erpnext_purchase_receipt_id",
+        "fiscal_year": "fiscal_year",
+        "currency": "currency",
+        "conversion_rate": "conversion_rate",
+        "base_taxes_and_charges_deducted": "base_taxes_and_charges_deducted",
+        "total": "total",
+        "is_subcontracted": "is_subcontracted",
+        "title": "title",
+        "base_total": "base_total",
+        "supplied_items_workaround": "supplied_items",
+        "base_taxes_and_charges_added": "base_taxes_and_charges_added",
+        "net_total": "net_total",
+        "supplier_address": "supplier_address",
+        "supplier": "erpnext_supplier_id",
+        "docstatus": "docstatus",
+        "buying_price_list": "erpnext_price_list_id",
+        "base_in_words": "base_in_words",
+        "ignore_pricing_rule": "ignore_pricing_rule",
+        "company": "erpnext_company_id",
+        "base_net_total": "base_net_total",
+        "base_discount_amount": "base_discount_amount",
+        "base_rounded_total": "base_rounded_total",
+        "base_total_taxes_and_charges": "base_total_taxes_and_charges",
+        "supplier_name": "supplier_name",
+        "taxes_and_charges_added": "taxes_and_charges_added",
+        "grand_total": "grand_total",
+        "taxes_and_charges_deducted": "taxes_and_charges_deducted",
+        "items_workaround": "items",
+        "price_list_currency": "price_list_currency",
+        "is_return": "is_return",
+        "plc_conversion_rate": "plc_conversion_rate",
+        "total_taxes_and_charges": "total_taxes_and_charges",
+        "status": "status",
+        "apply_discount_on": "apply_discount_on",
+        "in_words": "in_words",
+        "base_grand_total": "base_grand_total"
+      }
+    },
+    "stock_entry": {
+      "doctype": "Stock Entry",
+      "mapping": {
+        "name": "erpnext_stock_entry_id",
+        "items_workaround": "items",
+        "docstatus": "docstatus",
+        "purpose": "purpose"
+      }
+    },
+    "user": {
+      "doctype": "User",
+      "mapping": {
+        "email": "email",
+        "user_image": "image",
+        "first_name": "display_name",
+        "last_name": "surname"
+      }
+    }
+
+  }
+}

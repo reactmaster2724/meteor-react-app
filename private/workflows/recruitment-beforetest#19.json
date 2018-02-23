@@ -1,0 +1,182 @@
+{
+      "overrides": {},
+      "definitions": {
+            "JOBOPENING": {
+                  "title": "Job Opening"
+            }
+      },
+      "schemas": {
+            "JOBOPENING": {
+                  "definitions": {
+                        "fieldset1": {
+                              "type": "object",
+                              "properties": {
+                                    "job_title": {
+                                          "htmlClass": "half-width label-left",
+                                          "type": "string",
+                                          "key": "job_title",
+                                          "title": "Job Title",
+                                          "query": {
+                                                "model": "jobopening",
+                                                "field": "job_title",
+                                                "map": {
+                                                      "description": "description",
+                                                      "status": "status"
+                                                }
+                                          }
+                                    }
+                              },
+                              "required": []
+                        },
+                        "fieldset2": {
+                              "type": "object",
+                              "properties": {
+                                    "customer": {
+                                          "type": "string",
+                                          "key": "customer",
+                                          "htmlClass": "half-width label-left",
+                                          "title": "Customer",
+                                          "query": {
+                                                "model": "customer",
+                                                "field": "customer_name",
+                                                "map": {
+                                                      "customer_type": "customer_type",
+                                                      "customer_group": "customer_group",
+                                                      "territory": "territory"
+                                                }
+                                          }
+                                    }
+                              },
+                              "required": []
+                        }
+                  },
+                  "type": "object",
+                  "properties": {
+                        "fieldset1": {
+                              "title": "Job Request Details",
+                              "$ref": "#/definitions/fieldset1"
+                        },
+                        "fieldset2": {
+                              "title": "Customer this Job is for",
+                              "$ref": "#/definitions/fieldset2"
+                        }
+                  }
+            }
+      },
+      "labels": {
+            "JOBOPENING": "Job Opening"
+      },
+      "nodes": {
+            "ENTRY": {
+                  "type": "INBOX",
+                  "to": "WORKFLOW_ENTRIES",
+                  "module": {
+                        "name": "attachments"
+                  }
+            },
+            "WORKFLOW_ENTRIES": {
+                  "type": "OPERATION",
+                  "operation_type": "SelectEntryPoint",
+                  "to": [
+                        "JOBOPENING_1"
+                  ]
+            },
+            "JOBOPENING_1": {
+                  "type": "JOBOPENING",
+                  "label": "First Lane",
+                  "to": "OUTBOX",
+                  "module": {
+                        "name": "attachments"
+                  },
+                  "category": "Recruitment"
+            }
+      },
+      "collections": {
+            "jobopening": {
+                  "schema": {
+                        "type": "object",
+                        "title": "New Job Opening",
+                        "properties": {
+                              "job_title": {
+                                    "title": "Job Title",
+                                    "type": "string"
+                              },
+                              "description": {
+                                    "title": "Description",
+                                    "type": "string"
+                              },
+                              "status": {
+                                    "title": "Status",
+                                    "type": "string",
+                                    "enum": [
+                                          "Open",
+                                          "Closed"
+                                    ]
+                              }
+                        }
+                  },
+                  "definitions": [
+                        "job_title",
+                        "description",
+                        "status"
+                  ]
+            },
+            "customer": {
+                  "schema": {
+                        "type": "object",
+                        "title": "Customer",
+                        "properties": {
+                              "customer_name": {
+                                    "title": "Customer Name",
+                                    "type": "string"
+                              },
+                              "customer_type": {
+                                    "title": "Customer type",
+                                    "type": "string",
+                                    "enum": [
+                                          "Company",
+                                          "Individual"
+                                    ]
+                              },
+                              "customer_group": {
+                                    "title": "Customer Group",
+                                    "type": "string",
+                                    "enum": [
+                                          "All Customer Groups",
+                                          "Commercial",
+                                          "Government",
+                                          "Individual",
+                                          "Non Profit"
+                                    ]
+                              },
+                              "territory": {
+                                    "title": "Geographical Territory",
+                                    "type": "string",
+                                    "enum": [
+                                          "Rest Of The World",
+                                          "Singapore"
+                                    ]
+                              }
+                        }
+                  },
+                  "definitions": [
+                        {
+                              "key": "customer_name",
+                              "htmlClass": "half-width label-left"
+                        },
+                        {
+                              "key": "customer_type",
+                              "htmlClass": "half-width label-left"
+                        },
+                        {
+                              "key": "customer_group",
+                              "htmlClass": "half-width label-left"
+                        },
+                        {
+                              "key": "terrirtory",
+                              "htmlClass": "half-width label-left"
+                        }
+                  ]
+            }
+      }
+}

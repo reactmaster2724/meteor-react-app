@@ -1,0 +1,104 @@
+{
+  "definitions": {
+    "WORKFLOWS": [
+      {
+        "title": "Workflows"
+      }
+    ],
+    "FORMS": {},
+    "DEPLOYMENTS": {}
+  },
+  "schemas": {
+    "WORKFLOWS": {
+      "type": "object",
+      "properties": {
+        "forms": {
+          "type": "array",
+          "minItems": 0,
+          "title":"Forms",
+          "items": {
+            "type": "object",
+            "properties": {
+              "formtitle": {
+                "title": "Form Title",
+                "type": "string",
+                "key": "forms"
+              }
+            }
+          }
+        }
+      }
+    },
+    "FORMS": {},
+    "DEPLOYMENTS": {}
+  },
+  "labels": {
+    "WORKFLOWS": "Workflows",
+    "FORMS": "Forms",
+    "DEPLOYMENTS": "Deployments"
+  },
+  "overrides": {},
+  "collections": {
+    "workflows": {
+      "schema": {},
+      "definitions": []
+    },
+    "widgets": {
+      "schema": {},
+      "definitions": []
+    },
+    "formTypes": {
+      "schema": {},
+      "definitions": []
+    },
+    "modules": {
+      "schema": {},
+      "definitions": []
+    },
+    "validationTypes": {
+      "schema": {},
+      "definitions": []
+    },
+    "ERPNextUsers": {}
+  },
+  "nodes": {
+    "ENTRY": {
+      "type": "INBOX",
+      "to": "WORKFLOWS",
+      "category": "Main"
+    },
+    "WORKFLOWS": {
+      "type": "WORKFLOWS",
+      "label": "Workflows",
+      "to": "SPLITFORMS",
+      "category": "Main"
+    },
+    "SPLITFORMS": {
+      "type": "OPERATION",
+      "operation_type": "SplitForms",
+      "to": [
+        "FORMS"
+      ]
+    },
+    "FORMS": {
+      "type": "FORMS",
+      "label": "Forms",
+      "to": "MERGEFORMS",
+      "category": "Main"
+    },
+    "MERGEFORMS": {
+      "type": "OPERATION",
+      "operation_type": "MergeForms",
+      "to": [
+        "DEPLOYMENTS"
+      ],
+      "category": "Main"
+    },
+    "DEPLOYMENTS": {
+      "type": "DEPLOYMENTS",
+      "label": "Deployments",
+      "to": "OUTBOX",
+      "category": "Main"
+    }
+  }
+}

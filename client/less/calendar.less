@@ -1,0 +1,21 @@
+#calendar{font-size:0; // Get rid of line break spacing
+  *{font-size:14px;}
+  table{width:100%;}
+  .day{background:#eee;border:1px solid #ccc;width:14.2857142857%;padding:10px;position:relative;
+    &.title{background:#fff;}
+    &.empty{background:#fff;}
+    &.today{background:lightblue;}
+    .click-area{height:100%;width:100%;position:absolute;top:0;left:0;}
+    .popup {display:none;}
+    &.active .popup{background:#FFF;border:1px solid #ddd;position:absolute;bottom:50%;display:block;width:300px;z-index:1;padding:20px;left:-50%;margin-left:-25px;box-shadow:0 0 3px 0 #ccc;
+      &:after{content:"";position:absolute;top:100%;left:50%;margin-left:-10px;border-left:10px solid transparent;border-right:10px solid transparent;border-top:10px solid #fff;}
+      label{width:75px;}
+      .close{font-size:24px;}
+    }
+  }
+}
+.navigation{width:100%;
+  td{text-align:center;}
+  td:first-child{text-align:left;}
+  td:last-child{text-align:right;}
+}

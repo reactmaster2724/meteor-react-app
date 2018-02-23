@@ -1,0 +1,80 @@
+{
+  "configuration": {
+    "url": "demo-erp.activbm.com",
+    "port": 443,
+    "username": "Administrator",
+    "password": "demo123"
+  },
+  "models": {
+    "Lead": {
+      "doctype": "Lead",
+      "mapping": {
+        "lead_name": "lead_name",
+        "email_id": "email_id",
+        "status":"leadstatus",
+        "source":"source",
+        "lead_owner":"lead_owner",
+        "contact_by":"contact_by",
+        "contact_date":"contact_date",
+        "phone":"phone",
+        "mobile_no":"mobile_no",
+        "website":"website"
+      }
+    },
+    "Opportunity": {
+      "doctype": "Opportunity",
+      "mapping": {
+        "enquiry_from": "enquiry_from",
+        "lead":"leadstatus",
+        "status":"opportunitystatus",
+        "contact_person":"contact_person",
+        "contact_email":"contact_email",
+        "contact_mobile":"contact_mobile",
+        "source":"source",
+        "contact_by":"contact_by",
+        "contact_date":"contact_date",
+        "to_discuss":"to_discuss"
+      }
+    },
+
+    "salesInvoice" :{
+      "doctype": "Sales Invoice",
+      "mapping": {
+        "customer": "customer",
+        "posting_date": "posting_date",
+        "posting_time": "posting_time",
+        "due_date": "due_date"
+      }
+    },
+    "jobopening": {
+      "doctype": "Job Opening",
+      "mapping": {
+        "job_title": "job_title",
+        "status": "jobstatus",
+        "description": "description",
+        "customer": "customer"
+      }
+    },
+    "customer": {
+      "doctype": "Customer",
+      "mapping": {
+        "Name": "CustomerID",
+        "customer_name": "customer_name",
+        "customer_type": "customer_type",
+        "customer_group": "customer_group",
+        "territory": "territory"
+      }
+    },
+    "jobApplicant": {
+      "doctype": "Job Applicant",
+      "mapping": {
+        "applicant_name": "applicant_name",
+        "email_id": "email_id",
+        "status": "status",
+        "job_title": "job_title",
+        "cover_letter": "cover_letter"
+      }
+    }
+
+  }
+}

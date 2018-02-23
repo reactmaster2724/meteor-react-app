@@ -1,0 +1,896 @@
+{
+	"definitions": {
+	  "VALUATION": {
+		"title": "Value company"
+	  },
+	  "OPPORTUNITY": {
+		"title": "Make Offer"
+	  },
+	  "INVEST": {
+		"title": "Execute Investment"
+	  }
+	},
+	"schemas": {
+	  "VALUATION": {
+		"type": "object",
+		"properties": {
+		  "lead_name": {
+			"type": "string",
+			"title": "Lead Name",
+			"key": "Read Name",
+			"htmlClass": "half-width label-left"
+		  },
+		  "email_id": {
+			"type": "string",
+			"title": "Email Address",
+			"key": "email_id",
+			"htmlClass": "half-width label-left"
+		  },
+		  "phone": {
+			"type": "string",
+			"title": "Phone Number",
+			"key": "phone",
+			"htmlClass": "half-width label-left"
+		  },
+		  "mobile_no": {
+			"type": "string",
+			"title": "Mobile Number",
+			"key": "mobile_no",
+			"htmlClass": "half-width label-left"
+		  },
+		  "leadstatus": {
+			"type": "string",
+			"title": "Lead Status",
+			"key": "Lead Status",
+			"htmlClass": "half-width label-left",
+			"enum": [
+			  "Lead",
+			  "Open",
+			  "Replied",
+			  "Opportunity",
+			  "Quotation",
+			  "Lost Quotation",
+			  "Interested",
+			  "Converted",
+			  "Do Not Contact"
+			]
+		  },
+		  "source": {
+			"type": "string",
+			"title": "Lead Source",
+			"key": "source",
+			"htmlClass": "half-width label-left"
+		  },
+		  "lead_owner": {
+			"type": "string",
+			"title": "Lead Owner",
+			"htmlClass": "label-center",
+			"key": "lead_owner"
+		  },
+		  "contact_by": {
+			"type": "string",
+			"title": "Contact By",
+			"htmlClass": "label-center",
+			"key": "contact_by"
+		  },
+		  "contact_date": {
+			"type": "string",
+			"title": "Contact Date",
+			"htmlClass": "half-width label-left",
+			"key": "contact_date",
+			"format": "date"
+		  },
+		  "website": {
+			"type": "string",
+			"title": "Website Url",
+			"htmlClass": "half-width label-left",
+			"key": "website",
+			"format": "uri"
+		  }
+		}
+	  },
+	  "OPPORTUNITY": {
+		"definitions": {
+		  "companydetails": {
+			"type": "object",
+			"title": "Company Details",
+			"properties": {
+			  "companyname": {
+				"type": "string",
+				"title": "Company Name",
+				"key": "companyname"
+			  },
+			  "mainline": {
+				"type": "string",
+				"title": "Main Line",
+				"htmlClass": "half-width label-left",
+				"key": "mainline"
+			  },
+			  "industry": {
+				"type": "string",
+				"title": "Industry",
+				"htmlClass": "half-width label-left",
+				"key": "Industry"
+			  },
+			  "uen": {
+				"type": "string",
+				"title": "UEN",
+				"htmlClass": "half-width label-left",
+				"key": "uen"
+			  },
+			  "address1": {
+				"type": "string",
+				"title": "Address 1",
+				"htmlClass": "half-width label-left",
+				"key": "address1"
+			  },
+			  "address2": {
+				"type": "string",
+				"title": "Address 2",
+				"htmlClass": "half-width label-left",
+				"key": "address2"
+			  },
+			  "website": {
+				"type": "string",
+				"htmlClass": "half-width label-left",
+				"title": "Web Site",
+				"key": "website",
+				"format": "uri"
+			  }
+			}
+		  },
+		  "contactdetails": {
+			"type": "array",
+			"title": "Contact Details",
+			"items": {
+			  "type": "object",
+			  "properties": {
+				"contactperson": {
+				  "type": "string",
+				  "title": "Contact Person",
+				  "htmlClass": "quarter-width",
+				  "key": "contactperson"
+				},
+				"title": {
+				  "type": "string",
+				  "title": "Title",
+				  "htmlClass": "quarter-width",
+				  "key": "title"
+				},
+				"mobile": {
+				  "type": "string",
+				  "title": "Mobile",
+				  "htmlClass": "quarter-width",
+				  "key": "mobile"
+				},
+				"email": {
+				  "type": "string",
+				  "format": "email",
+				  "title": "Email",
+				  "htmlClass": "quarter-width",
+				  "key": "email"
+				},
+				"callLog": {
+				  "type": "array",
+				  "title": "Call Log",
+				  "items": {
+					"type": "object",
+					"properties": {
+					  "date": {
+						"type": "string",
+						"title": "Date",
+						"format": "date",
+						"htmlClass": "third-width",
+						"key": "date"
+					  },
+					  "call": {
+						"type": "string",
+						"title": "Call",
+						"htmlClass": "third-width",
+						"key": "call"
+					  },
+					  "description": {
+						"type": "string",
+						"title": "Description",
+						"format": "textarea",
+						"htmlClass": "third-width",
+						"key": "description"
+					  }
+					}
+				  }
+				}
+			  }
+			}
+		  },
+		  "salesinformation": {
+			"type": "object",
+			"title": "Sales Information",
+			"properties": {
+			  "source": {
+				"type": "string",
+				"title": "Source",
+				"htmlClass": "half-width label-left",
+				"key": "source"
+			  },
+			  "sourceowner": {
+				"type": "string",
+				"title": "Source Owner",
+				"htmlClass": "half-width label-left",
+				"key": "sourceowner"
+			  },
+			  "salesperson": {
+				"type": "string",
+				"title": "Sales Person",
+				"htmlClass": "half-width label-left",
+				"key": "salesperson"
+			  },
+			  "nextcontact": {
+				"type": "string",
+				"title": "Next Contact",
+				"htmlClass": "half-width label-left",
+				"key": "nextcontact"
+			  },
+			  "potential": {
+				"type": "string",
+				"title": "Potential",
+				"htmlClass": "half-width label-left",
+				"key": "potential",
+				"enum": [
+				  "Low",
+				  "Medium",
+				  "High"
+				]
+			  }
+			}
+		  },
+		  "schedulinginformation": {
+			"type": "object",
+			"title": "Scheduling Information",
+			"properties": {
+			  "meetingdate": {
+				"type": "string",
+				"title": "Meeting Date",
+				"htmlClass": "half-width label-left",
+				"key": "meetingdate",
+				"format": "date"
+			  },
+			  "meetingtime": {
+				"type": "string",
+				"title": "Meeting Time",
+				"htmlClass": "half-width label-left",
+				"key": "meetingtime"
+			  },
+			  "location": {
+				"type": "string",
+				"title": "Location",
+				"htmlClass": "half-width label-left",
+				"key": "location"
+			  },
+			  "note": {
+				"type": "string",
+				"title": "Notes on customer",
+				"key": "string",
+				"format": "textarea"
+			  }
+			}
+		  }
+		},
+		"type": "object",
+		"properties": {
+		  "companydetails": {
+			"$ref": "#/definitions/companydetails"
+		  },
+		  "contactdetails": {
+			"$ref": "#/definitions/contactdetails"
+		  },
+		  "salesinformation": {
+			"$ref": "#/definitions/salesinformation"
+		  },
+		  "schedulinginformation": {
+			"$ref": "#/definitions/schedulinginformation"
+		  }
+		}
+	  },
+	  "INVEST": {
+		"definitions": {
+		  "meetingdetails": {
+			"type": "object",
+			"title": "Meeting Details",
+			"properties": {
+			  "companyname": {
+				"type": "string",
+				"title": "Company Name",
+				"key": "companyname",
+				"validationMessage": "Add Your Company"
+			  },
+			  "mainline": {
+				"type": "string",
+				"title": "Main Line",
+				"htmlClass": "half-width label-left",
+				"key": "mainline"
+			  },
+			  "address": {
+				"type": "string",
+				"title": "Address",
+				"htmlClass": "half-width label-left",
+				"key": "address"
+			  },
+			  "website": {
+				"type": "string",
+				"htmlClass": "half-width label-left",
+				"title": "WebSite URL",
+				"key": "website",
+				"format": "uri"
+			  },
+			  "industry": {
+				"type": "string",
+				"title": "Customer Group",
+				"htmlClass": "half-width label-left",
+				"key": "Industry",
+				"enum": [
+				  "Business Process Services",
+				  "Project Services",
+				  "Goods Distribution",
+				  "Goods retail",
+				  "Service Retail",
+				  "Food & Beverage",
+				  "Logistics",
+				  "Consumer Services",
+				  "Property Operations",
+				  "Equipment leasing"
+				]
+			  }
+			}
+		  },
+		  "contactdetails": {
+			"type": "array",
+			"title": "Contact Details",
+			"items": {
+			  "type": "object",
+			  "properties": {
+				"address": {
+				  "type": "string",
+				  "title": "Contact Person",
+				  "htmlClass": "quarter-width",
+				  "key": "address"
+				},
+				"title": {
+				  "type": "string",
+				  "title": "Title",
+				  "htmlClass": "quarter-width",
+				  "key": "title"
+				},
+				"mobile": {
+				  "type": "string",
+				  "title": "Mobile",
+				  "htmlClass": "quarter-width",
+				  "key": "email"
+				},
+				"email": {
+				  "type": "string",
+				  "format": "email",
+				  "title": "Email",
+				  "htmlClass": "quarter-width",
+				  "key": "email"
+				},
+				"callLog": {
+				  "type": "array",
+				  "title": "Call Log",
+				  "items": {
+					"type": "object",
+					"properties": {
+					  "date": {
+						"type": "string",
+						"title": "Date",
+						"format": "date",
+						"htmlClass": "third-width",
+						"key": "date"
+					  },
+					  "call": {
+						"type": "string",
+						"title": "Call",
+						"htmlClass": "third-width",
+						"key": "call"
+					  },
+					  "description": {
+						"type": "string",
+						"title": "Description",
+						"format": "textarea",
+						"htmlClass": "third-width",
+						"key": "description"
+					  }
+					}
+				  }
+				}
+			  }
+			}
+		  },
+		  "initial_requirements_gathering": {
+			"type": "array",
+			"title": "Initial Requirements Gathering",
+			"items": {
+			  "type": "object",
+			  "properties": {
+				"who": {
+				  "type": "string",
+				  "title": "Who",
+				  "htmlClass": "half-width label-left",
+				  "key": "who"
+				},
+				"painpoint": {
+				  "type": "string",
+				  "title": "Pain Point",
+				  "htmlClass": "half-width label-left",
+				  "key": "painpoint"
+				},
+				"more": {
+				  "type": "array",
+				  "title": "Others",
+				  "items": {
+					"type": "object",
+					"properties": {
+					  "remarks": {
+						"title": "Remarks",
+						"type": "string",
+						"key": "remarks",
+						"format": "textarea"
+					  }
+					}
+				  }
+				}
+			  }
+			}
+		  },
+		  "salesinformation": {
+			"type": "object",
+			"title": "Sales Information",
+			"properties": {
+			  "source": {
+				"type": "string",
+				"title": "Source",
+				"htmlClass": "half-width label-left",
+				"key": "source"
+			  },
+			  "sourceowner": {
+				"type": "string",
+				"title": "Source Owner",
+				"htmlClass": "half-width label-left",
+				"key": "sourceowner"
+			  },
+			  "salesperson": {
+				"type": "string",
+				"title": "Sales Person",
+				"htmlClass": "half-width label-left",
+				"key": "salesperson"
+			  },
+			  "nextcontact": {
+				"type": "string",
+				"title": "Next Contact",
+				"htmlClass": "half-width label-left",
+				"key": "nextcontact"
+			  },
+			  "potential": {
+				"type": "string",
+				"title": "Potential",
+				"htmlClass": "half-width label-left",
+				"key": "potential",
+				"enum": [
+				  "Low",
+				  "Medium",
+				  "High"
+				]
+			  }
+			}
+		  },
+		  "schedulinginformation": {
+			"type": "object",
+			"title": "Scheduling Information",
+			"properties": {
+			  "meetingdate": {
+				"type": "string",
+				"title": "Meeting Date",
+				"htmlClass": "half-width label-left",
+				"key": "meetingdate",
+				"format": "date"
+			  },
+			  "meetingtime": {
+				"type": "string",
+				"title": "Meeting Time",
+				"htmlClass": "half-width label-left",
+				"key": "meetingtime"
+			  },
+			  "location": {
+				"type": "string",
+				"title": "Location",
+				"htmlClass": "half-width label-left",
+				"key": "location"
+			  }
+			}
+		  },
+		  "meeting_details": {
+			"type": "array",
+			"title": "Meeting Details",
+			"items": {
+			  "type": "object",
+			  "properties": {
+				"location": {
+				  "type": "string",
+				  "title": "Location",
+				  "htmlClass": "half-width label-left",
+				  "key": "location"
+				},
+				"attendees": {
+				  "type": "string",
+				  "title": "Attendees",
+				  "htmlClass": "half-width label-left",
+				  "key": "attendees"
+				},
+				"mom": {
+				  "type": "string",
+				  "title": "Minutes of Meeting",
+				  "format": "textarea",
+				  "key": "mom"
+				}
+			  }
+			}
+		  },
+		  "note": {
+			"type": "string",
+			"title": "Notes on customer",
+			"key": "note",
+			"format": "textarea"
+		  }
+		},
+		"type": "object",
+		"properties": {
+		  "meetingdetails": {
+			"$ref": "#/definitions/meetingdetails"
+		  },
+		  "contactdetails": {
+			"$ref": "#/definitions/contactdetails"
+		  },
+		  "initial_requirements_gathering": {
+			"$ref": "#/definitions/initial_requirements_gathering"
+		  },
+		  "salesinformation": {
+			"$ref": "#/definitions/salesinformation"
+		  },
+		  "schedulinginformation": {
+			"$ref": "#/definitions/schedulinginformation"
+		  },
+		  "meeting_details": {
+			"$ref": "#/definitions/meeting_details"
+		  },
+		  "note": {
+			"$ref": "#/definitions/note"
+		  }
+		}
+	  }
+	},
+	"labels": {
+	  "VALUATION": "Valuation",
+	  "OPPORTUNITY": "Make Offer",
+	  "INVEST": "Execute Investment"
+	},
+	"nodes": {
+	  "ENTRY": {
+		"type": "INBOX",
+		"to": "WORKFLOW_ENTRIES"
+	  },
+	  "WORKFLOW_ENTRIES": {
+		"type": "OPERATION",
+		"operation_type": "SelectEntryPoint",
+		"to": [
+		  "VALUATION"
+		]
+	  },
+	  "VALUATION": {
+		"type": "VALUATION",
+		"to": "OPPORTUNITY",
+		"module": {
+		  "name": "capedge"
+		},
+		"category": "Capital Edge"
+	  },
+	  "OPPORTUNITY": {
+		"type": "OPPORTUNITY",
+		"to": "INVEST",
+		"module": {
+		  "name": "attachments"
+		},
+		"category": "Capital Edge"
+	  },
+	  "INVEST": {
+		"type": "INVEST",
+		"to": "OUTBOX",
+		"module": {
+		  "name": "attachments"
+		},
+		"category": "Capital Edge"
+	  }
+	},
+	"collections": {
+		"ERPNextUsers": {},
+	  "customers": {
+		"schema": {
+		  "type": "object",
+		  "title": "Customer",
+		  "properties": {
+			"Customers_Name": {
+			  "title": "Company Name",
+			  "type": "string"
+			},
+			"Customers_MainLine": {
+			  "title": "Main Line",
+			  "type": "string"
+			},
+			"Customers_Address": {
+			  "title": "Address",
+			  "type": "string"
+			},
+			"Customers_Website": {
+			  "title": "Website",
+			  "type": "string"
+			},
+			"Customers_Industry": {
+			  "title": "Industry",
+			  "type": "string"
+			}
+		  }
+		},
+		"definitions": [{
+			"key": "Customers_Name",
+			"htmlClass": "half-width label-left"
+		  },
+		  {
+			"key": "Customers_MainLine",
+			"htmlClass": "half-width label-left"
+		  },
+		  {
+			"key": "Customers_Address",
+			"htmlClass": "half-width label-left"
+		  },
+		  {
+			"key": "Customers_Industry",
+			"htmlClass": "half-width label-left"
+		  },
+		  {
+			"key": "Customers_Website",
+			"htmlClass": "halfwidth label-left"
+		  }
+		]
+	  },
+	  "users": {
+		"schema": {
+		  "type": "object",
+		  "title": "Customer",
+		  "properties": {
+			"display_name": {
+			  "title": "First Name",
+			  "type": "string"
+			},
+			"Email": {
+			  "title": "Email",
+			  "type": "string"
+			}
+		  },
+		  "required": [
+			"display_name",
+			"Email"
+		  ]
+		},
+		"definitions": [{
+			"key": "display_name",
+			"htmlClass": "half-width label-left"
+		  },
+		  {
+			"key": "Email",
+			"htmlClass": "half-width label-left"
+		  }
+		]
+	  },
+	  "products": {
+		"schema": {
+		  "type": "object",
+		  "title": "New Product",
+		  "properties": {
+			"Product_name": {
+			  "title": "Product Name",
+			  "type": "string"
+			},
+			"Product_Price": {
+			  "title": "Price",
+			  "type": "string"
+			}
+		  }
+		},
+		"definitions": [
+		  "Product_name",
+		  "Product_Price"
+		]
+	  },
+	  "itemprice": {
+		"schema": {
+		  "type": "object",
+		  "title": "New Product",
+		  "properties": {
+			"Itemcode": {
+			  "title": "Item Code",
+			  "type": "string"
+			},
+			"Pricelist": {
+			  "title": "Price List",
+			  "type": "string"
+			},
+			"Price": {
+			  "title": "Price",
+			  "type": "string"
+			},
+			"Itemname": {
+			  "title": "Product Name",
+			  "type": "string"
+			}
+		  }
+		},
+		"definitions": [
+		  "Itemcode",
+		  "Itemname",
+		  "Pricelist",
+		  "Price"
+		]
+	  },
+	  "Contact": {
+		"schema": {
+		  "type": "object",
+		  "title": "New Contact",
+		  "properties": {
+			"contact_firstname": {
+			  "title": "Name",
+			  "type": "string"
+			},
+			"contact_designation": {
+			  "title": "Designation",
+			  "type": "string"
+			},
+			"contact_phone": {
+			  "title": "Phone",
+			  "type": "string"
+			},
+			"contact_emailid": {
+			  "title": "Email",
+			  "type": "string"
+			}
+		  }
+		},
+		"definitions": [
+		  "contact_firstname",
+		  "contact_designation",
+		  "contact_phone",
+		  "contact_emailid"
+		]
+	  },
+	  "Company": {
+		"schema": {
+		  "type": "object",
+		  "title": "New Job Applicant",
+		  "properties": {
+			"Company_Name": {
+			  "title": "Name",
+			  "type": "string"
+			},
+			"Company_Phone_no": {
+			  "title": "Phone",
+			  "type": "string"
+			},
+			"Company_Address": {
+			  "title": "Address",
+			  "type": "string"
+			},
+			"Company_Domain": {
+			  "title": "Domain",
+			  "type": "string"
+			},
+			"Company_Website": {
+			  "title": "Website",
+			  "type": "string"
+			}
+		  }
+		},
+		"definitions": [
+		  "Company_Name",
+		  "Company_Phone_no",
+		  {
+			"key": "Company_Address",
+			"type": "textarea"
+		  },
+		  "Company_Domain",
+		  "Company_Website"
+		]
+	  },
+	  "Lead": {
+		"schema": {
+		  "title": "New Lead",
+		  "type": "object",
+		  "properties": {
+			"Lead_company_name": {
+			  "title": "Company Name",
+			  "type": "string"
+			},
+			"Lead_industry": {
+			  "title": "Industry",
+			  "type": "string"
+			},
+			"Lead_website": {
+			  "title": "Website",
+			  "type": "string"
+			},
+			"Lead_mainline": {
+			  "title": "Main Line",
+			  "type": "number"
+			},
+			"Lead_uen": {
+			  "title": "UEN",
+			  "type": "string"
+			},
+			"Lead_addressline1": {
+			  "title": "Address line 1",
+			  "type": "string"
+			},
+			"Lead_addressline2": {
+			  "title": "Address line 2",
+			  "type": "string"
+			}
+		  }
+		},
+		"definitions": [{
+			"key": "Lead_company_name",
+			"htmlClass": "half-width label-left"
+		  },
+		  {
+			"key": "Lead_industry",
+			"htmlClass": "half-width label-left"
+		  },
+		  {
+			"key": "Lead_website",
+			"htmlClass": "half-width label-left"
+		  },
+		  {
+			"key": "Lead_mainline",
+			"htmlClass": "half-width label-left"
+		  },
+		  {
+			"key": "Lead_uen",
+			"htmlClass": "half-width label-left"
+		  },
+		  "Lead_addressline1",
+		  "Lead_addressline2"
+		]
+	  },
+	  "Address": {
+		"schema": {
+		  "type": "object",
+		  "title": "New Address",
+		  "properties": {
+			"Address_lead_name": {
+			  "title": "Name",
+			  "type": "string"
+			},
+			"Address_address_line1": {
+			  "title": "Designation",
+			  "type": "string"
+			},
+			"Address_address_line2": {
+			  "title": "Phone",
+			  "type": "string"
+			}
+		  }
+		},
+		"definitions": [
+		  "Address_lead_name",
+		  "Address_address_line1",
+		  "Address_address_line2"
+		]
+	  }
+	},
+	"overrides": {}
+  }

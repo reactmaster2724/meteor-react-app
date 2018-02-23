@@ -1,0 +1,85 @@
+//PRINT INVOICE
+.pagenumber div:after{counter-increment:page;content:"Page " counter(page) "of" counter(pages);}
+
+@media print{
+  *{overflow:visible !important;}
+
+  // Remove empty space from print view
+  .left-panel{position:absolute !important;}
+
+  // Sunyu
+  .upcase *{text-transform:uppercase !important;}
+  #toast-container{display:none !important;}
+  .left-panel{width:100% !important;position:absolute !important;}
+  .width70{width:70% !important;float:left;}
+  .width30{width:30% !important;float:left;}
+  .form-group{margin-bottom:0 !important;padding:0 !important;}
+  label{font-weight:normal !important;margin:0 !important;}
+  .label-left.no-width{
+    label{display:inline-block;width:auto !important;padding-right:5px !important;}
+    input, textarea, select{display:inline-block;width:auto !important;max-width:none !important;}
+  }
+  .list-group-item{border:0 !important;padding:0 !important;}
+  fieldset{border:0 !important;padding:0 !important;
+    legend{margin-top:10px;margin-bottom:0;padding:0 !important;}
+  }
+  legend{border:0 !important;}
+  .schema-table{
+    tbody{
+      th:last-child, td:last-child{display:none !important;}
+    }
+  }
+  .text-center{padding:10px 0 !important;}
+  .bold-label label{font-weight:bold !important;}
+  .line{border-bottom:2px solid #000 !important;}
+  .clearfix, ol, ul{padding:0 !important;margin:0 !important;}
+  .margin-top{margin-top:10px !important;}
+  // End Sunyu
+
+  .right-panel{display:none !important;}
+  .panel-heading{display:none;}
+
+  input, select, textarea, .print-control{padding:0 !important;border:none !important;padding-left:0 !important;padding-right:0 !important;box-shadow:none !important;-webkit-box-shadow:none !important;background:#FFF !important;border-radius:0 !important;outline:none !important;height:auto !important;}
+  .print-control[class*=textarea]{height:inherit !important;}
+  input:focus{border:none !important;outline:none !important;}
+  div{border:none !important;}
+  /*
+  table{border:2px solid #000 !important;
+    tbody{
+      tr{
+        td:last-child, th:last-child{display:none !important;}
+      }
+    }
+    tr{
+      th,td{border:0 !important;}
+      th{background:#eee !important;}
+    }
+    tr:first-child{border-bottom:2px solid #000 !important;}
+  }
+  */
+
+  h1,h2,h3{padding:0 !important;margin:0 !important;border:0 !important;}
+  [class*=panel], .panel-body{padding:0 !important;}
+  .glyphicon, .search-box, [class*=navbar], button, input[type=button], input[type=submit]{display:none !important;}
+  textarea{resize:none;}
+  select{-webkit-appearance:none;-moz-appearance:none;appearance:none;}
+  input{-webkit-appearance:textfield;-moz-appearance:textfield;appearance:textfield;}
+  .schema-form-select:after{content:"";}
+
+  .footer{display:block;top:100%;position:absolute;font-size:10px;z-index:999999;bottom:0;}
+
+  body{position:absolute !important;bottom:5cm !important;margin:0 auto;height:100%;}
+
+  .schema-form-label{
+    label{white-space:pre-line;}
+    label:first-child{vertical-align:top;}
+  }
+}
+
+// Set same style-attributes as form-control, but without box-shabow (to fix chrome print preview 'bug')
+.print-control{display:block;width:100%;height:34px;padding:6px 12px;font-size:14px;line-height:1.42857143;color:#555;background-color:#fff;background-image:none;border:1px solid #ccc;border-radius:4px;}
+
+.print-overlay{position:fixed;height:100%;width:100%;background:#fff;opacity:.9;top:0;z-index:9999;}
+
+.invoice-title{width:100%;padding:0;margin:25px 0;text-align:center;}
+.bold{font-weight:bold;}

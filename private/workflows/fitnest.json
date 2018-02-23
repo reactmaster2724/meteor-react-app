@@ -1,0 +1,1315 @@
+{
+  "definitions":{
+    "APPOINTMENT":[
+      {
+        "type":"fieldset",
+        "title":"Health Details",
+        "notitle":true,
+        "items":[
+          {
+            "title":"Client Name",
+            "key":"Name",
+            "htmlClass":"half-width label-left",
+            "type":"label"
+          },
+          {
+            "title":"Address",
+            "key":"Address",
+            "htmlClass":"half-width label-left",
+            "type":"label"
+          },
+          {
+            "title":"Personal ID",
+            "key":"PersonalID",
+            "htmlClass":"half-width label-left",
+            "type":"label"
+          },
+          {
+            "title":"Postal Code",
+            "key":"PostalCode",
+            "htmlClass":"half-width label-left",
+            "type":"label"
+          },
+          {
+            "title":"Contact Number",
+            "key":"Telephone",
+            "htmlClass":"half-width label-left",
+            "type":"label"
+          },
+          {
+            "title":"Email",
+            "key":"Email",
+            "htmlClass":"half-width label-left",
+            "type":"label"
+          },
+          {
+            "title":"Gender",
+            "key":"GenderCode",
+            "htmlClass":"half-width label-left",
+            "type":"label"
+          },
+          {
+            "title":"Date of Birth",
+            "key":"BirthDateTime",
+            "type":"label",
+            "htmlClass":"half-width label-left",
+            "disable":"true"
+          },
+          {
+            "title":"Nationality",
+            "key":"Nationality",
+            "htmlClass":"half-width label-left",
+            "type":"label"
+          },
+          {
+            "title":"Blood Group",
+            "key":"BloodGroup",
+            "htmlClass":"half-width label-left",
+            "type":"label"
+          },
+          {
+            "title":"Past Injury Records",
+            "key":"PastInjuryRecords",
+            "htmlClass":"half-width label-left",
+            "type":"label"
+          },
+          {
+            "title":"Allergy",
+            "key":"Allergy",
+            "htmlClass":"half-width label-left",
+            "type":"label"
+          },
+          {
+              "key":"Emergencycontactname",
+              "htmlClass":"half-width label-left",
+              "title":"Emergency Contact Name",
+              "type":"label"
+            },
+            {
+              "key":"Emergencycontactrelationship",
+              "htmlClass":"half-width label-left",
+              "title":"Emergency Contact Relationship",
+              "type":"label"
+            },
+          {
+            "title":"Emergency Contact Number",
+            "key":"EmergencyContact",
+            "htmlClass":"half-width label-left",
+            "type":"label"
+          },
+          {
+            "title":"Height (cm)",
+            "key":"Height",
+            "htmlClass":"half-width label-left",
+            "type":"label"
+          },
+          {
+            "key":"Weight",
+            "title":"Weight",
+            "htmlClass":"half-width label-left"
+          },
+          {
+            "key":"FatMassPercentage",
+            "title":"Fat Mass %",
+            "htmlClass":"half-width label-left"
+          },
+          {
+            "key":"MuscleMassPercentage",
+            "title":"Muscle Mass %",
+            "htmlClass":"half-width label-left"
+          },
+          {
+            "key":"BMI",
+            "title":"BMI",
+            "htmlClass":"half-width label-left",
+            "type":"total",
+            "expression":"round(Weight / ((Height/100)^2), 1)"
+          },
+          {
+            "key":"Classification",
+            "title":"Classification",
+            "htmlClass":"half-width label-left",
+            "type":"ifttt",
+            "disable":"true",
+            "expression":{
+              "if":{
+                "condition":"BMI < 19",
+                "then":{
+                  "if":{
+                    "condition":"not BMI or BMI == NaN or BMI == Infinity",
+                    "then":{
+                      "type":"select",
+                      "option":"No input"
+                    }
+                  },
+                  "else":{
+                    "then":{
+                      "type":"select",
+                      "option":"Underweight"
+                    }
+                  }
+                }
+              },
+              "else":{
+                "then":{
+                  "if":{
+                    "condition":"BMI < 25",
+                    "then":{
+                      "type":"select",
+                      "option":"Normal Weight"
+                    }
+                  },
+                  "else":{
+                    "then":{
+                      "if":{
+                        "condition":"BMI < 30",
+                        "then":{
+                          "type":"select",
+                          "option":"Overweight"
+                        }
+                      },
+                      "else":{
+                        "then":{
+                          "if":{
+                            "condition":"BMI < 35",
+                            "then":{
+                              "type":"select",
+                              "option":"Obesity level 1"
+                            }
+                          },
+                          "else":{
+                            "then":{
+                              "if":{
+                                "condition":"BMI < 40",
+                                "then":{
+                                  "type":"select",
+                                  "option":"Obesity level 2"
+                                }
+                              },
+                              "else":{
+                                "then":{
+                                  "type":"select",
+                                  "option":"Obesity level 3"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type":"fieldset",
+            "title":"Health Check",
+            "notitle":true,
+            "items":[
+              {
+                "key":"Systolic",
+                "htmlClass":"half-width label-left",
+                "title":"Systolic (mmHg)"
+              },
+              {
+                "key":"Diastolic",
+                "htmlClass":"half-width label-left",
+                "title":"Diastolic (mmHg)"
+              },
+              {
+                "key":"RestHeartRate",
+                "htmlClass":"half-width label-left",
+                "title":"Resting Heart Rate"
+              },
+              {
+                "key":"BloodPressureClassification",
+                "htmlClass":"half-width label-left",
+                "title":"Blood Pressure Classification",
+                "type":"ifttt",
+                "disable":true,
+                "expression":{
+                  "if":{
+                    "condition":"not Systolic or not Diastolic",
+                    "then":{
+                      "type":"select",
+                      "option":"No input"
+                    }
+                  },
+                  "else":{
+                    "then":{
+                      "if":{
+                        "condition":"Systolic < 120 and Diastolic < 80",
+                        "then":{
+                          "type":"select",
+                          "option":"Optimal blood pressure"
+                        }
+                      },
+                      "else":{
+                        "then":{
+                          "if":{
+                            "condition":"Systolic < 130 and Diastolic < 85",
+                            "then":{
+                              "type":"select",
+                              "option":"Normal blood pressure"
+                            }
+                          },
+                          "else":{
+                            "then":{
+                              "if":{
+                                "condition":"Systolic < 140 and Diastolic < 90",
+                                "then":{
+                                  "type":"select",
+                                  "option":"Normal systolic value"
+                                }
+                              },
+                              "else":{
+                                "then":{
+                                  "if":{
+                                    "condition":"Systolic < 160 and Diastolic < 100",
+                                    "then":{
+                                      "type":"select",
+                                      "option":"Mild hypertension"
+                                    }
+                                  },
+                                  "else":{
+                                    "then":{
+                                      "if":{
+                                        "condition":"Systolic < 180 and Diastolic < 110",
+                                        "then":{
+                                          "type":"select",
+                                          "option":"Moderate hypertension"
+                                        }
+                                      },
+                                      "else":{
+                                        "then":{
+                                          "type":"select",
+                                          "option":"Severe hypertension"
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key":"watchData",
+        "title":"Watch Data",
+        "type":"table",
+        "add":null,
+        "items":[
+          {
+            "key":"watchData[].AverageHeartRateBpm",
+            "title":"Avg BPM",
+            "type":"label"
+          },
+          {
+            "key":"watchData[].MaximumHeartRateBpm",
+            "title":"Max BPM",
+            "type":"label"
+          },
+          {
+            "key":"watchData[].Intensity",
+            "title":"Intensity",
+            "type":"label"
+          },
+          {
+            "key":"watchData[].Calories",
+            "title":"Calories",
+            "type":"label"
+          },
+          {
+            "key":"watchData[].SessionStartTime",
+            "title":"Session Start Time",
+            "type":"label"
+          },
+          {
+            "key":"watchData[].SessionEndTime",
+            "title":"Session End Time",
+            "type":"label"
+          }
+        ]
+      },
+      {
+        "type":"fieldset",
+        "title":"Today's Session",
+        "items":[
+          {
+            "key":"startDateTime",
+            "title":"Today's Session",
+            "htmlClass":"label-left",
+            "type":"label",
+            "notitle":true
+          },
+          {
+            "key":"endDateTime",
+            "htmlClass":"label-left",
+            "notitle":true,
+            "type":"hidden"
+          },
+          {
+            "key":"HoursOfSleep",
+            "title":"Hours of Sleep",
+            "type":"text",
+            "htmlClass":"label-left"
+          },
+          {
+            "key":"Meals",
+            "title":"Pre Workout Meals",
+            "type":"textarea",
+            "htmlClass":"label-left"
+          },
+          {
+            "key":"MentalState",
+            "title":"Mental State",
+            "type":"textarea",
+            "htmlClass":"label-left"
+          },
+          {
+            "key":"Session",
+            "type":"textarea",
+            "htmlClass":"label-left"
+          },
+          {
+            "type":"signature",
+            "key":"Signature",
+            "htmlClass":"half-width"
+          }
+        ]
+      }
+    ]
+  },
+  "schemas":{
+    "APPOINTMENT":{
+      "type":"object",
+      "title":"PT Diary",
+      "properties":{
+        "startDateTime":{
+          "type":"number",
+          "format":"datetime"
+        },
+        "endDateTime":{
+          "type":"number",
+          "format":"datetime"
+        },
+        "Session":{
+          "title":"Session Notes",
+          "type":"string"
+        },
+        "Signature":{
+          "title":"Signature",
+          "type":"string"
+        }
+      },
+      "required":[
+
+      ]
+    }
+  },
+  "labels":{
+    "APPOINTMENT":"Appointments"
+  },
+  "overrides":{
+    "main":{
+      "type":"contracts"
+    }
+  },
+  "nodes":{
+    "ENTRY":{
+      "type":"INBOX",
+      "to":"APPOINTMENT_1"
+    },
+    "APPOINTMENT_1":{
+      "type":"APPOINTMENT",
+      "override":"Appointment",
+      "module":{
+      },
+      "to":"COMPLETESESSION"
+    },
+    "COMPLETESESSION":{
+      "type":"OPERATION",
+      "operation_type":"CompleteSession",
+      "to":[
+        "OUTBOX"
+      ]
+    }
+  },
+  "collections":{
+    "contracts":{
+      "definitions":[
+        {
+          "type":"fieldset",
+          "title":"Client Onboarding Details",
+          "createOnly":true,
+          "items":[
+            {
+              "key":"Name",
+              "htmlClass":"half-width label-left",
+              "type":"autocomplete",
+              "query":{
+                "model":"customers",
+                "field":"Name",
+                "createNew":false,
+                "editable":true,
+                "map":{
+                  "_id":"CustomerID",
+                  "Address":"Address",
+                  "PersonalID":"PersonalID",
+                  "Name":"Name",
+                  "GenderCode":"GenderCode",
+                  "Telephone":"Telephone",
+                  "BirthDateTime":"BirthDateTime",
+                  "Nationality":"Nationality",
+                  "PostalCode":"PostalCode",
+                  "Email":"Email",
+                  "BloodGroup":"BloodGroup",
+                  "PastInjuryRecords":"PastInjuryRecords",
+                  "Allergy":"Allergy",
+                  "Emergencycontactrelationship":"Emergencycontactrelationship",
+                  "Emergencycontactname":"Emergencycontactname",
+                  "EmergencyContact":"EmergencyContact",
+                  "Height":"Height",
+                  "Weight":"Weight",
+                  "FatMassPercentage":"FatMassPercentage",
+                  "MuscleMassPercentage":"MuscleMassPercentage",
+                  "BMI":"BMI",
+                  "Classification":"Classification",
+                  "ScheduleAppointment":"ScheduleAppointment",
+                  "CompletedSessions":"CompletedSessions",
+                  "Package":"Package",
+                  "TotalSessions":"TotalSessions",
+                  "Session":"Session"
+                }
+              }
+            },
+            {
+              "key":"Address",
+              "htmlClass":"half-width label-left"
+            },
+            {
+              "key":"PersonalID",
+              "htmlClass":"half-width label-left"
+            },
+            {
+              "key":"PostalCode",
+              "htmlClass":"half-width label-left"
+            },
+            {
+              "key":"Telephone",
+              "feedback":false,
+              "htmlClass":"half-width label-left"
+            },
+            {
+              "key":"Email",
+              "feedback":false,
+              "htmlClass":"half-width label-left"
+            },
+            {
+              "key":"GenderCode",
+              "htmlClass":"half-width label-left",
+              "type":"radios-inline",
+              "titleMap":[
+                {
+                  "value":"male",
+                  "name":"Male"
+                },
+                {
+                  "value":"female",
+                  "name":"Female"
+                }
+              ]
+            },
+            {
+              "key":"BirthDateTime",
+              "htmlClass":"half-width label-left",
+              "selectMonths":true,
+              "selectYears":99,
+              "max":true
+            },
+            {
+              "key":"Nationality",
+              "htmlClass":"half-width label-left"
+            },
+            {
+              "key":"BloodGroup",
+              "htmlClass":"half-width label-left",
+              "type":"select",
+              "titleMap":[
+                {
+                  "value":"O-",
+                  "name":"O Negative"
+                },
+                {
+                  "value":"O+",
+                  "name":"O Positive"
+                },
+                {
+                  "value":"A-",
+                  "name":"A Negative"
+                },
+                {
+                  "value":"A+",
+                  "name":"A Positive"
+                },
+                {
+                  "value":"B-",
+                  "name":"B Negative"
+                },
+                {
+                  "value":"B+",
+                  "name":"B Positive"
+                },
+                {
+                  "value":"AB-",
+                  "name":"AB Negative"
+                },
+                {
+                  "value":"AB+",
+                  "name":"AB Positive"
+                }
+              ]
+            },
+            {
+              "key":"PastInjuryRecords",
+              "htmlClass":"half-width label-left"
+            },
+            {
+              "key":"Allergy",
+              "htmlClass":"half-width label-left"
+            },
+            {
+              "key":"Emergencycontactname",
+              "htmlClass":"half-width label-left",
+              "title":"Emergency Contact Name"
+            },
+            {
+              "key":"Emergencycontactrelationship",
+              "htmlClass":"half-width label-left",
+              "title":"Emergency Contact Relationship"
+            },
+            {
+              "key":"EmergencyContact",
+              "htmlClass":"half-width label-left",
+              "feedback":false
+            },
+            {
+              "key":"Height",
+              "htmlClass":"half-width label-left"
+            },
+            {
+              "key":"Weight",
+              "htmlClass":"half-width label-left"
+            },
+                      {
+            "key":"FatMassPercentage",
+            "title":"Fat Mass %",
+            "htmlClass":"half-width label-left"
+          },
+          {
+            "key":"MuscleMassPercentage",
+            "title":"Muscle Mass %",
+            "htmlClass":"half-width label-left"
+          },
+
+            {
+              "key":"BMI",
+              "htmlClass":"half-width label-left",
+              "type":"total",
+              "expression":"round(Weight / ((Height/100)^2), 1)"
+            },
+            {
+              "key":"Classification",
+              "htmlClass":"half-width label-left",
+              "type":"ifttt",
+              "disable":"true",
+              "expression":{
+                "if":{
+                  "condition":"BMI < 19",
+                  "then":{
+                    "if":{
+                      "condition":"not BMI or BMI == NaN or BMI == Infinity",
+                      "then":{
+                        "type":"select",
+                        "option":"No input"
+                      }
+                    },
+                    "else":{
+                      "then":{
+                        "type":"select",
+                        "option":"Underweight"
+                      }
+                    }
+                  }
+                },
+                "else":{
+                  "then":{
+                    "if":{
+                      "condition":"BMI < 25",
+                      "then":{
+                        "type":"select",
+                        "option":"Normal Weight"
+                      }
+                    },
+                    "else":{
+                      "then":{
+                        "if":{
+                          "condition":"BMI < 30",
+                          "then":{
+                            "type":"select",
+                            "option":"Overweight"
+                          }
+                        },
+                        "else":{
+                          "then":{
+                            "if":{
+                              "condition":"BMI < 35",
+                              "then":{
+                                "type":"select",
+                                "option":"Obesity level 1"
+                              }
+                            },
+                            "else":{
+                              "then":{
+                                "if":{
+                                  "condition":"BMI < 40",
+                                  "then":{
+                                    "type":"select",
+                                    "option":"Obesity level 2"
+                                  }
+                                },
+                                "else":{
+                                  "then":{
+                                    "type":"select",
+                                    "option":"Obesity level 3"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "type":"fieldset",
+              "title":"Health Check",
+              "notitle":true,
+              "items":[
+                {
+                  "key":"Systolic",
+                  "htmlClass":"half-width label-left",
+                  "title":"Systolic (mmHg)"
+                },
+                {
+                  "key":"Diastolic",
+                  "htmlClass":"half-width label-left",
+                  "title":"Diastolic (mmHg)"
+                },
+                {
+                  "key":"RestHeartRate",
+                  "htmlClass":"half-width label-left",
+                  "title":"Resting Heart Rate"
+                },
+                {
+                  "key":"BloodPressureClassification",
+                  "htmlClass":"half-width label-left",
+                  "title":"Blood Pressure Classification",
+                  "type":"ifttt",
+                  "disable":true,
+                  "expression":{
+                    "if":{
+                      "condition":"not Systolic or not Diastolic",
+                      "then":{
+                        "type":"select",
+                        "option":"No input"
+                      }
+                    },
+                    "else":{
+                      "then":{
+                        "if":{
+                          "condition":"Systolic < 120 and Diastolic < 80",
+                          "then":{
+                            "type":"select",
+                            "option":"Optimal blood pressure"
+                          }
+                        },
+                        "else":{
+                          "then":{
+                            "if":{
+                              "condition":"Systolic < 130 and Diastolic < 85",
+                              "then":{
+                                "type":"select",
+                                "option":"Normal blood pressure"
+                              }
+                            },
+                            "else":{
+                              "then":{
+                                "if":{
+                                  "condition":"Systolic < 140 and Diastolic < 90",
+                                  "then":{
+                                    "type":"select",
+                                    "option":"Normal systolic value"
+                                  }
+                                },
+                                "else":{
+                                  "then":{
+                                    "if":{
+                                      "condition":"Systolic < 160 and Diastolic < 100",
+                                      "then":{
+                                        "type":"select",
+                                        "option":"Mild hypertension"
+                                      }
+                                    },
+                                    "else":{
+                                      "then":{
+                                        "if":{
+                                          "condition":"Systolic < 180 and Diastolic < 110",
+                                          "then":{
+                                            "type":"select",
+                                            "option":"Moderate hypertension"
+                                          }
+                                        },
+                                        "else":{
+                                          "then":{
+                                            "type":"select",
+                                            "option":"Severe hypertension"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"fieldset",
+          "title":"Client Onboarding Details",
+          "editOnly":true,
+          "items":[
+            {
+              "key":"Name",
+              "htmlClass":"half-width label-left",
+              "type":"label"
+            },
+            {
+              "key":"Address",
+              "htmlClass":"half-width label-left",
+              "type":"label"
+            },
+            {
+              "key":"PersonalID",
+              "htmlClass":"half-width label-left",
+              "type":"label"
+            },
+            {
+              "key":"PostalCode",
+              "htmlClass":"half-width label-left",
+              "type":"label"
+            },
+            {
+              "key":"Telephone",
+              "htmlClass":"half-width label-left",
+              "type":"label"
+            },
+            {
+              "key":"Email",
+              "htmlClass":"half-width label-left",
+              "type":"label"
+            },
+            {
+              "key":"GenderCode",
+              "htmlClass":"half-width label-left",
+              "type":"label"
+            },
+            {
+              "key":"BirthDateTime",
+              "htmlClass":"half-width label-left",
+              "type":"label"
+            },
+            {
+              "key":"Nationality",
+              "htmlClass":"half-width label-left",
+              "type":"label"
+            },
+            {
+              "key":"BloodGroup",
+              "htmlClass":"half-width label-left",
+              "type":"label"
+            },
+            {
+              "key":"PastInjuryRecords",
+              "htmlClass":"half-width label-left",
+              "type":"label"
+            },
+            {
+              "key":"Allergy",
+              "htmlClass":"half-width label-left",
+              "type":"label"
+            },
+            {
+              "key":"Emergencycontactname",
+              "htmlClass":"half-width label-left",
+              "title":"Contact Name",
+              "type":"label"
+            },
+            {
+              "key":"Emergencycontactrelationship",
+              "htmlClass":"half-width label-left",
+              "title":"Contact Relationship",
+              "type":"label"
+            },
+            {
+              "key":"EmergencyContact",
+              "htmlClass":"half-width label-left",
+              "type":"label"
+            },
+            {
+              "key":"Height",
+              "htmlClass":"half-width label-left",
+              "type":"label"
+            },
+            {
+              "key":"Weight",
+              "htmlClass":"half-width label-left",
+              "type":"label"
+            },
+                      {
+            "key":"FatMassPercentage",
+            "type":"label",
+            "htmlClass":"half-width label-left"
+          },
+          {
+            "key":"MuscleMassPercentage",
+            "type":"label",
+            "htmlClass":"half-width label-left"
+          },
+            {
+              "key":"BMI",
+              "htmlClass":"half-width label-left",
+              "type":"label"
+            },
+            {
+              "key":"Classification",
+              "htmlClass":"half-width label-left",
+              "type":"label"
+            },
+            {
+              "type":"fieldset",
+              "title":"Health Check",
+              "notitle":true,
+              "items":[
+                {
+                  "key":"Systolic",
+                  "htmlClass":"half-width label-left",
+                  "type":"label",
+                  "title":"Systolic (mmHg)"
+                },
+                {
+                  "key":"Diastolic",
+                  "htmlClass":"half-width label-left",
+                  "type":"label",
+                  "title":"Diastolic (mmHg)"
+                },
+                {
+                  "key":"RestHeartRate",
+                  "htmlClass":"half-width label-left",
+                  "type":"label",
+                  "title":"Resting Heart Rate"
+                },
+                {
+                  "key":"BloodPressureClassification",
+                  "htmlClass":"half-width label-left",
+                  "type":"label",
+                  "title":"Blood Pressure Classification"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type":"fieldset",
+          "createOnly":true,
+          "title":"Package",
+          "items":[
+            {
+              "key":"SelectPackage",
+              "type":"select",
+              "onChange":"valueChanged(form.key,modelValue)",
+              "title":"Select Package",
+              "titleMap":[
+                {
+                  "value":100,
+                  "name":"Complimentary Session"
+                },
+                {
+                  "value":1,
+                  "name":"Personal Training: Single session (SGD 120)"
+                },
+                {
+                  "value":8,
+                  "name":"Personal Training: 8 Sessions (SGD 800)"
+                },
+                {
+                  "value":16,
+                  "name":"Personal Training: 16 Sessions (SGD 1440)"
+                },
+                {
+                  "value":24,
+                  "name":"Personal Training: 24 Sessions (SGD 2040)"
+                },
+                {
+                  "value":32,
+                  "name":"Personal Training: 32 Sessions (SGD 2560)"
+                },
+                {
+                  "value":40,
+                  "name":"Personal Training: 40 Sessions (SGD 3000)"
+                },
+                {
+                  "value": 1,
+                  "name": "Buddy Training: Single Session (SGD 75 per person)"
+                },
+                {
+                   "value": 8,
+                   "name":"Buddy Training: 8 Sessions (SGD 560 per person)"
+                 },
+                 {
+                   "value":16,
+                   "name":"Buddy Training: 16 Sessions (SGD 1080 per person)"
+                 },
+                 {
+                   "value":24,
+                   "name":"Buddy Training: 24 Sessions (SGD 1560 per person) "
+                 },
+                 {
+                   "value":32,
+                   "name":"Buddy Training: 32 Sessions (SGD 2000 per person)"
+                 },
+                 {
+                   "value":40,
+                   "name":"Buddy Training: 40 Sessions (SGD 2400 per person)"
+                 },
+                 {
+                   "value":1,
+                   "name":"Group Training (Outdoor): > 2 persons (SGD 30 per person)"
+                 },
+                 {
+                   "value":1,
+                   "name":"Group Training (Outdoor): 2 persons (SGD 50 per person)"
+                 },
+                 {
+                   "value":1,
+                   "name":"Group Training (Gym): > 2 persons (SGD 50 per person)"
+                 },
+                 {
+                   "value":1,
+                   "name":"Group Training (Gym): 2 persons (SGD 60 per person)"
+                 }
+              ],
+              "htmlClass":"half-width"
+            },
+            {
+              "type":"signature",
+              "key":"ContractSignature",
+              "htmlClass":"half-width"
+            }
+          ]
+        },
+        {
+          "type":"fieldset",
+          "title":"Session Breakdown",
+          "notitle":true,
+          "editOnly":true,
+          "items":[
+            {
+              "type":"full-calendar",
+              "key":"ScheduleAppointment",
+              "notitle":true
+            },
+            {
+              "type":"help",
+              "helpvalue":"<br>"
+            },
+            {
+              "type":"label",
+              "htmlClass":"half-width label-left",
+              "key":"SelectPackage"
+            },
+            {
+              "type":"total",
+              "expression":"squeeze(size(range~CompletedSessions.Packages[].No))",
+              "htmlClass":"half-width label-left",
+              "key":"TotalSessions"
+            }
+          ]
+        },
+        {
+          "type":"fieldset",
+          "title":"Session History",
+          "editOnly":true,
+          "items":[
+            {
+              "key":"CompletedSessions",
+              "type":"arraytable",
+              "notitle":true,
+              "add":null,
+              "remove":null,
+              "items":[
+                {
+                  "type":"table",
+                  "key":"CompletedSessions.Packages",
+                  "startEmpty":true,
+                  "add":null,
+                  "remove":null,
+                  "items":[
+                    {
+                      "key":"CompletedSessions.Packages[].No",
+                      "title":"No",
+                      "type":"auto-increment"
+                    },
+                    {
+                      "key":"CompletedSessions.Packages[].Date",
+                      "type":"label",
+                      "title":"Date"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "schema":{
+        "type":"object",
+        "properties":{
+          "Name":{
+            "title":"Client Name",
+            "type":"string"
+          },
+          "GenderCode":{
+            "title":"Gender",
+            "type":"string",
+            "enum":[
+              "male",
+              "female"
+            ]
+          },
+          "BirthDateTime":{
+            "title":"Date of Birth",
+            "type":"string",
+            "format":"date"
+          },
+          "Address":{
+            "title":"Address",
+            "type":"string",
+            "default":""
+          },
+          "PersonalID":{
+            "title":"Personal ID",
+            "type":"string",
+            "default":""
+          },
+          "Telephone":{
+            "title":"Contact Number",
+            "type":"string",
+            "feedback":false,
+            "pattern":"^(?:(?:\\(?(?:00|\\+)([1-4]\\d\\d|[1-9]\\d?)\\)?)?[\\-\\.\\ \\\\\\/]?)?((?:\\(?\\d{1,}\\)?[\\-\\.\\ \\\\\\/]?){0,})(?:[\\-\\.\\ \\\\\\/]?(?:#|ext\\.?|extension|x)[\\-\\.\\ \\\\\\/]?(\\d+))?$",
+            "validationMessage":"Please enter a valid phone number"
+          },
+          "PostalCode":{
+            "title":"Postal Code",
+            "type":"string",
+            "default":""
+          },
+          "BloodGroup":{
+            "title":"Blood Group",
+            "type":"string",
+            "default":""
+          },
+          "Allergy":{
+            "title":"Allergy",
+            "type":"string",
+            "default":""
+          },
+          "Nationality":{
+            "title":"Nationality",
+            "type":"string",
+            "default":""
+          },
+          "Email":{
+            "title":"Email",
+            "type":"string",
+            "pattern":"^[^@^-]+@[^@^.]+\\.[a-zA-Z0-9]{2,}(\\.[a-zA-Z0-9]{2,})?$",
+            "validationMessage":"Please enter a valid email address",
+            "default":""
+          },
+          "PastInjuryRecords":{
+            "title":"Past Injury Records",
+            "type":"string",
+            "default":""
+          },
+          "Height":{
+            "title":"Height (cm)",
+            "type":"string",
+            "pattern":"^[1-9][0-9]*$"
+          },
+          "Weight":{
+            "title":"Weight (kg)",
+            "type":"string",
+            "pattern":"^[1-9][0-9]*$",
+            "validationMessage":"Please enter a valid number"
+          },
+          "FatMassPercentage":{
+            "title":"Fat Mass %",
+            "type":"number"
+            },
+          "MuscleMassPercentage":{
+            "title":"Muscle Mass %",
+            "type":"number"
+          },
+          "BMI":{
+            "title":"BMI",
+            "type":"number"
+          },
+          "Classification":{
+            "title":"Classification",
+            "type":"string",
+            "default":""
+          },
+          "Systolic":{
+            "type":"string",
+            "pattern":"^[1-9][0-9]*$",
+            "validationMessage":"Please enter a valid number",
+            "title":"Systolic (mmHg)"
+          },
+          "Diastolic":{
+            "type":"string",
+            "pattern":"^[1-9][0-9]*$",
+            "validationMessage":"Please enter a valid number",
+            "title":"Diastolic (mmHg)"
+          },
+          "RestHeartRate":{
+            "type":"string",
+            "pattern":"^[1-9][0-9]*$",
+            "validationMessage":"Please enter a valid number",
+            "title":"Resting Heart Rate"
+          },
+          "EmergencyContact":{
+            "title":"Emergency Contact Number",
+            "type":"string",
+            "pattern":"^(?:(?:\\(?(?:00|\\+)([1-4]\\d\\d|[1-9]\\d?)\\)?)?[\\-\\.\\ \\\\\\/]?)?((?:\\(?\\d{1,}\\)?[\\-\\.\\ \\\\\\/]?){0,})(?:[\\-\\.\\ \\\\\\/]?(?:#|ext\\.?|extension|x)[\\-\\.\\ \\\\\\/]?(\\d+))?$",
+            "validationMessage":"Please enter a valid phone number",
+            "default":""
+          },
+          "ScheduleAppointment":{
+            "title":"Schedule Session",
+            "type":"string",
+            "default":""
+          },
+          "ContractSignature":{
+            "title":"Signature",
+            "type":"string"
+          },
+          "SelectPackage":{
+            "title":"Selected Package",
+            "type":"number",
+            "default":""
+          },
+          "TotalSessions":{
+            "title":"Completed Sessions",
+            "type":"number"
+          },
+          "Session":{
+            "title":"Today's Session",
+            "type":"string",
+            "default":""
+          },
+          "CompletedSessions":{
+            "type":"object",
+            "properties":{
+              "TotalAmount":{
+                "type":"number",
+                "title":"Total"
+              },
+              "Packages":{
+                "type":"array",
+                "items":{
+                  "type":"object",
+                  "properties":{
+                    "No":{
+                      "type":"string",
+                      "title":"No"
+                    },
+                    "SessionType":{
+                      "type":"number",
+                      "title":"Unit Price"
+                    },
+                    "Date":{
+                      "type":"string",
+                      "title":"Tax",
+                      "format":"datetime"
+                    },
+                    "Price":{
+                      "type":"number",
+                      "title":"Tax"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "required":[
+          "Name"
+        ]
+      }
+    },
+    "appointments":{
+      "definitions":[
+
+      ],
+      "schema":{
+        "type":"object",
+        "properties":{
+
+        }
+      }
+    },
+    "customers":{
+      "definitions":[
+
+      ],
+      "schema":{
+        "type":"object",
+        "properties":{
+
+        }
+      }
+    }
+  }
+}
+

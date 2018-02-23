@@ -1,0 +1,2292 @@
+{
+  "definitions": {
+    "GOODS_RECV": [
+      {
+        "key": "warehouse_name",
+        "title": "Warehouse Name",
+        "type": "autocomplete",
+        "createNew": false,
+        "query": {
+          "model": "warehouse",
+          "field": "warehouse_name",
+          "map": {
+            "erpnext_warehouse_id": "erpnext_warehouse_id",
+            "warehouse_name": "warehouse_name"
+          }
+        }
+      },
+      {
+        "key": "batch",
+        "title": "Batch",
+        "type": "autocomplete",
+        "createNew": false,
+        "query": {
+          "model": "batch",
+          "field": "batch_tag",
+          "map": {
+            "erpnext_batch_id": "erpnext_batch_id",
+            "batch_tag": "batch",
+            "erpnext_batch_item_code": "erpnext_batch_item_code"
+          }
+        },
+        "pattern": "^[0-9][0-9]{3}$",
+        "validationMessage": "Batch NO must be exactly 4 digits"
+      },
+      {
+        "key": "items",
+        "title": "Received Item List",
+        "type": "scannertable",
+        "add": "New Item",
+        "items": [
+          {
+            "key": "items[].barcode",
+            "title": "Barcode",
+            "type": "label",
+            "htmlClass": "full-width",
+            "mandatory": true
+          },
+          {
+            "key": "items[].item_name",
+            "title": "Item Name",
+            "type": "autocomplete",
+            "createNew": false,
+            "query": {
+              "model": "item",
+              "field": "item_name",
+              "map": {
+                "item_name": "item_name",
+                "item_code": "item_code",
+                "size": "size"
+              }
+            },
+            "acceptPlainValue": true,
+            "mandatory": true,
+            "pattern": "^..{0,7}$",
+            "validationMessage": "Item name must be up to 8 characters"
+          },
+          {
+            "key": "items[].size",
+            "title": "Item Size",
+            "type": "pattern",
+            "mandatory": true,
+            "pattern": "^..{0,4}$",
+            "validationMessage": "Item size must be up to 5 characters"
+          },
+          {
+            "key": "items[].qty",
+            "title": "Quantity",
+            "type": "pattern",
+            "mandatory": true,
+            "pattern": "^[1-9][0-9]*$",
+            "validationMessage": "Quantity must be number"
+          },
+          {
+            "key": "items[].purchase_qty",
+            "type": "hidden"
+          }
+        ]
+      }
+    ],
+    "GOODS_CREATION": [
+      {
+        "type": "fieldset",
+        "title": "Item Details",
+        "items": [
+          {
+            "key": "item_code",
+            "title": "Item Code",
+            "htmlClass": "half-width label-left",
+            "type": "label"
+          },
+          {
+            "key": "item_name",
+            "title": "Item Name",
+            "htmlClass": "half-width label-left",
+            "type": "label"
+          },
+          {
+            "key": "size",
+            "title": "Item Size",
+            "htmlClass": "half-width label-left",
+            "type": "label"
+          },
+          {
+            "key": "batch",
+            "title": "Batch",
+            "htmlClass": "half-width label-left",
+            "type": "label"
+          },
+          {
+            "key": "warehouse_name",
+            "title": "Warehouse Name",
+            "htmlClass": "half-width label-left",
+            "type": "label"
+          },
+          {
+            "key": "barcode",
+            "title": "Barcode",
+            "htmlClass": "half-width label-left",
+            "type": "label"
+          },
+          {
+            "key": "item_desc",
+            "title": "Item Description",
+            "type": "textarea",
+            "htmlClass": "required glyphicon",
+            "fieldAddonRight": " "
+          },
+          {
+            "key": "buying_price",
+            "title": "Buying Price",
+            "htmlClass": "half-width label-left",
+            "type": "pattern",
+            "pattern": "\\s*\\s$|^\\d\\d*\\.?\\d*$",
+            "validationMessage": "Price must be a positive number"
+          },
+          {
+            "key": "selling_price",
+            "title": "Selling Price",
+            "htmlClass": "half-width label-left",
+            "type": "pattern",
+            "pattern": "\\s*\\s$|^\\d\\d*\\.?\\d*$",
+            "validationMessage": "Price must be positive number"
+          },
+          {
+            "key": "item_group_name",
+            "title": "Item Group Name",
+            "htmlClass": "half-width label-left",
+            "type": "autocomplete",
+            "query": {
+              "model": "item_group",
+              "field": "item_group_name",
+              "map": {
+                "erpnext_item_group_id": "erpnext_item_group_id",
+                "item_group_name": "item_group_name"
+              }
+            }
+          },
+          {
+            "key": "supplier_name",
+            "title": "Supplier Name",
+            "htmlClass": "half-width label-left",
+            "type": "autocomplete",
+            "query": {
+              "model": "supplier",
+              "field": "supplier_name",
+              "map": {
+                "erpnext_supplier_id": "erpnext_supplier_id",
+                "supplier_name": "supplier_name"
+              }
+            }
+          },
+          {
+            "key": "uom_name",
+            "title": "UOM",
+            "htmlClass": "half-width label-left",
+            "type": "autocomplete",
+            "query": {
+              "model": "uom",
+              "field": "uom_name",
+              "map": {
+                "erpnext_uom_id": "erpnext_uom_id",
+                "uom_name": "uom_name"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "key": "uoms",
+        "title": "UOM Details",
+        "type": "table",
+        "add": "More UOM",
+        "items": [
+          {
+            "key": "uoms[].uom_name",
+            "title": "UOM",
+            "type": "autocomplete",
+            "createNew": false,
+            "query": {
+              "model": "uom",
+              "field": "uom_name",
+              "map": {
+                "erpnext_uom_id": "erpnext_uom_id",
+                "uom_name": "uom_name"
+              }
+            }
+          },
+          {
+            "key": "uoms[].conversion_factor",
+            "title": "Conversion factor"
+          }
+        ]
+      }
+    ],
+    "GOODS_APPROVING": [
+      {
+        "key": "items",
+        "title": "Items",
+        "type": "table",
+        "add": null,
+        "items": [
+          {
+            "key": "items[].barcode",
+            "title": "Barcode",
+            "type": "label"
+          },
+          {
+            "key": "items[].item_code",
+            "title": "Item Code",
+            "type": "label"
+          },
+          {
+            "key": "items[].item_name",
+            "title": "Item Name",
+            "type": "label"
+          },
+          {
+            "key": "items[].size",
+            "title": "Item Size",
+            "type": "label"
+          },
+          {
+            "key": "items[].actual_qty",
+            "title": "Actual Qty",
+            "type": "label"
+          },
+          {
+            "key": "items[].valuation_rate",
+            "title": "Valuation Rate",
+            "type": "pattern",
+            "mandatory": true
+          },
+          {
+            "key": "items[].qty",
+            "title": "Quantity",
+            "mandatory": true
+          },
+          {
+            "key": "items[].warehouse_name",
+            "title": "Warehouse",
+            "type": "label"
+          },
+          {
+            "key": "items[].purchase_qty",
+            "title": "Purchase Qty",
+            "type": "label"
+          },
+          {
+            "key": "items[].action_type",
+            "title": "Action Type",
+            "type": "label"
+          }
+        ]
+      }
+    ],
+        "RECEIVEPO": [
+          {
+            "type": "fieldset",
+            "title": "Client's Company Details",
+            "items": [
+              {
+                "key": "customer_name",
+                "type": "autocomplete",
+                "htmlClass": "half-width label-left",
+                "query": {
+                    "model": "customers",
+                    "field": "customer_name",
+                    "map": {
+                        "customer_website":"website",
+                        "erpnext_customer_group_id":"industry"
+                    }
+                },
+                "chain": {
+                    "using": "customer_name",
+                    "find": [{
+                        "model":"Address",
+                        "field":"customer_name",
+                        "map": {
+                            "address_line1":"address",
+                            "phone":"mainline",
+                            "fax":"faxline"
+                        }
+                    }]
+                }
+            },
+                       {
+                "key": "address",
+                "title":"Address",
+                "type":"autocomplete",
+                "query":{
+                  "model":"Address",
+                  "field":"address_line1",
+                  "map":{
+                    "fax":"faxline",
+                    "phone":"mainline"
+                  }
+                },
+                "htmlClass":"half-width label-left"
+            },
+            {
+                "key": "mainline",
+                "title":"Mainline",
+                "htmlClass": "half-width label-left"
+            }, {
+                "key": "faxline",
+                "title":"Fax",
+                "htmlClass": "half-width label-left"
+            },
+            {
+                "key": "website",
+                "title":"Website",
+                "htmlClass": "half-width label-left"
+            }, {
+                "key": "industry",
+                "title":"Industry",
+                "htmlClass": "half-width label-left"
+            }]
+        },
+          {
+            "type":"fieldset",
+            "title":"Contact Details",
+            "items":[
+               {
+                  "key":"contactdetails",
+                  "type":"arraytable",
+                  "style":{
+                     "add":"btn-success"
+                  },
+                  "items":[
+                     {
+                        "key":"contactdetails1",
+                        "type":"table",
+                        "add":"New Contact",
+                        "items":[
+                           {
+                              "key":"contactdetails1[].contactperson",
+                              "type":"autocomplete",
+                              "query":{
+                                 "model":"Contact",
+                                 "field":"first_name",
+                                 "map":{
+                                    "designation":"title",
+                                    "mobile_no":"mobileno",
+                                    "email_id":"email"
+                                 },
+                                 "filter": {
+                                    "customer_name": "customer_name"
+                                 }
+                              }
+                           },
+                           {
+                             "key":"contactdetails1[].title",
+                             "title":"Title"},
+                             {
+                               
+                             
+                           "key":"contactdetails1[].mobileno",
+                           "title":"Mobile No"},
+                           
+                           {"key":"contactdetails1[].email",
+                           "title":"Email"}
+                           
+                        ]
+                     }
+                  ]
+               }
+            ]
+         },
+          {
+            "type": "fieldset",
+            "title": "Quotation",
+            "items": [{
+              
+                   "key": "transaction_date",
+                    "htmlClass": "half-width label-left",
+                    "setDate":"today"
+                 },
+                 {
+              
+                   "key": "customerref",
+                   "title":"Client's RFQ no",
+                    "htmlClass": "half-width label-left"
+                 },
+                 {
+                   "key": "paymentterms",
+                    "htmlClass": "half-width label-left",
+                    "type":"select",
+                    "isFuzzy": "true",
+                    "related": "deliverydate",
+                    "titleMap":[
+                      {
+                        "value":"cod",
+                        "name":"C.O.D"
+                      },
+                      {
+                        "value":"end-month",
+                        "name":"End of the month"
+                      },
+                      {
+                        "value":"30",
+                        "name":"30 days"
+                      }
+                      ]
+          },
+          {
+            "key": "duedate",
+            "title":"Due Date",
+            "htmlClass": "half-width label-left"
+          },
+          {
+            "key":"salesrep",
+            "title":"Sales Rep",
+            "type":"autocomplete",
+            "query":{
+              "model":"Sales_person",
+              "field":"sales_person_name"
+            },
+            "htmlClass":"half-width label-left"
+          },
+          {
+            "key":"deliverydate",
+            "format": "yyyy-mm-dd",
+            "htmlClass":"half-width label-left",
+            "minDate": 0
+          },
+          {
+            "key":"deliveryaddress",
+            "type":"textarea",
+            "title":"Delivery Address*",
+            "htmlClass":"half-width label-left"
+          },
+          {
+           "key":"notes",
+           "title":"Note",
+           "htmlClass":"half-width label-left"
+         },
+          {
+            "key":"deliverycontactperson",
+            "title":"Delivery Contact Person",
+            "htmlClass":"half-width label-left",
+            "type":"autocomplete",
+                              "query":{
+                                 "model":"Contact",
+                                 "field":"first_name",
+                                 "map":{
+                                    "designation":"title",
+                                    "mobile_no":"mobileno",
+                                    "email_id":"email"
+                                 },
+                                 "filter": {
+                                    "customer_name": "customer_name"
+                                 }
+                              }
+          },
+          {
+            "key":"pricelist",
+            "title":"Choose Price List",
+            "htmlClass":"half-width label-left",
+            "type": "dynamic-select",
+            "options": {
+              "placeholder": "Select service",
+              "collection": "Price_list",
+              "filter":{
+              },
+              "option":{
+                "name": "price_list_name",
+                "value": "price_list_name"
+              }
+            }
+          },
+                 {
+                "key": "products",
+                "type": "arraytable",
+                "notitle": true,
+                "style": {
+                    "add": "btn-success"
+                },
+                "items": [
+                {
+                    "key": "products.total",
+                    "type": "total",
+                    "title":"Total before GST",
+                    "expression": "round(sum(range~productdetails[].subtotal),2)"
+                },
+
+                {
+                    "key": "products.gst",
+                    "title":"GST 7 %",
+                    "type":"total",
+                    "expression": "round((total * 7 / 100),2)"
+                },
+                {
+                    "key": "products.totalamount",
+                    "type": "total",
+                    "title":"Total after GST",
+                    "expression": "round((gst + total),2)"
+                },
+                {
+                    "key": "products.deposit",
+                    "title":"Deposit %"
+                },
+                {
+                    "key": "products.totaldeposit",
+                    "type":"total",
+                    "title":"Deposit Amount",
+                    "expression": "round((totalamount * deposit / 100),2)"
+                },
+                {
+                    "key": "products.balance",
+                    "type": "total",
+                    "title":"Balance",
+                    "expression": "round((round(totalamount,2) - round(totaldeposit,2)),2)"
+                },
+                {
+                    "key": "products.productdetails",
+                    "type": "table",
+                    "add": "New Entry",
+                    "items": [
+                    {
+                        "key": "products.productdetails[].item_code",
+                        "type": "autocomplete",
+                        "createNew": false,
+                        "title": "Product Code",
+                        "query": {
+                            "model": "itemprice",
+                            "field": "erpnext_item_code_id"
+                        },
+                       "chain":
+                       {
+                            "using": "item_code",
+                            "find": [
+                              {
+                                "model": "products",
+                                "field": "item_code",
+                                "map": {
+                                    "size":"size",
+                                    "re_order_level":"reorderlevel",
+                                    "erpnext_uom_id":"erpnext_uom_id"
+                                    
+                                }
+                            },
+                              {
+                                "model": "Uom_conversion_detail",
+                                "field": "parent",
+                                "filter": "Roll(s)",
+                                "map": {
+                                    "conversion_factor":"conversion_factor"
+                                }
+                            }
+                            ]
+                        }
+                    },
+                    {
+                      "key": "products.productdetails[].size",
+                        "title": "Size",
+                        "type":"label"
+                    },
+                    {
+                        "key": "products.productdetails[].qty",
+                        "title": "Quantity"
+                    },
+                    {
+                        "key": "products.productdetails[].erpnext_uom_id",
+                        "title": "UOM",
+                        "type":"label"
+                    },
+                    {
+                      "key":"products.productdetails[].rolls",
+                      "title":"Rolls/Boxes etc",
+                      "type":"total",
+                      "expression": "productdetails[].erpnext_uom_id == 'M' ? productdetails[].qty / productdetails[].conversion_factor : productdetails[].qty"
+                    },
+                    {
+                        "key": "products.productdetails[].price",
+                        "title": "Rate/unit (S$)"
+                    },
+                    {
+                        "key": "products.productdetails[].subtotal",
+                        "type": "total",
+                        "title": "Amount (S$)",
+                        "expression":"productdetails[].qty * productdetails[].price"
+                    },
+                    {
+                        "key": "products.productdetails[].more",
+                        "type": "array",
+                        "add": null,
+                        "notitle": true,
+                        "items": [{
+                            "key": "products.productdetails[].more[].remarks",
+                            "type": "textarea",
+                            "title": "Remarks"
+                        }]
+                    }]
+                }]
+            }
+            ]},
+          {
+            "key": "quotation_status",
+            "type": "hidden"},
+          {
+            "key": "quotation_docstatus",
+            "type": "hidden"
+          },
+          {
+            "key": "quotation_quotation_to",
+            "type": "hidden"
+          }
+        ],
+        "DO": [
+          {
+            "type": "fieldset",
+            "title": "Client's Company Details",
+            "items": [{
+                "key": "customer_name",
+                "title":"Company Name",
+                "type": "label",
+                "htmlClass": "half-width label-left"
+            },
+            {
+                "key": "address",
+                "title":"Address",
+                "htmlClass": "half-width label-left",
+                "type":"label"
+            },
+            {
+                "key": "mainline",
+                "title":"Main Line",
+                "htmlClass": "half-width label-left",
+                "type":"label"
+            }, {
+                "key": "faxline",
+                "title":"Fax Line",
+                "htmlClass": "half-width label-left",
+                "type":"label"
+            },
+  {
+                "key": "website",
+                "title":"Website",
+                "htmlClass": "half-width label-left",
+                "type":"label"
+            }, {
+                "key": "industry",
+                "title":"Industry",
+                "htmlClass":"half-width label-left",
+                "type": "label"
+            }]
+        },
+          {
+            "type":"fieldset",
+            "title":"Contact Details",
+            "items":[
+               {
+                  "key":"contactdetails",
+                  "type":"arraytable",
+                  "style":{
+                     "add":"btn-success"
+                  },
+                  "items":[
+                     {
+                        "key":"contactdetails1",
+                        "type":"table",
+                        "add":"New Contact",
+                        "items":[
+                           {
+                              "key":"contactdetails1[].contactperson",
+                              "type":"autocomplete",
+                              "query":{
+                                 "model":"Contact",
+                                 "field":"first_name",
+                                 "map":{
+                                    "designation":"title",
+                                    "mobile_no":"mobileno",
+                                    "email_id":"email"
+                                 }
+                              }
+                           },
+                           {
+                             "key":"contactdetails1[].title",
+                             "title":"Title"},
+                             {
+                               
+                             
+                           "key":"contactdetails1[].mobileno",
+                           "title":"Mobile No"},
+                           
+                           {"key":"contactdetails1[].email",
+                           "title":"Email"}
+                           
+                        ]
+                     }
+                  ]
+               }
+            ]
+         },
+          {
+            "type": "fieldset",
+            "title": "Delivery Order Details",
+            "items": [{
+                "key": "deliverydate",
+                "format": "yyyy-mm-dd",
+                "htmlClass": "half-width label-left"
+            },
+            {
+              "key":"salesorderno",
+              "title":"Sales Order No",
+              "htmlClass":"half-width label-left"
+            },
+            {
+              "key":"issuedby",
+              "title":"Issued by",
+              "htmlClass":"half-width label-left",
+              "type":"autocomplete",
+              "createNew": false,
+              "query":{
+                "model":"Employee",
+                "field":"employee_name"
+              }
+            },
+            {
+            "key":"deliveryaddress",
+            "title":"Delivery Address*",
+            "htmlClass":"half-width label-left",
+            "copyValueTo": ["shippingaddress"]
+          },
+          {
+            "key":"deliverycontactperson",
+            "title":"Delivery Contact Person",
+            "htmlClass":"half-width label-left"
+          }
+            
+            ]
+        },
+          {
+            "type": "fieldset",
+            "title": "Item Details",
+            "items": [
+               {
+                "key": "products",
+                "type": "arraytable",
+                "notitle": true,
+                "style": {
+                    "add": "btn-success"
+                },
+                "items": [
+                  {
+                    "key": "products.totalrolls",
+                    "type": "total",
+                    "title":"Total Rolls",
+                    "expression": "sum(range~productdetails[].qty)"
+                },
+            
+                {
+                    "key": "products.productdetails",
+                    "type": "table",
+                    "add": null,
+                    "items": [
+                    {
+                        "key": "products.productdetails[].check",
+                        "htmlClass":"no-label",
+                        "title": "Issue"
+                    },
+                    {
+                        "key": "products.productdetails[].item_code",
+                        "type": "label",
+                        "title": "Product Code"
+                    },
+                    {
+                        "key": "products.productdetails[].sent",
+                        "type": "label",
+                        "title": "Issued"
+                    },
+                    {
+                        "key": "products.productdetails[].ordered",
+                        "type": "label",
+                        "title": "Ordered"
+                    },
+                    {
+                        "key": "products.productdetails[].erpnext_uom_id",
+                        "title": "Meters",
+                        "type":"label"
+                    },
+                    {
+                        "key": "products.productdetails[].qty",
+                        "title": "To Issue"
+                    },
+                    {
+                      "key": "products.productdetails[].meter",
+                        "title": "Roll(s)",
+                        "type":"label"
+                    },
+                    {
+                        "key": "products.productdetails[].more",
+                        "type": "array",
+                        "add": null,
+                        "notitle": true,
+                        "items": [{
+                            "key": "products.productdetails[].more[].remarks",
+                            "type": "textarea",
+                            "title": "Remarks"
+                        }]
+                    }]
+                }]
+            },
+                
+                {
+                "key": "issueOrder",
+                "type": "button",
+                "title": "Issue order",
+                "htmlClass": "text-right",
+                "style": "btn btn-success",
+                "onClick": "createAction(action.formData)"
+            }]},
+          {
+                "type":"conditional",
+                "condition":"model.doArray[0]",
+                "items":[
+            {
+                 "type": "fieldset",
+            "title": "Issued DO's",
+            "items": [
+            {
+                "key": "doArray",
+                "type": "tabarray",
+                "title": "{{value.do_number}}",
+                "selectable":true,
+                "startEmpty": true,
+                "remove": null,
+                "htmlClass": "margin-bottom",
+                "items": [
+                {
+                        "key": "doArray[].deliverydate",
+                        "type": "label",
+                        "title":"Delivery date:",
+                        "htmlClass": "half-width label-left"
+                    }, {
+                        "key": "doArray[].shippingaddress",
+                        "htmlClass": "half-width label-left",
+                        "title":"Shipping address:",
+                        "type": "label"
+                    }, {
+                    "key": "doArray[].products.productdetails",
+                    "type": "table",
+                    "add": null,
+                    "remove": null,
+                    "items": [{
+                        "key": "doArray[].products.productdetails[].item_code",
+                        "type": "label",
+                        "title": "Item Code"
+                    }, {
+                        "key": "doArray[].products.productdetails[].erpnext_uom_id",
+                        "title": "UOM",
+                        "type": "label"
+                    }, {
+                        "key": "doArray[].products.productdetails[].qty",
+                        "type": "label",
+                        "title": "Quantity"
+                    }, {
+                        "key": "doArray[].products.productdetails[].price",
+                        "title": "Price (S$)",
+                        "type": "label"
+                    }, {
+                        "key": "doArray[].products.productdetails[].subtotal",
+                        "type": "total",
+                        "title": "Subtotal (S$)",
+                        "expression": "productdetails[].qty*productdetails[].price"
+                    }]
+                }, {
+                    "key": "doArray[].products.issue_total",
+                    "type": "total",
+                    "title": "Issue order total (S$):",
+                    "expression": "sum(range~productdetails[].subtotal)"
+                }]
+            },
+            {
+                "key": "invoiceOrder",
+                "type": "button",
+                "title": "Invoice checked DO's",
+                "htmlClass": "text-right",
+                "style": "btn btn-success",
+                "onClick": "createInvoice(action.formData.doArray)"
+        }]}]},
+          {
+              "type":"fieldset",
+              "title":"Remarks",
+              "items":[
+                {
+                  "key":"internalremarks",
+                  "title":"Internal Remarks",
+                  "type":"textarea"
+                },
+                {
+                  "key":"doremarks",
+                  "title":"Delivery Order Remarks",
+                  "type":"textarea"
+                }
+                ]},
+          {
+            "key": "deliveryorder_docstatus",
+            "type": "hidden"},
+          {
+            "key": "deliveryorder_status",
+            "type": "hidden"
+        }
+        ],
+        "DOCONFIRMATION": [
+           {
+            "type": "fieldset",
+            "title": "Client's Company Details",
+            "items": [{
+                "key": "customer_name",
+                "type": "label",
+                "htmlClass": "half-width label-left"
+            },
+            {
+                "key": "address",
+                "title":"Address",
+                "htmlClass": "half-width label-left",
+                "type":"label"
+            },
+            {
+                "key": "mainline",
+                "title":"Main Line Line",
+                "htmlClass": "half-width label-left",
+                "type":"label"
+            }, {
+                "key": "faxline",
+                "title":"Fax Line",
+                "htmlClass": "half-width label-left",
+                "type":"label"
+            },
+  {
+                "key": "website",
+                "title":"Website",
+                "htmlClass": "half-width label-left",
+                "type":"label"
+            }, {
+                "key": "industry",
+                "title":"Industry",
+                "htmlClass":"half-width label-left",
+                "type": "label"
+            }]
+        },
+        {
+            "type":"fieldset",
+            "title":"Contact Details",
+            "remove":null,
+            "items":[
+               {
+                  "key":"contactdetails",
+                  "type":"arraytable",
+                  "add":null,
+                  "remove": null,
+                  "style":{
+                     "add":"btn-success"
+                  },
+                  "items":[
+                     {
+                        "key":"contactdetails1",
+                        "type":"table",
+                        "add":null,
+                        "remove":null,
+                        "items":[
+                           {
+                              "key":"contactdetails1[].contactperson",
+                              "type":"label"
+                           },
+                           {
+                              "key":"contactdetails1[].title",
+                              "type":"label"
+                           },
+                           {
+                              "key":"contactdetails1[].mobileno",
+                              "type":"label"
+                           },
+                           {
+                              "key":"contactdetails1[].email",
+                              "type":"label"
+                           },
+                           {
+                              "key":"contactdetails1[].more",
+                              "type":"row",
+                              "add":null,
+                              "remove":null,
+                              "items":[
+                                 {
+                                    "key":"contactdetails1[].more[].date",
+                                    "type":"label"
+                                 },
+                                 {
+                                    "key":"contactdetails1[].more[].item",
+                                    "type":"label"
+                                 },
+                                 {
+                                    "key":"contactdetails1[].more[].description",
+                                    "type":"label"
+                                 }
+                              ]
+                           }
+                        ]
+                     }
+                  ]
+               }
+            ]
+         },
+         {
+            "type": "fieldset",
+            "title": "Delivery Order Details",
+            "items": [{
+                "key": "deliverydate",
+                "format": "yyyy-mm-dd",
+                "type": "label",
+                "htmlClass": "half-width label-left"
+            },
+            {
+              "key":"salesorderno",
+              "type":"label",
+              "title":"Sales Order No",
+              "htmlClass":"half-width label-left"
+            },
+            {
+              "key":"issuedby",
+              "type":"label",
+              "title":"Issued by",
+              "htmlClass":"half-width label-left"
+            },
+            {
+            "key":"deliveryaddress",
+            "type":"label",
+            "title":"Delivery Address*",
+            "htmlClass":"half-width label-left"
+          },
+          {
+            "key":"deliverycontactperson",
+            "type":"label",
+            "title":"Delivery Contact Person",
+            "htmlClass":"half-width label-left"
+          }
+            
+            ]
+        }, {
+            "type": "fieldset",
+            "title": "Item Details",
+            "items": [
+               {
+                "key": "products",
+                "type": "arraytable",
+                "notitle": true,
+                "style": {
+                    "add": "btn-success"
+                },
+                "items": [
+                {
+                    "key": "products.total",
+                    "type": "total",
+                    "title":"Total before GST",
+                    "expression": "round(sum(range~productdetails[].subtotal),2)"
+                },
+
+                {
+                    "key": "products.gst",
+                    "title":"GST 7 %",
+                    "type":"total",
+                    "expression": "round((total * 7 / 100),2)"
+                },
+                {
+                    "key": "products.totalamount",
+                    "type": "total",
+                    "title":"Total after GST",
+                    "expression": "round((gst + total),2)"
+                },
+                {
+                    "key": "products.deposit",
+                    "title":"Deposit %"
+                },
+                {
+                    "key": "products.totaldeposit",
+                    "type":"total",
+                    "title":"Deposit Amount",
+                    "expression": "round((totalamount * deposit / 100),2)"
+                },
+                {
+                    "key": "products.balance",
+                    "type": "total",
+                    "title":"Balance",
+                    "expression": "round((round(totalamount,2) - round(totaldeposit,2)),2)"
+                },
+                {
+                    "key": "products.productdetails",
+                    "type": "table",
+                    "add": "New Entry",
+                    "items": [
+                    {
+                        "key": "products.productdetails[].item_code",
+                        "type": "label",
+                        "title": "Product Code"
+                    },
+                    {
+                      "key": "products.productdetails[].size",
+                        "title": "Size",
+                        "type":"label"
+                    },
+                    {
+                        "key": "products.productdetails[].qty",
+                        "title": "Quantity",
+                        "type":"label"
+                    },
+                    {
+                        "key": "products.productdetails[].erpnext_uom_id",
+                        "title": "UOM",
+                        "type":"label"
+                    },
+                    {
+                      "key":"products.productdetails[].rolls",
+                      "title":"Rolls/Boxes etc",
+                      "type":"label"
+                    },
+                    {
+                        "key": "products.productdetails[].price",
+                        "title": "Rate/unit (S$)",
+                        "type":"label"
+                    },
+                    {
+                        "key": "products.productdetails[].subtotal",
+                        "type": "total",
+                        "title": "Amount (S$)",
+                        "expression":"productdetails[].qty * productdetails[].price"
+                    },
+                    {
+                        "key": "products.productdetails[].more",
+                        "type": "array",
+                        "add": null,
+                        "notitle": true,
+                        "items": [{
+                            "key": "products.productdetails[].more[].remarks",
+                            "type": "textarea",
+                            "title": "Remarks"
+                        }]
+                    }]
+                }]
+            }
+            ]
+        },
+        {
+              "type":"fieldset",
+              "title":"Internal Remarks",
+              "items":[
+                {
+                  "key":"internalremarks",
+                  "title":"Internal Remarks",
+                  "type":"textarea"
+                }
+                ]
+            },{
+            "key": "deliveryorder_docstatus",
+            "type": "hidden"
+        }, {
+            "key": "deliveryorder_status",
+            "type": "hidden"
+        }, {
+            "key": "against_income_account",
+            "type": "hidden"
+        }
+      ]
+  },
+  "schemas": {
+    "GOODS_RECV": {
+      "type": "object",
+      "title": "Goods Receiving",
+      "properties": {
+        "warehouse_name": {
+          "type": "string"
+        },
+        "batch": {
+          "type": "string"
+        },
+        "items": {
+          "properties": {
+            "item_code": {
+              "type": "string"
+            },
+            "item_name": {
+              "type": "string"
+            },
+            "barcode": {
+              "type": "string"
+            },
+            "qty": {
+              "type": "number"
+            },
+            "purchase_qty": {
+              "type": "number"
+            }
+          }
+        }
+      },
+      "required": [
+        "warehouse_name",
+        "batch"
+      ]
+    },
+    "GOODS_CREATION": {
+      "type": "object",
+      "title": "Goods Creation",
+      "properties": {
+        "item_code": {
+          "type": "string"
+        },
+        "item_name": {
+          "type": "string"
+        },
+        "size": {
+          "type": "string"
+        },
+        "warehouse_name": {
+          "type": "string"
+        },
+        "barcode": {
+          "type": "string"
+        },
+        "item_desc": {
+          "type": "string"
+        },
+        "buying_price": {
+          "type": "string"
+        },
+        "selling_price": {
+          "type": "string"
+        },
+        "item_group_name": {
+          "type": "string"
+        },
+        "supplier_name": {
+          "type": "string"
+        },
+        "uom_name": {
+          "type": "string"
+        },
+        "stock_creation_docstatus": {
+          "default": 1
+        },
+        "uoms": {
+          "properties": {
+            "uom_name": {
+              "type": "string"
+            },
+            "conversion_factor": {
+              "type": "number"
+            }
+          }
+        }
+      },
+      "required": [
+        "item_desc",
+        "item_group_name",
+        "supplier_name",
+        "uom_name"
+      ]
+    },
+    "GOODS_APPROVING": {
+      "type": "object",
+      "title": "Goods Approving",
+      "properties": {
+        "items": {
+          "properties": {
+            "barcode": {
+              "type": "string"
+            },
+            "item_code": {
+              "type": "string"
+            },
+            "item_name": {
+              "type": "string"
+            },
+            "size": {
+              "type": "string"
+            },
+            "actual_qty": {
+              "type": "string"
+            },
+            "valuation_rate": {
+              "type": "string"
+            },
+            "qty": {
+              "type": "string"
+            },
+            "warehouse_name": {
+              "type": "string"
+            },
+            "purchase_qty": {
+              "type": "string"
+            },
+            "action_type": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+        "RECEIVEPO": {
+            "type": "object",
+            "title": "Sale",
+            "properties": {
+                "customer_name": {
+                    "title": "Company Name",
+                    "type": "string",
+                    "validationMessage": "Add Your Company"
+                },
+                
+                "salesorder_status": {
+                    "title": "Status",
+                    "default": "Draft"
+                },
+                "salesorder_docstatus": {
+                    "title": "DocStatus",
+                    "default": "0"
+                },
+                "salesorder_territory": {
+                    "title": "Territory",
+                    "default": "Singapore"
+                },
+                "mainline": {
+                    "title": "Tel",
+                    "oneOf":[
+                                        {"type":"null"},
+                                        {"type":"string"}]
+                    
+                },
+                "faxline": {
+                    "title": "Fax",
+                    "oneOf":[
+                                        {"type":"null"},
+                                        {"type":"string"}]
+                },
+                "address": {
+                    "title": "Address",
+                    "oneOf":[
+                                        {"type":"null"},
+                                        {"type":"string"}]
+                },
+                "website": {
+                    "title": "Website",
+                    "oneOf":[
+                                        {"type":"null"},
+                                        {"type":"string"}]
+                },
+                "industry": {
+                    "title": "Industry",
+                    "oneOf":[
+                                        {"type":"null"},
+                                        {"type":"string"}]
+                },
+                 "contactdetails":{
+
+            },
+            "contactdetails1":{
+               "title":"Contact Information",
+               "type":"array",
+               "maxItems":100,
+               "items":{
+                  "type":"object",
+                  "properties":{
+                     "contactperson":{
+                        "title":"Contact Person",
+                        "type":"string"
+                     },
+                     "title":{
+                        "title":"Title",
+                       "oneOf":[
+                                        {"type":"null"},
+                                        {"type":"string"}]
+                     },
+                     "directline":{
+                        "title":"Direct Line",
+                       "oneOf":[
+                                        {"type":"null"},
+                                        {"type":"string"}]
+                     },
+                     "mobileno":{
+                        "title":"Mobile",
+                        "oneOf":[
+                                        {"type":"null"},
+                                        {"type":"string"}]
+                     },
+                     "email":{
+                        "title":"Email",
+                        "oneOf":[
+                                        {"type":"null"},
+                                        {"type":"string"}],
+                        "pattern":"^[^@^-]+@[^@^.]+\\.[a-zA-Z0-9]{2,}(\\.[a-zA-Z0-9]{2,})?$",
+                        "validationMessage":"Please enter in a proper email format"
+                     },
+                     "more":{
+                        "title":"Contact Log",
+                        "type":"array",
+                        "maxItems":100,
+                        "items":{
+                           "type":"object",
+                           "properties":{
+                              "date":{
+                                 "title":"Date",
+                                 "type":"string",
+                                 "format":"date"
+                              },
+                              "item":{
+                                 "title":"Contact Type",
+                                 "type":"string"
+                              },
+                              "description":{
+                                 "title":"Description",
+                                 "type":"string"
+                              }
+                           }
+                        }
+                     }
+                  }
+               }
+            },
+                "transaction_date": {
+                    "title": "Date",
+                    "type": "string",
+                    "format":"date"
+                },
+                "customerref": {
+                    "title": "Client's RFQ no",
+                    "type": "string"
+                },
+                "quotationno": {
+                    "title": "Quotation Number",
+                    "type": "string"
+                },
+                "quotationvalidity": {
+                    "title": "Validity",
+                    "type": "string"
+                },
+                "additionalrequirements": {
+                    "title": "Additional Requirements",
+                    "type": "string"
+                },
+                "Quotation": {
+                    "type": "array",
+                    "maxItems": 100,
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "Product": {
+                                "title": "Product",
+                                "type": "string"
+                            },
+                            "Description": {
+                                "title": "Description",
+                                "type": "string"
+                            },
+                            "Quantity": {
+                                "title": "Quantity",
+                                "type": "number"
+                            },
+                            "price": {
+                                "title": "Price",
+                                "type": "number",
+                                "format": "currency"
+                            },
+                            "Total": {
+                                "title": "Amount",
+                                "type": "number"
+                            }
+                        }
+                    }
+                },
+                "deliverydate": {
+                    "title": "Delivery Date*",
+                    "type": "string",
+                    "format": "date"
+                },
+                "ponumber": {
+                    "title": "PO Number",
+                    "type": "string"
+                },
+                "sonumber": {
+                    "title": "SO Number",
+                    "type": "string"
+                },
+                "shippingaddress": {
+                    "title": "Shipping Address",
+                    "type": "string"
+                },
+                "paymentterms": {
+                    "title": "Payment Terms",
+                    "type": "string"
+                },
+                "grnumber": {
+                    "title": "GR number",
+                    "type": "string"
+                },
+                "remarks": {
+                    "title": "Remarks",
+                    "type": "string"
+                },
+                "products": {
+                    "type": "object",
+                    "properties": {
+                        "total": {
+                            "title": "Total",
+                            "type": "number"
+                        },
+                        "productdetails": {
+                            "title": "Contact Information",
+                            "type": "array",
+                            "maxItems": 100,
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "item_code": {
+                                        "title": "Item Code",
+                                        "type": "string"
+                                    },
+                                    "erpnext_uom_id": {
+                                        "title": "UOM",
+                                        "type": "string"
+                                    },
+                                    "qty": {
+                                        "title": "Quantity",
+                                        "type": "number",
+                                        "minimum": 0,
+                                        "validationMessage": "Quantity cannot be negative"
+                                    },
+                                    "price": {
+                                        "title": "Price",
+                                        "type": "number",
+                                        "format": "currency"
+                                    },
+                                    "more": {
+                                        "title": "More Information",
+                                        "type": "array",
+                                        "maxItems": 100,
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "balancequantity": {
+                                                    "title": "Balance Quantity",
+                                                    "type": "number"
+                                                },
+                                                "length": {
+                                                    "title": "Length",
+                                                    "type": "number"
+                                                },
+                                                "remarks": {
+                                                    "title": "Remarks",
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "required": ["deliverydate", "customer_name", "industry"]
+        },
+        "DO": {
+            "type": "object",
+            "title": "Generate Delivery Order",
+            "properties": {
+                "customer_name": {
+                    "title": "Company Name",
+                    "type": "string",
+                    "validationMessage": "Add Your Company"
+                },
+                "mainline": {
+                    "title": "Main Line"
+                },
+                "deliveryorder_docstatus": {
+                    "title": "DocStatus",
+                    "default": "0"
+                },
+                "deliveryorder_status": {
+                    "title": "Status",
+                    "default": "Draft"
+                },
+                "faxline": {
+                    "title": "Fax",
+                    "oneOf":[
+                                        {"type":"null"},
+                                        {"type":"string"}]
+                },
+                "address": {
+                    "title": "Address",
+                    "oneOf":[
+                                        {"type":"null"},
+                                        {"type":"string"}]
+                },
+                "website": {
+                    "title": "Website",
+                    "oneOf":[
+                                        {"type":"null"},
+                                        {"type":"string"}]
+                },
+                "industry": {
+                    "title": "Industry",
+                    "oneOf":[
+                                        {"type":"null"},
+                                        {"type":"string"}]
+                },
+                 "contactdetails":{
+
+            },
+            "contactdetails1":{
+               "title":"Contact Information",
+               "type":"array",
+               "maxItems":100,
+               "items":{
+                  "type":"object",
+                  "properties":{
+                     "contactperson":{
+                        "title":"Contact Person",
+                        "type":"string"
+                     },
+                     "title":{
+                        "title":"Title",
+                       "oneOf":[
+                                        {"type":"null"},
+                                        {"type":"string"}]
+                     },
+                     "directline":{
+                        "title":"Direct Line",
+                       "oneOf":[
+                                        {"type":"null"},
+                                        {"type":"string"}]
+                     },
+                     "mobileno":{
+                        "title":"Mobile",
+                        "oneOf":[
+                                        {"type":"null"},
+                                        {"type":"string"}]
+                     },
+                     "email":{
+                        "title":"Email",
+                        "oneOf":[
+                                        {"type":"null"},
+                                        {"type":"string"}],
+                        "pattern":"^[^@^-]+@[^@^.]+\\.[a-zA-Z0-9]{2,}(\\.[a-zA-Z0-9]{2,})?$",
+                        "validationMessage":"Please enter in a proper email format"
+                     },
+                     "more":{
+                        "title":"Contact Log",
+                        "type":"array",
+                        "maxItems":100,
+                        "items":{
+                           "type":"object",
+                           "properties":{
+                              "date":{
+                                 "title":"Date",
+                                 "type":"string",
+                                 "format":"date"
+                              },
+                              "item":{
+                                 "title":"Contact Type",
+                                 "type":"string"
+                              },
+                              "description":{
+                                 "title":"Description",
+                                 "type":"string"
+                              }
+                           }
+                        }
+                     }
+                  }
+               }
+            },
+                "quotationno": {
+                    "title": "Quotation Number",
+                    "type": "string"
+                },
+                "quotationvalidity": {
+                    "title": "Validity",
+                    "type": "string"
+                },
+                "paymentterms": {
+                    "title": "Payment Terms",
+                    "type": "string"
+                },
+                "additionalrequirements": {
+                    "title": "Additional Requirements",
+                    "type": "string"
+                },
+                "Quotation": {
+                    "type": "array",
+                    "maxItems": 100,
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "Product": {
+                                "title": "Product",
+                                "type": "string"
+                            },
+                            "Description": {
+                                "title": "Description",
+                                "type": "string"
+                            },
+                            "Quantity": {
+                                "title": "Quantity",
+                                "type": "number"
+                            },
+                            "price": {
+                                "title": "Price",
+                                "type": "number",
+                                "format": "currency"
+                            },
+                            "Total": {
+                                "title": "Amount",
+                                "type": "number"
+                            }
+                        }
+                    }
+                },
+                "deliverydate": {
+                    "title": "Delivery Date*",
+                    "type": "string",
+                    "format": "date"
+                },
+                "ponumber": {
+                    "title": "PO Number",
+                    "type": "string"
+                },
+                "sonumber": {
+                    "title": "SO Number",
+                    "type": "string"
+                },
+                "shippingaddress": {
+                    "title": "Shipping Address",
+                    "type": "string"
+                },
+                "grnumber": {
+                    "title": "GR number",
+                    "type": "string"
+                },
+                "remarks": {
+                    "title": "Remarks",
+                    "type": "string"
+                },
+                "doArray": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "check": {
+                                "type": "boolean"
+                            }
+                        }
+                    }
+                },
+                "products": {
+                    "type": "object",
+                    "properties": {
+                        "total": {
+                            "title": "Total",
+                            "type": "number"
+                        },
+                        "productdetails": {
+                            "title": "Contact Information",
+                            "type": "array",
+                            "maxItems": 100,
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "check": {
+                                        "type": "boolean"
+                                    },
+                                    "item_code": {
+                                        "title": "Item Code",
+                                        "type": "string"
+                                    },
+                                    "erpnext_uom_id": {
+                                        "title": "UOM",
+                                        "type": "string"
+                                    },
+                                    "qty": {
+                                        "title": "Quantity",
+                                        "type": "number",
+                                        "minimum": 0,
+                                        "validationMessage": "Quantity cannot be negative"
+                                    },
+                                    "price": {
+                                        "title": "Price",
+                                        "type": "number",
+                                        "format": "currency"
+                                    },
+                                    "more": {
+                                        "title": "More Information",
+                                        "type": "array",
+                                        "maxItems": 100,
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "balancequantity": {
+                                                    "title": "Balance Quantity",
+                                                    "type": "number"
+                                                },
+                                                "length": {
+                                                    "title": "Length",
+                                                    "type": "number"
+                                                },
+                                                "remarks": {
+                                                    "title": "Remarks",
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "donumber": {
+                    "title": "DO Number",
+                    "type": "string"
+                }
+            },
+            "required": []
+        },
+        "DOCONFIRMATION": {
+            "type": "object",
+            "title": "Confirm Delivery Order",
+            "properties": {
+                "customer_name": {
+                    "title": "Company Name",
+                    "type": "string",
+                    "validationMessage": "Add Your Company"
+                },
+                "mainline": {
+                    "title": "Main Line",
+                    "type": "string"
+                },
+                "deliveryorder_docstatus": {
+                    "title": "DocStatus",
+                    "default": "0"
+                },
+                "deliveryorder_status": {
+                    "title": "Status",
+                    "default": "Draft"
+                },
+                "against_income_account": {
+                    "title": "Income Acc",
+                    "default": "Sales - E"
+                },
+                "faxline": {
+                    "title": "Fax",
+                    "oneOf":[
+                                        {"type":"null"},
+                                        {"type":"string"}]
+                },
+                "address": {
+                    "title": "Address",
+                    "oneOf":[
+                                        {"type":"null"},
+                                        {"type":"string"}]
+                },
+                "website": {
+                    "title": "Website",
+                    "oneOf":[
+                                        {"type":"null"},
+                                        {"type":"string"}]
+                },
+                "industry": {
+                    "title": "Industry",
+                    "oneOf":[
+                                        {"type":"null"},
+                                        {"type":"string"}]
+                },
+                 "contactdetails":{
+
+            },
+            "contactdetails1":{
+               "title":"Contact Information",
+               "type":"array",
+               "maxItems":100,
+               "items":{
+                  "type":"object",
+                  "properties":{
+                     "contactperson":{
+                        "title":"Contact Person",
+                        "type":"string"
+                     },
+                     "title":{
+                        "title":"Title",
+                       "oneOf":[
+                                        {"type":"null"},
+                                        {"type":"string"}]
+                     },
+                     "directline":{
+                        "title":"Direct Line",
+                       "oneOf":[
+                                        {"type":"null"},
+                                        {"type":"string"}]
+                     },
+                     "mobileno":{
+                        "title":"Mobile",
+                        "oneOf":[
+                                        {"type":"null"},
+                                        {"type":"string"}]
+                     },
+                     "email":{
+                        "title":"Email",
+                        "oneOf":[
+                                        {"type":"null"},
+                                        {"type":"string"}],
+                        "pattern":"^[^@^-]+@[^@^.]+\\.[a-zA-Z0-9]{2,}(\\.[a-zA-Z0-9]{2,})?$",
+                        "validationMessage":"Please enter in a proper email format"
+                     },
+                     "more":{
+                        "title":"Contact Log",
+                        "type":"array",
+                        "maxItems":100,
+                        "items":{
+                           "type":"object",
+                           "properties":{
+                              "date":{
+                                 "title":"Date",
+                                 "type":"string",
+                                 "format":"date"
+                              },
+                              "item":{
+                                 "title":"Contact Type",
+                                 "type":"string"
+                              },
+                              "description":{
+                                 "title":"Description",
+                                 "type":"string"
+                              }
+                           }
+                        }
+                     }
+                  }
+               }
+            },
+                "quotationno": {
+                    "title": "Quotation Number",
+                    "type": "string"
+                },
+                "quotationvalidity": {
+                    "title": "Validity",
+                    "type": "string"
+                },
+                "additionalrequirements": {
+                    "title": "Additional Requirements",
+                    "type": "string"
+                },
+                "Quotation": {
+                    "type": "array",
+                    "maxItems": 100,
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "Product": {
+                                "title": "Product",
+                                "type": "string"
+                            },
+                            "Description": {
+                                "title": "Description",
+                                "type": "string"
+                            },
+                            "Quantity": {
+                                "title": "Quantity",
+                                "type": "number"
+                            },
+                            "price": {
+                                "title": "Price",
+                                "type": "number",
+                                "format": "currency"
+                            },
+                            "Total": {
+                                "title": "Amount",
+                                "type": "number"
+                            }
+                        }
+                    }
+                },
+                "deliverydate": {
+                    "title": "Delivery Date",
+                    "type": "string",
+                    "format": "date"
+                },
+                
+                "ponumber": {
+                    "title": "PO Number",
+                    "type": "string"
+                },
+                "sonumber": {
+                    "title": "SO Number",
+                    "type": "string"
+                },
+                "shippingaddress": {
+                    "title": "Shipping Address",
+                    "type": "string"
+                },
+                "grnumber": {
+                    "title": "GR number",
+                    "type": "string"
+                },
+                "remarks": {
+                    "title": "Remarks",
+                    "type": "string"
+                },
+                "products": {
+                    "type": "object",
+                    "properties": {
+                        "total": {
+                            "title": "Total",
+                            "type": "number"
+                        },
+                        "productdetails": {
+                            "title": "Contact Information",
+                            "type": "array",
+                            "maxItems": 100,
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "item_code": {
+                                        "title": "Item Code",
+                                        "type": "string"
+                                    },
+                                    "erpnext_uom_id": {
+                                        "title": "UOM",
+                                        "type": "string"
+                                    },
+                                    "qty": {
+                                        "title": "Quantity",
+                                        "type": "number",
+                                        "minimum": 0,
+                                        "validationMessage": "Quantity cannot be negative"
+                                    },
+                                    "price": {
+                                        "title": "Price",
+                                        "type": "number",
+                                        "format": "currency"
+                                    },
+                                    "more": {
+                                        "title": "More Information",
+                                        "type": "array",
+                                        "maxItems": 100,
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "balancequantity": {
+                                                    "title": "Balance Quantity",
+                                                    "type": "number"
+                                                },
+                                                "length": {
+                                                    "title": "Length",
+                                                    "type": "number"
+                                                },
+                                                "remarks": {
+                                                    "title": "Remarks",
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "donumber": {
+                    "title": "DO Number",
+                    "type": "string"
+                }
+            },
+            "required": []
+        }
+  },
+  "labels": {
+    "GOODS_RECV": "Goods Receiving",
+    "GOODS_CREATION": "Goods Creation",
+    "GOODS_APPROVING": "Goods Approving",
+    "RECEIVEPO": "Sale",
+    "DO": "Prepare Delivery",
+    "DOCONFIRMATION": "Delivery"
+  },
+  "nodes": {
+    "ENTRY": {
+      "type": "INBOX",
+      "to": "WORKFLOW_ENTRIES",
+      "category": "main"
+    },
+    "WORKFLOW_ENTRIES": {
+      "type": "OPERATION",
+      "operation_type": "SelectEntryPoint",
+      "to": [
+        "GOODS_RECV_1",
+        "RECEIVEPO_1"
+      ]
+    },
+    "GOODS_RECV_1": {
+      "type": "GOODS_RECV",
+      "label": "Goods Receiving",
+      "to": "SPLIT_ITEMS",
+      "category": "main"
+    },
+    "SPLIT_ITEMS": {
+      "type": "OPERATION",
+      "operation_type": "SplitItems",
+      "to": [
+        "GOODS_CREATION_1",
+        "GOODS_APPROVING_1"
+      ]
+    },
+    "GOODS_CREATION_1": {
+      "type": "GOODS_CREATION",
+      "label": "Goods Creation",
+      "to": "CREATE_ITEM",
+      "category": "main"
+    },
+    "CREATE_ITEM": {
+      "type": "OPERATION",
+      "operation_type": "CreateItem",
+      "to": [
+        "GOODS_APPROVING_1"
+      ]
+    },
+    "GOODS_APPROVING_1": {
+      "type": "GOODS_APPROVING",
+      "label": "Goods Approving",
+      "to": "UPDATE_INVENTORY",
+      "category": "main"
+    },
+    "UPDATE_INVENTORY": {
+      "type": "OPERATION",
+      "operation_type": "UpdateInventory",
+      "to": [
+        "OUTBOX"
+      ]
+    },
+        "RECEIVEPO_1": {
+            "type": "RECEIVEPO",
+            "label": "Product Dev Lane 1",
+            "to": "DO_1",
+            "module": {
+                "name": "listing",
+                "collection": "products",
+                "searchField": "item_name",
+                "draggable": false,
+                "canToggle": false,
+                "target": "products.productdetails",
+                "fieldMapping": {
+                    "display_name": "prod_name",
+                    "brand": "brand",
+                    "image": "image",
+                    "size":"size",
+                    "uom":"erpnext_uom_id",
+                    "conv":"conversion_factor"
+                },
+                "chain": {
+                    "using": "item_code",
+                    "find": [{
+                        "model": "products",
+                        "field": "item_code",
+                        "map": {
+                            "erpnext_uom_id": "erpnext_uom_id",
+                                    "_id":"productID"
+                        }
+                    },
+                    {
+                        "model": "Uom_conversion_detail",
+                        "field": "parent",
+                        "map": {
+                            "conversion_factor": "conversion_factor"
+                        }
+                    }]
+                }
+            },
+            "category": "Sales"
+        },
+        "DO_1": {
+            "type": "DO",
+            "label": "Product Dev Lane 1",
+            "to": "OUTBOX",
+            "category": "Sales"
+        },
+        "DOCONFIRMATION": {
+            "type": "DOCONFIRMATION",
+            "label": "Product Dev Lane 1",
+            "to": "OUTBOX",
+            "module": {
+                "name": "attachments"
+            },
+            "category": "Sales"
+        }
+  },
+  "overrides": {
+    "Sales": {
+      "type": "contracts"
+    }
+  },
+  "collections": {
+    "quotation": {
+      
+    },
+    "quotation_item": {
+
+    },
+    "warehouse": {
+      
+    },
+    "supplier": {
+      
+    },
+    "item": {
+      
+    },
+    "item_group": {
+      
+    },
+    "price_list": {
+
+    },
+    "item_price": {
+
+    },
+    "uom": {
+      
+    },
+    "stock_ledger_entry": {
+
+    },
+    "batch": {
+
+    },
+    "serial_no": {
+
+    },
+    "stock_reconciliation": {
+
+    },
+    "fiscal_year": {
+
+    },
+    "company": {
+
+    },
+    "purchase_order": {
+
+    },
+    "purchase_order_item": {
+
+    },
+    "purchase_order_item_supplied": {
+
+    },
+    "purchase_receipt": {
+
+    },
+    "stock_entry": {
+
+    },
+    "user": {
+
+    }
+  }
+}

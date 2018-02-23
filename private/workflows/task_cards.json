@@ -1,0 +1,32 @@
+{
+  "Personal": {
+   "title": "title",
+   "line1": "PlannedStart",
+   "line2": "description",
+   "display_sequence": true,
+   "display_datetime": true
+ },
+
+ "Recruitment": {
+   "title": "job_title",
+   "line1": "customer_name",
+   "line2": "applicant_name",
+   "display_sequence": true,
+   "display_datetime": true
+ },
+
+ "Sales":{
+  "title": "company_name",
+  "line1": "industry",
+  "line2": "status",
+  "display_sequence": true,
+  "display_datetime": true
+},
+  "OpenB_Sales": {
+   "title": "lead_name",
+   "line1": "contact_by",
+   "line2":"contact_date",
+   "display_sequence": true,
+   "display_datetime": true
+ }
+}

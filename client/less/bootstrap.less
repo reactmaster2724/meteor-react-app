@@ -1,0 +1,67 @@
+/* customise height of navbar to match the logo's: http://stackoverflow.com/a/23014051/940030 */
+.navbar-inner {
+    min-height: 0px;
+}
+/* add padding as well: 30px + 10px + 10px */
+.navbar-brand,
+.navbar-nav li a {
+    line-height: 50px;
+    height: 50px;
+    padding-top: 0;
+}
+.navbar-brand {
+    /* appears better */
+    padding-top: 5px;
+}
+
+.btn,
+.panel-title {
+    font-size: inherit;
+}
+/* but maintain it for input-group */
+.input-group-btn .btn {
+    font-size: 14px;
+}
+
+/* make text-align classes to work with btn */
+.btn.text-left {
+    text-align: left !important;
+}
+.btn.text-center {
+    text-align: center !important;
+}
+.btn.text-right {
+    text-align: right !important;
+}
+
+/* some text coloring utilities 
+.text-grey,
+.btn.text-grey {
+    color: #808080 !important;
+}
+.btn.text-default {
+    color: @btn-default-color;
+}
+.btn.text-muted {
+    color: @text-muted;
+}
+.btn.text-primary {
+    color: @brand-primary;
+}
+.btn.text-success {
+    color: @brand-success;
+}
+.btn.text-info {
+    color: @brand-info;
+}
+.btn.text-warning {
+    color: @brand-warning;
+}
+.btn.text-danger {
+    color: @brand-danger;
+}
+*/
+/* some border utilities */
+.border-dashed {
+    border-style: dashed !important;
+}

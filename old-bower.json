@@ -1,0 +1,29 @@
+{
+  "name": "nextactionmeteor",
+  "version": "0.0.1",
+  "license": "Propietary",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "../.meteor/local/bower",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+
+  },
+  "overrides": {
+    "angular": {
+      "main": []
+    },
+    "angular-schema-form-datepicker": {
+      "main": [
+        "bootstrap-datepicker.js"
+      ]
+    }
+  },
+  "resolutions": {
+    "angular": "1.3.11"
+  }
+}

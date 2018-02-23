@@ -1,0 +1,84 @@
+#!/bin/bash
+
+#
+## Initial variables
+#
+PROJECT_ROOT_PATH=`cd $(dirname $BASH_SOURCE); pwd`
+
+HOST_NAME=""
+PRIVATE_KEY=""
+
+ERPNEXT_INITIAL_SETUP=false
+MONGODB_INITIAL_SETUP=false
+NEXTACTION_SETUP=false
+
+#
+## Reset in case getopts has been used previously in the shell
+#
+OPTIND=1
+
+while getopts "h:i:emn" opt; do
+  case "$opt" in
+    h )
+      HOST_NAME="$OPTARG"
+      ;;
+
+    i )
+      PRIVATE_KEY="$OPTARG"
+      ;;
+
+    e )
+      ERPNEXT_INITIAL_SETUP=true
+      ;;
+
+    m )
+      MONGODB_INITIAL_SETUP=true
+      ;;
+
+    n )
+      NEXTACTION_SETUP=true
+      ;;
+  esac
+done
+
+erpnext_initial_setup() {
+  ssh -i $PRIVATE_KEY root@$HOST_NAME /bin/bash -c "'
+    docker rm -f erpdata erpnext &> /dev/null
+    docker create -v /home/frappe/frappe-bench/sites/site1.local/ -v /var/lib/mysql --name erpdata davidgu/erpnext
+    docker run -d -p 3000:80 --name erpnext --volumes-from erpdata davidgu/erpnext
+  '"
+}
+
+mongodb_initial_setup() {
+  ssh -i $PRIVATE_KEY root@$HOST_NAME /bin/bash -c "'
+    rm -rf /opt/mongo_data &> /dev/null
+    mkdir /opt/mongo_data &> /dev/null
+    docker rm -f mongo &> /dev/null
+    docker run -d -p 27017:27017 --name mongo -v /opt/mongo_data:/data/db mongo
+  '"
+}
+
+nextaction_setup() {
+  ssh -i $PRIVATE_KEY root@$HOST_NAME /bin/bash -c "'
+    docker rm -f nextaction &> /dev/null
+  '"
+
+  mupx setup
+  mupx deploy
+  
+  ssh -i $PRIVATE_KEY root@$HOST_NAME /bin/bash -c "'
+    rm -rf /opt/mongodb &> /dev/null
+  '"
+}
+
+if [[ "$ERPNEXT_INITIAL_SETUP" = true ]]; then
+  erpnext_initial_setup
+fi
+
+if [[ "$MONGODB_INITIAL_SETUP" = true ]]; then
+  mongodb_initial_setup
+fi
+
+if [[ "$NEXTACTION_SETUP" = true ]]; then
+  nextaction_setup
+fi

@@ -1,0 +1,312 @@
+{
+   "overrides": {
+      "Recruitmentx": {
+         "type": "contracts"
+      }
+
+   },
+   "definitions": {
+
+      "APPLICANTS": [
+
+         {
+            "type": "fieldset",
+            "title": "Job Request Details",
+            "items": [{
+               "key": "job_title",
+               "htmlClass": "half-width label-left",
+               "type": "autocomplete",
+               "query": {
+                  "model": "jobopening",
+                  "field": "job_title",
+                  "map": {
+                     "description": "description",
+                     "jobstatus": "jobstatus"
+                  }
+               }
+            }]
+         },
+         {
+            "type": "fieldset",
+            "title": "Customer this Job Opening is for",
+            "items": [{
+               "key": "customer_name",
+               "htmlClass": "half-width label-left",
+               "type": "autocomplete",
+               "query": {
+                  "model": "customer",
+                  "field": "customer_name",
+                  "map": {
+                     "customer_type": "customer_type",
+                     "customer_group": "customer_group",
+                     "territory": "territory"
+                  }
+               }
+
+            }]
+         },
+         {
+            "type": "fieldset",
+            "title": "Applicant",
+            "items": [{
+               "key": "applicant_name",
+               "htmlClass": "half-width label-left"
+            },
+            {
+               "key": "email_id",
+               "htmlClass": "half-width label-left"
+            },
+            {
+               "key": "applicantstatus",
+               "htmlClass": "half-width label-left"
+            },
+            {
+               "key": "job_title",
+               "htmlClass": "half-width label-left"
+            },
+            {
+               "key": "cover_letter",
+               "htmlClass": "textarea"
+            }
+
+            ]
+         }
+      ]
+   },
+   "schemas": {
+
+      "APPLICANTS": {
+         "type": "object",
+         "title": "Job Applicant",
+         "properties": {
+            "job_title": {
+               "title": "Job Title",
+               "type": "string"
+            },
+            "description": {
+               "title": "Description",
+               "type": "string"
+            },
+            "jobstatus": {
+               "title": "Job Opening Status",
+               "type": "string"
+            },
+
+
+            "customer_name": {
+               "title": "Customer Name",
+               "type": "string"
+            },
+            "customer_type": {
+               "title": "Customer Type",
+               "type": "string"
+            },
+            "customer_group": {
+               "title": "Customer Group",
+               "type": "string"
+            },
+            "territory": {
+               "title": "Geographical Territory",
+               "type": "string"
+            },
+            "applicant_name": {
+               "title": "Applicant Name",
+               "type": "string"
+            },
+            "applicantstatus": {
+               "title": "Applicant Status",
+               "type": "string",
+               "enum": [
+                     "Open",
+                     "Replied",
+                     "Rejected",
+                     "Hold"
+                  ]
+            },
+            "email_id": {
+               "title": "Email Address",
+               "type": "string",
+               "pattern": "^[^@^-]+@[^@^.]+\\.[a-zA-Z0-9]{2,}(\\.[a-zA-Z0-9]{2,})?$",
+               "validationMessage": "Please enter in a proper email format"
+            },
+            "cover_letter": {
+               "title": "Cover letter",
+               "type": "string"
+            }
+
+
+         },
+         "required": [
+
+         ]
+      }
+   },
+   "labels": {
+      "APPLICANTS": "Job Applicants"
+   },
+   "nodes": {
+      "ENTRY": {
+         "type": "INBOX",
+         "to": "WORKFLOW_ENTRIES",
+         "module": {
+            "name": "attachments"
+         }
+      },
+      "WORKFLOW_ENTRIES": {
+         "type": "OPERATION",
+         "operation_type": "SelectEntryPoint",
+         "to": [
+            "APPLICANTS_1"
+         ]
+      },
+      "APPLICANTS_1": {
+         "type": "APPLICANTS",
+         "label": "First Lane",
+         "to": "CREATE_APPLICANT",
+         "module": {
+            "name": "attachments"
+         },
+         "category": "Recruitment"
+      },
+      "CREATE_APPLICANT": {
+         "type": "OPERATION",
+         "label": "Create Applicant in ERPNext",
+         "operation_type": "GenerateObject",
+         "to": [
+           "OUTBOX"
+         ],
+         "collection": "jobApplicant",
+         "category": "Recruitment"
+       }
+   },
+   "collections": {
+      "jobopening": {
+         "schema": {
+            "type": "object",
+            "title": "New Job Opening",
+            "properties": {
+               "job_title": {
+                  "title": "Job Title",
+                  "type": "string"
+               },
+               "description": {
+                  "title": "Description",
+                  "type": "string"
+               },
+               "jobstatus": {
+                  "title": "Status",
+                  "type": "string",
+                  "enum": [
+                     "Open",
+                     "Closed"
+                  ]
+               }
+            }
+         },
+         "definitions": [{
+               "key": "job_title"
+            },
+            "description",
+            "jobstatus"
+         ]
+      },
+      "customer": {
+         "schema": {
+            "type": "object",
+            "title": "Customer",
+            "properties": {
+               "customer_name": {
+                  "title": "Customer Name",
+                  "type": "string"
+               },
+               "customer_type": {
+                  "title": "Customer type",
+                  "type": "string",
+                  "enum": [
+                     "Company",
+                     "Individual"
+                  ]
+
+               },
+               "customer_group": {
+                  "title": "Customer Group",
+                  "type": "string",
+                  "enum": [
+                     "All Customer Groups",
+                     "Commercial",
+                     "Government",
+                     "Individual",
+                     "Non Profit"
+                  ]
+               },
+               "territory": {
+                  "title": "Geographical Territory",
+                  "type": "string",
+                  "enum": [
+                     "Rest Of The World",
+                     "Singapore"
+                  ]
+               }
+            }
+         },
+         "definitions": [{
+               "key": "customer_name",
+               "htmlClass": "half-width label-left"
+            },
+            {
+               "key": "customer_type",
+               "htmlClass": "half-width label-left"
+            },
+            {
+               "key": "customer_group",
+               "htmlClass": "half-width label-left"
+            },
+            {
+               "key": "territory",
+               "htmlClass": "half-width label-left"
+            }
+         ]
+      },
+      "jobApplicant": {
+         "schema": {
+            "type": "object",
+            "title": "Job Applicant",
+            "properties": {
+               "applicant_name": {
+                  "title": "Applicant Name",
+                  "type": "string"
+               },
+               "email_id": {
+                  "title": "Email Address",
+                  "type": "string"
+               },
+               "applicantstatus": {
+                  "title": "Status",
+                  "type": "string",
+                  "enum": [
+                     "Open",
+                     "Replied",
+                     "Rejected",
+                     "Hold"
+                  ]
+               },
+               "job_title": {
+                  "title": "Job Title",
+                  "type": "string"
+               },
+               "cover_letter": {
+                  "title": "Cover Letter",
+                  "type": "string"
+               }
+            }
+         },
+         "definitions": [
+            "job_title",
+            "applicant_name",
+            "applicantstatus",
+            "email_id",
+            "cover_letter"
+         ]
+      }
+   }
+}

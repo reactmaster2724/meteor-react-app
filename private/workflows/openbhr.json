@@ -1,0 +1,2083 @@
+{
+    "definitions": {
+      "REQUESTFORRESOURCE": [
+            {
+                "key": "companyname",
+                "type":"autocomplete",
+                "query":{"model":"employee",
+                         "field":"employeename",
+                         "map":{"location":"location",
+                                "experience":"experience",
+                                "role":"role",
+                                "keyskills":"keyskills",
+                                "function":"function",
+                                "industry":"industry",
+                                "requestdate":"requestdate",
+                                "jobdescription":"jobdescription",
+                                "aboutcompany":"aboutcompany"},
+                "htmlClass": "half-width label-left"
+            }},
+            {
+                "key": "location",
+                "htmlClass": "half-width label-left"
+            },
+            {
+                "key": "experience",
+                "htmlClass": "half-width label-left"
+            },
+            {
+                "key": "role",
+                "htmlClass": "half-width label-left"
+            },
+            {
+                "key": "keyskills",
+                "htmlClass": "half-width label-left"
+            },
+            {
+                "key": "function",
+                "htmlClass": "half-width label-left"
+            },
+             {
+                "key": "industry",
+                "htmlClass": "half-width label-left"
+            },
+            {
+                "key": "requestdate",
+                "htmlClass": "half-width label-left"
+            },
+            {
+                "key": "jobdescription",
+                "type": "textarea"
+            },
+            {
+                "key": "requirements",
+                "type": "textarea"
+            },
+            
+             {
+                "key": "aboutcompany",
+                "type": "textarea"
+            }
+        ],
+      "WEBSITEPOSTING": [
+            {
+                "key": "companyname",
+                "htmlClass": "half-width label-left"
+            },
+            {
+                "key": "location",
+                "htmlClass": "half-width label-left"
+            },
+            {
+                "key": "experience",
+                "htmlClass": "half-width label-left"
+            },
+            {
+                "key": "role",
+                "htmlClass": "half-width label-left"
+            },
+            {
+                "key": "keyskills",
+                "htmlClass": "half-width label-left"
+            },
+            {
+                "key": "function",
+                "htmlClass": "half-width label-left"
+            },
+             {
+                "key": "industry",
+                "htmlClass": "half-width label-left"
+            },
+            {
+                "key": "requestdate",
+                "htmlClass": "half-width label-left"
+            },
+            {
+                "key": "postingdate",
+                "htmlClass": "half-width label-left"
+            },
+            {
+                "key": "postingwebsite",
+                "htmlClass": "half-width label-left"
+            },
+            {
+                "key": "jobdescription",
+                "type": "textarea"
+            },
+            {
+                "key": "requirements",
+                "type": "textarea"
+            },
+            
+             {
+                "key": "aboutcompany",
+                "type": "textarea"
+            }
+        ],
+      "SCREENING": [
+      {
+        "key": "Candidate",
+        "placeholder": "E.g. Hansel K",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Email",
+        "placeholder": "xyz@gmail.com",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Contactno",
+        "placeholder": "+65 86704054",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Address",
+        "placeholder": "Block, street",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Dob",
+        "placeholder":"DD/MM/YYYY",
+        "htmlClass": "half-width label-left"
+      },
+      
+      {
+        "key": "Visastatus",
+        "type": "select",
+        "titleMap": [
+          {
+            "name": "Singaporean",
+            "value": "Singaporean"
+          },
+          {
+            "name": "Singapore PR",
+            "value": "Singapore PR"
+          },
+          {
+            "name": "Foreigner",
+            "value": "Foreigner"
+          }
+        ],
+        "htmlClass": "half-width label-left"
+      },
+     
+      {
+        "key": "Department",
+        "placeholder": "HR",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Jobapplied",
+        "placeholder": "Marketing Intern",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Requestor",
+        "placeholder": "Darren Soo",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Source",
+        "placeholder": "Startup Jobs",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Applicationreceived",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Resume",
+        "placeholder": "Resume",
+        "type": "textarea",
+        "lines": 9,
+        "htmlClass": ""
+      }
+    ],
+      "INTERVIEW1":[
+      {
+        "key": "Candidate",
+        "placeholder": "E.g. Hansel K",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Email",
+        "placeholder": "xyz@gmail.com",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Contactno",
+        "placeholder": "+65 86704054",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Address",
+        "placeholder": "Block, street",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Dob",
+        "htmlClass": "half-width label-left"
+      },
+      
+      {
+        "key": "Visastatus",
+        "type": "select",
+        "titleMap": [
+          {
+            "name": "Singaporean",
+            "value": "Singaporean"
+          },
+          {
+            "name": "Singapore PR",
+            "value": "Singapore PR"
+          },
+          {
+            "name": "Foreigner",
+            "value": "Foreigner"
+          }
+        ],
+        "htmlClass": "half-width label-left"
+      },
+     
+      {
+        "key": "Department",
+        "placeholder": "Department",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Jobapplied",
+        "placeholder": "Marketing Intern",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Requestor",
+        "placeholder": "Darren Soo",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Source",
+        "placeholder": "Startup Jobs",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Applicationreceived",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Interviewdate_1",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Interviewtime_1",
+        "placeholder": "HH:MM",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Interviewer_1",
+        "placeholder": "Darren Soo",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Resume",
+        "placeholder": "Resume",
+        "type": "textarea",
+        "lines": 9,
+        "htmlClass": ""
+      },
+      {
+        "key": "Feedback_1",
+        "placeholder": "Enter the feedback of first round",
+        "type": "textarea",
+        "lines": 9,
+        "htmlClass": ""
+      }
+    ],
+      "INTERVIEW2": [
+      {
+        "key": "Candidate",
+        "placeholder": "E.g. Hansel K",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Email",
+        "placeholder": "xyz@gmail.com",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Contactno",
+        "placeholder": "+65 86704054",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Address",
+        "placeholder": "Block, street",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Dob",
+        "htmlClass": "half-width label-left"
+      },
+      
+      {
+        "key": "Visastatus",
+        "type": "select",
+        "titleMap": [
+          {
+            "name": "Singaporean",
+            "value": "Singaporean"
+          },
+          {
+            "name": "Singapore PR",
+            "value": "Singapore PR"
+          },
+          {
+            "name": "Foreigner",
+            "value": "Foreigner"
+          }
+        ],
+        "htmlClass": "half-width label-left"
+      },
+     
+      {
+        "key": "Department",
+        "placeholder": "Department",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Jobapplied",
+        "placeholder": "Marketing Intern",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Requestor",
+        "placeholder": "Darren Soo",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Source",
+        "placeholder": "Startup Jobs",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Applicationreceived",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Interviewdate_2",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Interviewtime_2",
+        "placeholder": "HH:MM",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Interviewer_2",
+        "placeholder": "Darren Soo",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Resume",
+        "placeholder": "Resume",
+        "type": "textarea",
+        "lines": 9,
+        "htmlClass": ""
+      },
+      {
+        "key": "Feedback_2",
+        "placeholder": "Enter the feedback of Second round",
+        "type": "textarea",
+        "lines": 9,
+        "htmlClass": ""
+      }
+    ],
+      "OFFERLETTER":[
+      {
+        "key": "Candidate",
+        "placeholder": "E.g. Hansel K",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Email",
+        "placeholder": "xyz@gmail.com",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Contactno",
+        "placeholder": "+65 86704054",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Address",
+        "placeholder": "Block, street",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Dob",
+        "htmlClass": "half-width label-left"
+      },
+      
+      {
+        "key": "Visastatus",
+        "type": "select",
+        "titleMap": [
+          {
+            "name": "Singaporean",
+            "value": "Singaporean"
+          },
+          {
+            "name": "Singapore PR",
+            "value": "Singapore PR"
+          },
+          {
+            "name": "Foreigner",
+            "value": "Foreigner"
+          }
+        ],
+        "htmlClass": "half-width label-left"
+      },
+     
+      {
+        "key": "Department",
+        "placeholder": "G&A",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Jobapplied",
+        "placeholder": "Marketing Intern",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Requestor",
+        "placeholder": "Darren Soo",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Source",
+        "placeholder": "Startup Jobs",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Applicationreceived",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Commencementdate",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Salaryproposed",
+        "placeholder": "SGD 2000.00",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Positiontype",
+        "type": "select",
+        "titleMap": [
+          {
+            "name": "Intern",
+            "value": "Intern"
+          },
+          {
+            "name": "Part-Time",
+            "value": "Part-Time"
+          },
+          {
+            "name": "Full-Time",
+            "value": "Full-Time"
+          },
+          {
+            "name": "RESULT",
+            "value": "RESULT"
+          }
+        ],
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Status",
+        "type": "select",
+        "titleMap": [
+          {
+            "name": "Sent",
+            "value": "Sent"
+          },
+          {
+            "name": "Negotiation",
+            "value": "Negotiation"
+          },
+          {
+            "name": "Accepted",
+            "value": "Accepted"
+          },
+          {
+            "name": "Rejected",
+            "value": "Rejected"
+          }
+        ],
+        "htmlClass": "half-width label-left"
+      },
+     
+      {
+        "key": "Resume",
+        "placeholder": "Resume",
+        "type": "textarea",
+        "lines": 9,
+        "htmlClass": ""
+      }
+     
+    ],
+      "RESULT":[
+      {
+        "key": "Candidate",
+        "placeholder": "E.g. Hansel K",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Email",
+        "placeholder": "xyz@gmail.com",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Contactno",
+        "placeholder": "+65 86704054",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Address",
+        "placeholder": "Block, street",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Dob",
+        "htmlClass": "half-width label-left"
+      },
+      
+      {
+        "key": "Visastatus",
+        "type": "select",
+        "titleMap": [
+          {
+            "name": "Singaporean",
+            "value": "Singaporean"
+          },
+          {
+            "name": "Singapore PR",
+            "value": "Singapore PR"
+          },
+          {
+            "name": "Foreigner",
+            "value": "Foreigner"
+          }
+        ],
+        "htmlClass": "half-width label-left"
+      },
+     
+      {
+        "key": "Department",
+        "placeholder": "Department",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Jobapplied",
+        "placeholder": "Marketing Intern",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Requestor",
+        "placeholder": "Darren Soo",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Source",
+        "placeholder": "Startup Jobs",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Applicationreceived",
+        "htmlClass": "half-width label-left"
+      },
+      
+      
+      {
+        "key": "StatusofApplication",
+        "type": "select",
+        "titleMap": [
+          {
+            "name": "Success",
+            "value": "Success"
+          },
+          {
+            "name": "Failed",
+            "value": "Failed"
+          }
+        ],
+        "htmlClass": "half-width label-left"
+      },
+      
+     
+      {
+        "key": "Resume",
+        "placeholder": "Resume",
+        "type": "textarea",
+        "lines": 9,
+        "htmlClass": ""
+      }
+     
+    ],
+      "ONBOARDING":[
+      
+      {
+        "key": "Candidate",
+        "placeholder": "E.g. Hansel K",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Nric/Fin",
+        "placeholder": "S1234567I",
+        "htmlClass": "half-width label-left"
+      },
+       {
+        "key": "Nationality",
+        "placeholder": "India",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Address",
+        "placeholder": "Block, Street",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Contactno",
+        "placeholder": "Contact No",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Department",
+        "placeholder": "D&S",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Jobapplied",
+        "placeholder": "Job Applied",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Salary",
+        "placeholder": "SGD 2000.00",
+        "htmlClass": "half-width label-left"
+      },
+       {
+        "key": "Bank",
+        "placeholder": "DBS",
+        "htmlClass": "half-width label-left"
+      },
+     
+      {
+        "key": "Branch",
+        "placeholder": "Toa Payoh",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Accountno",
+        "placeholder": "12 3456 78",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Entry",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Exit",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "ONBOARDINGsigned",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Officeemail",
+        "placeholder": "xyz@openbusiness.com.sg",
+        "htmlClass": "half-width label-left"
+      },
+      {
+        "key": "Probationenddate",
+        "htmlClass": "half-width label-left"
+      },
+     
+      {
+        "key": "Inventoryrecord",
+        "placeholder": "Inventory Record",
+        "type": "textarea",
+        "htmlClass": ""
+      }
+    ],
+      "LEAVEAPPLICATION":[
+          {
+        "type":"fieldset",
+        "title":"Employee Details",
+        "items":[
+  
+            {     "key":"employeename",
+                  "query":{"model":"employeeleave","field":"employeename",
+                  "map":{
+                    "email":"email",
+                    "availablecasualdaysleavebalance":"availablecasualdaysleavebalance",
+                  "availableleavewithoutpayleavebalance":"availableleavewithoutpayleavebalance",
+                  "leaveapprover":"leaveapprover"}},
+                  "htmlClass": "half-width label-left"
+            },
+            {"key":"email","htmlClass": "half-width label-left"},
+            {
+                "key": "availablecasualdaysleavebalance",
+                "htmlClass": "half-width label-left"
+            },
+            {
+                "key": "availableleavewithoutpayleavebalance",
+                "htmlClass": "half-width label-left"
+            },
+            {
+                "key": "availablesickleaveleavebalance",
+                "htmlClass": "half-width label-left"
+            },
+            {
+                "key": "leaveapprover",
+                "htmlClass": "half-width label-left"
+            }
+            
+      ]
+      },
+          {
+        "type":"fieldset",
+        "title":"Leave Details",
+        "items":[
+        {
+                "key": "leavetype",
+                "htmlClass": "half-width label-left"
+            },
+            {
+                "key": "halfday",
+                "htmlClass": "half-width label-left"
+            },
+            {
+                "type": "conditional",
+                "condition": "modelData.halfday",
+                "required":true,
+                "items": [
+                      {
+                "key": "fromdate",
+                "htmlClass": "half-width label-left"
+                      },
+                      {
+                "key": "todate",
+                "htmlClass": "half-width label-left"
+                      }
+                          ]
+            },
+            {
+                "key": "reason","type":"textarea"
+               
+            }
+            
+      ]
+      }
+        ],
+      "LEAVEAPPROVAL": [
+          {
+        "type":"fieldset",
+        "title":"Employee Details",
+        "items":[
+            {     "key":"employeename",
+                  "htmlClass": "half-width label-left"
+            },
+            {"key":"email","htmlClass": "half-width label-left"},
+            {
+                "key": "availablecasualdaysleavebalance",
+                "htmlClass": "half-width label-left"
+            },
+            {
+                "key": "availableleavewithoutpayleavebalance",
+                "htmlClass": "half-width label-left"
+            },
+            {
+                "key": "availablesickleaveleavebalance",
+                "htmlClass": "half-width label-left"
+            },
+            {
+                "key": "leaveapprover",
+                "htmlClass": "half-width label-left"
+            }
+            
+      ]
+      },
+          {
+        "type":"fieldset",
+        "title":"Leave Details",
+        "items":[
+        {
+                "key": "leavetype",
+                "htmlClass": "half-width label-left"
+            },
+             {
+                "key": "fromdate",
+                "htmlClass": "half-width label-left"
+            },
+            {
+                "key": "todate",
+                "htmlClass": "half-width label-left"
+            },
+            {
+                "key": "halfday",
+                "htmlClass": "half-width label-left"
+            },
+            {
+                "key": "reason",
+                "htmlClass": "half-width label-left"
+            }
+            
+      ]
+      },
+          {
+        "type":"fieldset",
+        "title":"Status of Application",
+        "items":[
+            {
+                "key": "approve",
+                "htmlClass": "half-width label-left"
+            },
+            {
+                "key": "reject",
+                "htmlClass": "half-width label-left"
+            },
+            {
+                "type": "conditional",
+                "condition": "modelData.reject",
+                "items": [
+                      {
+                          "key": "reasonforrejection",
+                          "htmlClass": "half-width label-left"
+                      }
+                          ]
+            }
+      ]
+      }
+
+        ]
+    },
+    "schemas":{
+    "REQUESTFORRESOURCE":{
+            "type": "object",
+            "title": "Comment",
+            "required": [
+                "companyname"
+            ],
+            "properties": {
+                "companyname": {
+                    "title": "Company Name",
+                    "type": "string"
+                },
+                "location": {
+                    "title": "Location",
+                    "type": "string"
+                },
+                "experience": {
+                    "title": "Experience",
+                    "type": "number"
+                },
+                "function": {
+                    "title": "Function",
+                    "type": "string"
+                },
+                 "industry": {
+                    "title": "Industry",
+                    "type": "string"
+                },
+                 "requestdate": {
+                    "title": "RequestDate",
+                    "type": "string",
+                    "format": "date"
+                },
+               
+                
+                 "jobdescription": {
+                    "title": "Job Description",
+                    "type": "string"
+                },
+                 "requirements": {
+                    "title": "Requirements",
+                    "type": "string"
+                },
+                 "role": {
+                    "title": "Role",
+                    "type": "string"
+                },
+                "keyskills": {
+                    "title": "Key Skills",
+                    "type": "string"
+                },
+                "aboutcompany": {
+                    "title": "About company",
+                    "type": "string"
+                }
+            }
+        },
+    "WEBSITEPOSTING":{
+            "type": "object",
+            "title": "Comment",
+            
+            "properties": {
+                "companyname": {
+                    "title": "Company Name",
+                    "type": "string"
+                },
+                "location": {
+                    "title": "Location",
+                    "type": "string"
+                },
+                "experience": {
+                    "title": "Experience",
+                    "type": "number"
+                },
+                "function": {
+                    "title": "Function",
+                    "type": "string"
+                },
+                 "industry": {
+                    "title": "Industry",
+                    "type": "string"
+                },
+                 "requestdate": {
+                    "title": "RequestDate",
+                    "type": "string",
+                    "format": "date"
+                },
+                "postingdate": {
+                    "title": "Posting Date",
+                    "type": "string",
+                     "format": "date"
+                },
+                 "postingwebsite": {
+                    "title": "Posting Website",
+                    "type": "string"
+                },
+                 "jobdescription": {
+                    "title": "Job Description",
+                    "type": "string"
+                },
+                 "requirements": {
+                    "title": "Requirements",
+                    "type": "string"
+                },
+                 "role": {
+                    "title": "Role",
+                    "type": "string"
+                },
+                "keyskills": {
+                    "title": "Key Skills",
+                    "type": "string"
+                },
+                "aboutcompany": {
+                    "title": "About company",
+                    "type": "string"
+                }
+            }
+        },
+    "SCREENING":{
+      "type": "object",
+      "title": "What is this title is used for?",
+      "properties": {
+        "Candidate": {
+          "title": "Candidate Name",
+          "type": "string",
+          "maxLength": 100
+        },
+        "Email": {
+          "title": "Email",
+          "type": "string",
+          "maxLength": 100,
+          "pattern": "",
+          "validationMessage": ""
+        },
+        "Contactno": {
+          "title": "Contact No",
+          "type": "string",
+          "maxLength": 100,
+          "validationMessage": "Don't be greedy!"
+        },
+        "Address": {
+          "title": "Address",
+          "type": "string",
+          "maxLength": 100,
+          "pattern": ""
+        },
+        "Dob": {
+          "title": "DOB",
+          "type": "string",
+          "maxLength": 100,
+          "pattern": ""
+        },
+        
+        "Visastatus": {
+          "title": "Visa status",
+          "type": "string",
+          "maxLength": 100,
+          "pattern": "",
+          "validationMessage": ""
+        },
+        "Department": {
+          "title": "Department",
+          "type": "string",
+          "maxLength": 100,
+          "pattern": ""
+        },
+        
+
+        "Jobapplied": {
+          "title": "Job Applied",
+          "type": "string",
+          "maxLength": 100,
+          "validationMessage": ""
+        },
+        "Requestor": {
+          "title": "Requestor",
+          "type": "string",
+          "maxLength": 100,
+          "validationMessage": ""
+        },
+        "Source": {
+          "title": "Source",
+          "type": "string",
+          "maxLength": 100,
+          "validationMessage": ""
+        },
+        "Applicationreceived":{
+          "title": "Application Receive Date",
+          "type": "string",
+          "format": "date",
+          "maxLength": 100,
+          "validationMessage": ""
+        },
+        "Resume": {
+          "title": "Resume",
+          "type": "string",
+          "maxLength": 100,
+          "validationMessage": ""
+        }
+      },
+      "required": [
+          "Candidate"
+      ]
+    },
+    "INTERVIEW1":{
+      "type": "object",
+      "title": "What is this title is used for?",
+      "properties": {
+        "Candidate": {
+          "title": "Candidate Name",
+          "type": "string",
+          "maxLength": 100
+        },
+        "Email": {
+          "title": "Email",
+          "type": "string",
+          "maxLength": 100,
+          "pattern": "",
+          "validationMessage": ""
+        },
+        "Contactno": {
+          "title": "Contact No",
+          "type": "string",
+          "maxLength": 100,
+          "validationMessage": "Don't be greedy!"
+        },
+        "Address": {
+          "title": "Address",
+          "type": "string",
+          "maxLength": 100,
+          "pattern": ""
+        },
+        "Dob": {
+          "title": "DOB",
+          "type": "string",
+          "maxLength": 100,
+          "pattern": ""
+        },
+        
+        "Visastatus": {
+          "title": "Visa status",
+          "type": "string",
+          "maxLength": 100,
+          "pattern": "",
+          "validationMessage": ""
+        },
+        "Department": {
+          "title": "Department",
+          "type": "string",
+          "maxLength": 100,
+          "pattern": ""
+        },
+        
+
+        "Jobapplied": {
+          "title": "Job Applied",
+          "type": "string",
+          "maxLength": 100,
+          "validationMessage": ""
+        },
+        "Requestor": {
+          "title": "Requestor",
+          "type": "string",
+          "maxLength": 100,
+          "validationMessage": ""
+        },
+        "Source": {
+          "title": "Source",
+          "type": "string",
+          "maxLength": 100,
+          "validationMessage": ""
+        },
+        "Applicationreceived":{
+          "title": "Application Receive Date",
+          "type": "string",
+          "format": "date",
+          "maxLength": 100,
+          "validationMessage": ""
+        },
+         "Interviewdate_1":{
+          "title": "Interview Date",
+          "type": "string",
+          "format": "date",
+          "maxLength": 100,
+          "validationMessage": ""
+        },
+         "Interviewtime_1":{
+          "title": "Time",
+          "type": "string",
+          "maxLength": 100,
+          "validationMessage": ""
+        },
+        "Interviewer_1":{
+          "title": "Interviewer",
+          "type": "string",
+          "maxLength": 100,
+          "validationMessage": ""
+        },
+        "Resume": {
+          "title": "Resume",
+          "type": "string",
+          "maxLength": 100,
+          "validationMessage": ""
+        },
+         "Feedback_1": {
+          "title": "Round 1 Feedback",
+          "type": "string",
+          "maxLength": 100,
+          "validationMessage": ""
+        }
+      },
+      "required": [
+          "Candidate"
+      ]
+    },
+    "INTERVIEW2":{
+      "type": "object",
+      "title": "What is this title is used for?",
+      "properties": {
+        "Candidate": {
+          "title": "Candidate Name",
+          "type": "string",
+          "maxLength": 100
+        },
+        "Email": {
+          "title": "Email",
+          "type": "string",
+          "maxLength": 100,
+          "pattern": "",
+          "validationMessage": ""
+        },
+        "Contactno": {
+          "title": "Contact No",
+          "type": "string",
+          "maxLength": 100,
+          "validationMessage": "Don't be greedy!"
+        },
+        "Address": {
+          "title": "Address",
+          "type": "string",
+          "maxLength": 100,
+          "pattern": ""
+        },
+        "Dob": {
+          "title": "DOB",
+          "type": "string",
+          "maxLength": 100,
+          "pattern": ""
+        },
+        
+        "Visastatus": {
+          "title": "Visa status",
+          "type": "string",
+          "maxLength": 100,
+          "pattern": "",
+          "validationMessage": ""
+        },
+        "Department": {
+          "title": "Department",
+          "type": "string",
+          "maxLength": 100,
+          "pattern": ""
+        },
+        
+
+        "Jobapplied": {
+          "title": "Job Applied",
+          "type": "string",
+          "maxLength": 100,
+          "validationMessage": ""
+        },
+        "Requestor": {
+          "title": "Requestor",
+          "type": "string",
+          "maxLength": 100,
+          "validationMessage": ""
+        },
+        "Source": {
+          "title": "Source",
+          "type": "string",
+          "maxLength": 100,
+          "validationMessage": ""
+        },
+        "Applicationreceived":{
+          "title": "Application Receive Date",
+          "type": "string",
+          "format": "date",
+          "maxLength": 100,
+          "validationMessage": ""
+        },
+         "Interviewdate_2":{
+          "title": "Interview Date",
+          "type": "string",
+          "format": "date",
+          "maxLength": 100,
+          "validationMessage": ""
+        },
+         "Interviewtime_2":{
+          "title": "Time",
+          "type": "string",
+          "maxLength": 100,
+          "validationMessage": ""
+        },
+        "Interviewer_2":{
+          "title": "Interviewer",
+          "type": "string",
+          "maxLength": 100,
+          "validationMessage": ""
+        },
+        "Resume": {
+          "title": "Resume",
+          "type": "string",
+          "maxLength": 100,
+          "validationMessage": ""
+        },
+         "Feedback_2": {
+          "title": "Round 2 Feedback",
+          "type": "string",
+          "maxLength": 100,
+          "validationMessage": ""
+        }
+      },
+      "required": [
+          "Candidate"
+      ]
+    },
+    "OFFERLETTER":{
+      "type": "object",
+      "title": "What is this title is used for?",
+      "properties": {
+        "Candidate": {
+          "title": "Candidate Name",
+          "type": "string",
+          "maxLength": 100
+        },
+        "Email": {
+          "title": "Email",
+          "type": "string",
+          "maxLength": 100,
+          "pattern": "",
+          "validationMessage": ""
+        },
+        "Contactno": {
+          "title": "Contact No",
+          "type": "string",
+          "maxLength": 100,
+          "validationMessage": "Don't be greedy!"
+        },
+        "Address": {
+          "title": "Address",
+          "type": "string",
+          "maxLength": 100,
+          "pattern": ""
+        },
+        "Dob": {
+          "title": "DOB",
+          "type": "string",
+          "maxLength": 100,
+          "pattern": ""
+        },
+        
+        "Visastatus": {
+          "title": "Visa status",
+          "type": "string",
+          "maxLength": 100,
+          "pattern": "",
+          "validationMessage": ""
+        },
+        "Department": {
+          "title": "Department",
+          "type": "string",
+          "maxLength": 100,
+          "pattern": ""
+        },
+        
+
+        "Jobapplied": {
+          "title": "Job Applied",
+          "type": "string",
+          "maxLength": 100,
+          "validationMessage": ""
+        },
+        "Requestor": {
+          "title": "Requestor",
+          "type": "string",
+          "maxLength": 100,
+          "validationMessage": ""
+        },
+        "Source": {
+          "title": "Source",
+          "type": "string",
+          "maxLength": 100,
+          "validationMessage": ""
+        },
+        "Applicationreceived":{
+          "title": "Application Receive Date",
+          "type": "string",
+          "format": "date",
+          "maxLength": 100,
+          "validationMessage": ""
+        },
+         "Commencementdate":{
+          "title": "Commencement Date",
+          "type": "string",
+          "format": "date",
+          "maxLength": 100,
+          "validationMessage": ""
+        },
+         "Salaryproposed":{
+          "title": "Salary Proposed",
+          "type": "string",
+          "maxLength": 100,
+          "validationMessage": ""
+        },
+        "Positiontype":{
+          "title": "Position Type",
+          "type": "string",
+          "maxLength": 100,
+          "validationMessage": ""
+        },
+         "Status":{
+          "title": "Status",
+          "type": "string",
+          "maxLength": 100,
+          "validationMessage": ""
+        },
+        "Resume": {
+          "title": "Resume",
+          "type": "string",
+          "maxLength": 100,
+          "validationMessage": ""
+        }
+      },
+      "required": [
+          "Candidate"
+      ]
+    },
+    "RESULT":{
+      "type": "object",
+      "title": "What is this title is used for?",
+      "properties": {
+        "Candidate": {
+          "title": "Candidate Name",
+          "type": "string",
+          "maxLength": 100
+        },
+        "Email": {
+          "title": "Email",
+          "type": "string",
+          "maxLength": 100,
+          "pattern": "",
+          "validationMessage": ""
+        },
+        "Contactno": {
+          "title": "Contact No",
+          "type": "string",
+          "maxLength": 100,
+          "validationMessage": "Don't be greedy!"
+        },
+        "Address": {
+          "title": "Address",
+          "type": "string",
+          "maxLength": 100,
+          "pattern": ""
+        },
+        "Dob": {
+          "title": "DOB",
+          "type": "string",
+          "maxLength": 100,
+          "pattern": ""
+        },
+        
+        "Visastatus": {
+          "title": "Visa status",
+          "type": "string",
+          "maxLength": 100,
+          "pattern": "",
+          "validationMessage": ""
+        },
+        "Department": {
+          "title": "Department",
+          "type": "string",
+          "maxLength": 100,
+          "pattern": ""
+        },
+        
+
+        "Jobapplied": {
+          "title": "Job Applied",
+          "type": "string",
+          "maxLength": 100,
+          "validationMessage": ""
+        },
+        "Requestor": {
+          "title": "Requestor",
+          "type": "string",
+          "maxLength": 100,
+          "validationMessage": ""
+        },
+        "Source": {
+          "title": "Source",
+          "type": "string",
+          "maxLength": 100,
+          "validationMessage": ""
+        },
+        "Applicationreceived":{
+          "title": "Application Receive Date",
+          "type": "string",
+          "format": "date",
+          "maxLength": 100,
+          "validationMessage": ""
+        },
+        
+       
+        
+         "StatusofApplication":{
+          "title": "Status of application",
+          "type": "string",
+          "maxLength": 100,
+          "validationMessage": ""
+        },
+        "Resume": {
+          "title": "Resume",
+          "type": "string",
+          "maxLength": 100,
+          "validationMessage": ""
+        }
+      },
+      "required": [
+          "Candidate"
+      ]
+    },
+    "ONBOARDING":{
+      "type": "object",
+      "title": "What is this title is used for?",
+      "properties": {
+        "Candidate": {
+          "title": "Candidate Name",
+          "type": "string",
+          "maxLength": 100
+        },
+        "Nric/Fin": {
+          "title": "NRIC/FIN",
+          "type": "string",
+          "maxLength": 100
+        },
+        "Nationality": {
+          "title": "Nationality",
+          "type": "string",
+          "maxLength": 100
+        },
+        "Address": {
+          "title": "Address",
+          "type": "string",
+          "maxLength": 100
+        },
+        "Contactno": {
+          "title": "Contact No",
+          "type": "string",
+          "maxLength": 100
+        },
+        "Department": {
+          "title": "Department",
+          "type": "string",
+          "maxLength": 100,
+          "pattern": "",
+          "validationMessage": ""
+        },
+        "Jobapplied": {
+          "title": "Job Applied",
+          "type": "string",
+          "maxLength": 100,
+          "pattern": "",
+          "validationMessage": ""
+        },
+        "Salary": {
+          "title": "Salary",
+          "type": "string",
+          "maxLength": 100,
+          "pattern": "",
+          "validationMessage": ""
+        },
+       "Bank": {
+          "title": "Bank",
+          "type": "string",
+          "maxLength": 100,
+          "pattern": "",
+          "validationMessage": ""
+        },
+         "Branch": {
+          "title": "Branch",
+          "type": "string",
+          "maxLength": 100,
+          "pattern": "",
+          "validationMessage": ""
+        },
+         "Accountno": {
+          "title": "Account no",
+          "type": "string",
+          "maxLength": 100,
+          "pattern": "",
+          "validationMessage": ""
+        },
+         "Entry": {
+          "title": "Entry",
+          "type": "string",
+          "format": "date",
+          "maxLength": 100,
+          "pattern": "",
+          "validationMessage": ""
+        },
+         "Exit": {
+          "title": "Exit",
+          "type": "string",
+          "format": "date",
+          "maxLength": 100,
+          "pattern": "",
+          "validationMessage": ""
+        },
+         "Contractsigned": {
+          "title": "Contract Signed",
+          "type": "string",
+          "format": "date",
+          "maxLength": 100,
+          "pattern": "",
+          "validationMessage": ""
+        },
+         "Officeemail": {
+          "title": "Office Email",
+          "type": "string",
+          "maxLength": 100,
+          "pattern": "",
+          "validationMessage": ""
+        },
+        "Probationenddate": {
+          "title": "Probation End Date",
+          "type": "string",
+          "format": "date",
+          "maxLength": 100,
+          "pattern": "",
+          "validationMessage": ""
+        },
+      
+
+        "Inventoryrecord": {
+          "title": "Inventory Record",
+          "type": "string",
+          "maxLength": 100,
+          "validationMessage": ""
+        }
+      },
+      "required": [
+      ]
+    },
+    "LEAVEAPPLICATION":{
+            "type": "object",
+            "title": "Lead",
+            "properties": {
+                "employeename": {
+                    "title": "Employee Name",
+                    "type": "string"
+                },
+                "availablecasualdaysleavebalance": {
+                    "title": "Available Casual days Leave Balance",
+                    "type": "string"
+                },
+                "availableleavewithoutpayleavebalance": {
+                    "title": "Avaiable Leave Without Pay Balance",
+                    "type": "string"
+                },
+                "availablesickleaveleavebalance": {
+                    "title": "Available Sick Leave Balance",
+                    "type": "string"
+                },
+                "leaveapprover": {
+                    "title": "Leave Approver",
+                    "type": "string"
+                },
+                "leavetype": {
+                    "title": "Leave Type",
+                    "type": "string",
+                    "enum":["Casual","Sick","Leave Without Pay"]
+                },
+                "fromdate": {
+                    "title": "From Date",
+                    "type": "string",
+                    "format":"date"
+                },
+                "todate": {
+                    "title": "To Date",
+                    "type": "string",
+                    "format":"date"
+                },
+                 "halfday": {
+                    "title": "Half Day",
+                    "type": "boolean"
+                    
+                },
+                "reason": {
+                    "title": "Reason",
+                    "type": "string"
+                },
+                "email": {
+                    "title": "Email",
+                    "type": "string"
+                }
+            },
+            "required": [
+               
+
+            ]
+        },
+    "LEAVEAPPROVAL":{
+            "type": "object",
+            "title": "Scheduling",
+            "properties": {
+                "employeename": {
+                    "title": "Employee Name",
+                    "type": "string"
+                },
+                "availablecasualdaysleavebalance": {
+                    "title": "Available Casual days Leave Balance",
+                    "type": "string"
+                },
+                "availableleavewithoutpayleavebalance": {
+                    "title": "Avaiable Leave Without Pay Balance",
+                    "type": "string"
+                },
+                "availablesickleaveleavebalance": {
+                    "title": "Available Sick Leave Balance",
+                    "type": "string"
+                },
+                "leaveapprover": {
+                    "title": "Leave Approver",
+                    "type": "string"
+                },
+                "leavetype": {
+                    "title": "Leave Type",
+                    "type": "string",
+                    "enum":["Casual","Sick","Leave Without Pay"]
+                },
+                "fromdate": {
+                    "title": "From Date",
+                    "type": "string",
+                    "format":"date"
+                },
+                "todate": {
+                    "title": "To Date",
+                    "type": "string",
+                    "format":"date"
+                },
+                 "halfday": {
+                    "title": "Half Day",
+                    "type": "boolean"
+                    
+                },
+                "reason": {
+                    "title": "Reason",
+                    "type": "string"
+                },
+                "email": {
+                    "title": "Email",
+                    "type": "string"
+                },
+                 "approve": {
+                    "title": "Approve",
+                    "type": "boolean"
+                },
+                "reject":{"title":"Reject","type":"boolean"},
+                "reasonforrejection": {
+                    "title": "Reason for Rejection",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "companyname",
+                "contactperson",
+                "title",
+                "industry",
+                "Meetingdate",
+                "Location",
+                "Attendies",
+                "interest",
+                "source",
+                "Meetingtime",
+                "sourceowner",
+                "potential"
+            ]
+        }
+
+},
+    "labels": {
+
+        "INBOX" : "Inbox",
+        "REQUESTFORRESOURCE": "Request for resource",
+        "WEBSITEPOSTING": "Website Posting",
+        "SCREENING": "Screening",
+        "INTERVIEW1": "Interview 1",
+        "INTERVIEW2" : "Interview 2",
+        "OFFERLETTER": "Offer Letter",
+        "RESULT": "Result",
+        "ONBOARDING": "Onboarding",
+        "LEAVEAPPLICATION": "Leave Application",
+        "LEAVEAPPROVAL": "Leave Approval"
+        },
+    "nodes": {
+        "ENTRY": {
+            "type": "INBOX",
+            "to": "SELECT_1",
+            "category": "HR"
+        },
+        "SELECT_1": {
+            "type": "OPERATION",
+            "operation_type": "SelectEntryPoint",
+            "to": [
+                "REQUESTFORRESOURCE_1",
+                "LEAVEAPPLICATION_1"
+            ]
+        },
+        "REQUESTFORRESOURCE_1": {
+            "type": "REQUESTFORRESOURCE",
+            "label": "Applicant Details",
+            "to": "WEBSITEPOSTING_1",
+            "category": "HR"
+        },
+         "WEBSITEPOSTING_1": {
+            "type": "WEBSITEPOSTING",
+            "label": "Applicant Details",
+            "to": "SCREENING_1",
+            "category": "HR"
+        },
+        "SCREENING_1": {
+            "type": "SCREENING",
+            "label": "Applicant Details",
+            "to": "INTERVIEW1_1",
+            "category": "HR"
+        },
+        "INTERVIEW1_1": {
+            "type": "INTERVIEW1",
+            "label": "Process Interview",
+            "to": "INTERVIEW2_1",
+            "category": "HR"
+        },
+        
+         "INTERVIEW2_1": {
+            "type": "INTERVIEW2",
+            "label": "Process Offer",
+            "to": "OFFERLETTER_1",
+            "category": "HR"
+        },
+        "OFFERLETTER_1": {
+            "type": "OFFERLETTER",
+            "label": "Process Offer",
+            "to": "RESULT_1",
+            "category": "HR"
+        },
+        "RESULT_1": {
+            "type": "RESULT",
+            "label": "Process Quote",
+            "to": "ONBOARDING_1",
+            "category": "HR"
+        },
+        "ONBOARDING_1": {
+            "type": "ONBOARDING",
+            "label": "Process Offer",
+            "to": "OUTBOX",
+            "category": "HR"
+        },
+        "LEAVEAPPLICATION_1": {
+            "type": "LEAVEAPPLICATION",
+            "label": "Process Quote",
+            "to": "LEAVEAPPROVAL_1",
+            "category": "Leave Management"
+        },
+        "LEAVEAPPROVAL_1": {
+            "type": "LEAVEAPPROVAL",
+            "label": "Process Quote",
+            "to": "OUTBOX",
+            "category": "Leave Management"
+        }
+    },
+    "collections":{
+          "employee": {
+        "schema": {
+            "type": "object",
+            "title": "Employee",
+            "properties": {
+            "type": "object",
+            "title": "Comment",
+            
+            "properties": {
+                "companyname": {
+                    "title": "Company Name",
+                    "type": "string"
+                },
+                "location": {
+                    "title": "Location",
+                    "type": "string"
+                },
+                "experience": {
+                    "title": "Experience",
+                    "type": "number"
+                },
+                "function": {
+                    "title": "Function",
+                    "type": "string"
+                },
+                 "industry": {
+                    "title": "Industry",
+                    "type": "string"
+                },
+                 "requestdate": {
+                    "title": "RequestDate",
+                    "type": "string",
+                    "format": "date"
+                },
+               
+                
+                 "jobdescription": {
+                    "title": "Job Description",
+                    "type": "string"
+                },
+                 "requirements": {
+                    "title": "Requirements",
+                    "type": "string"
+                },
+                 "role": {
+                    "title": "Role",
+                    "type": "string"
+                },
+                "keyskills": {
+                    "title": "Key Skills",
+                    "type": "string"
+                },
+                "aboutcompany": {
+                    "title": "About company",
+                    "type": "string"
+                }
+            }
+        }
+        },
+        "definitions": [
+            {
+                "key": "companyname",
+                "htmlClass": "half-width label-left"
+            },
+            {
+                "key": "location",
+                "htmlClass": "half-width label-left"
+            },
+            {
+                "key": "experience",
+                "htmlClass": "half-width label-left"
+            },
+            {
+                "key": "role",
+                "htmlClass": "half-width label-left"
+            },
+            {
+                "key": "keyskills",
+                "htmlClass": "half-width label-left"
+            },
+            {
+                "key": "function",
+                "htmlClass": "half-width label-left"
+            },
+             {
+                "key": "industry",
+                "htmlClass": "half-width label-left"
+            },
+            {
+                "key": "requestdate",
+                "htmlClass": "half-width label-left"
+            },
+            {
+                "key": "jobdescription",
+                "type": "textarea"
+            },
+            {
+                "key": "requirements",
+                "type": "textarea"
+            },
+            
+             {
+                "key": "aboutcompany",
+                "type": "textarea"
+            }
+        ]
+    },
+          "employeeleave": {
+        "schema": {
+            "type": "object",
+            "title": "Lead",
+            "properties": {
+                "employeename": {
+                    "title": "Employee Name",
+                    "type": "string"
+                },
+                "availablecasualdaysleavebalance": {
+                    "title": "Available Casual days Leave Balance",
+                    "type": "string"
+                },
+                "availableleavewithoutpayleavebalance": {
+                    "title": "Avaiable Leave Without Pay Balance",
+                    "type": "string"
+                },
+                "availablesickleaveleavebalance": {
+                    "title": "Available Sick Leave Balance",
+                    "type": "string"
+                },
+                "leaveapprover": {
+                    "title": "Leave Approver",
+                    "type": "string"
+                },
+                "leavetype": {
+                    "title": "Leave Type",
+                    "type": "string",
+                    "enum":["Casual","Sick","Leave Without Pay"]
+                },
+                "fromdate": {
+                    "title": "From Date",
+                    "type": "string",
+                    "format":"date"
+                },
+                "todate": {
+                    "title": "To Date",
+                    "type": "string",
+                    "format":"date"
+                },
+                 "halfday": {
+                    "title": "Half Day",
+                    "type": "boolean"
+                    
+                },
+                "reason": {
+                    "title": "Reason",
+                    "type": "string"
+                },
+                "email": {
+                    "title": "Email",
+                    "type": "string"
+                }
+            },
+            "required": [
+               
+
+            ]
+        },
+        "definitions": [
+          {
+        "type":"fieldset",
+        "title":"Employee Details",
+        "items":[
+  
+            {     "key":"employeename",
+                  "htmlClass": "half-width label-left"
+            },
+            {     "key":"email",
+                  "htmlClass": "half-width label-left"
+            },
+            {
+                "key": "availablecasualdaysleavebalance",
+                "htmlClass": "half-width label-left"
+            },
+            {
+                "key": "availableleavewithoutpayleavebalance",
+                "htmlClass": "half-width label-left"
+            },
+            {
+                "key": "availablesickleaveleavebalance",
+                "htmlClass": "half-width label-left"
+            },
+            {
+                "key": "leaveapprover",
+                "htmlClass": "half-width label-left"
+            }
+            
+      ]
+      },
+          {
+        "type":"fieldset",
+        "title":"Leave Details",
+        "items":[
+        {
+                "key": "leavetype",
+                "htmlClass": "half-width label-left"
+            },
+            {
+                "key": "halfday",
+                "htmlClass": "half-width label-left"
+            },
+            {
+                "type": "conditional",
+                "condition": "modelData.halfday",
+                "required":true,
+                "items": [
+                      {
+                "key": "fromdate",
+                "htmlClass": "half-width label-left"
+                      },
+                      {
+                "key": "todate",
+                "htmlClass": "half-width label-left"
+                      }
+                          ]
+            },
+            {
+                "key": "reason","type":"textarea"
+               
+            }
+            
+      ]
+      }
+        ]
+    }
+
+    }
+}

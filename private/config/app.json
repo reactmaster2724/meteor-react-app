@@ -1,0 +1,10 @@
+{
+  "workflow": "sunyu.json",
+  "services": {
+    "google": {
+      "clientId": "403900463374-uc5kvhl4vih11fkdhgunbigoapek60tv.apps.googleusercontent.com",
+      "secret": "WwmxyQnuSB-WDajxscpwuybU",
+      "loginStyle": "popup"
+    }
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "overrides": {},
+  "definitions": {
+    "PROJECTPLAN": {
+      "title": "Projects"
+    },
+    "PROJECTESTIMATECOST": [],
+    "PROJECTQUOTE": []
+  },
+  "schemas": {
+    "PROJECTPLAN": {
+      "type": "object",
+      "properties": {
+        "project_name": {
+          "title": "Project Name",
+          "type": "string",
+          "key": "project_name"
+        },
+        "description": {
+          "title": "Description",
+          "type": "string",
+          "key": "description"
+        },
+        "project_status": {
+          "title": "Status",
+          "type": "string",
+          "key": "project_status",
+          "enum": [
+            "Open",
+            "Closed"
+          ]
+        }
+      },
+      "required": []
+    },
+    "PROJECTESTIMATECOST": {},
+    "PROJECTQUOTE": {}
+  },
+  "labels": {
+    "PROJECTPLAN": "Planning",
+    "PROJECTESTIMATECOST": "Work estimate",
+    "PROJECTQUOTE": "Build Quote"
+  },
+  "nodes": {
+    "ENTRY": {
+      "type": "INBOX",
+      "to": "WORKFLOW_ENTRIES"
+    },
+    "WORKFLOW_ENTRIES": {
+      "type": "OPERATION",
+      "operation_type": "SelectEntryPoint",
+      "to": [
+        "PROJECTPLAN_1"
+      ]
+    },
+    "PROJECTPLAN_1": {
+      "type": "PROJECTPLAN",
+      "category": "Project Planning",
+      "module": {
+        "name": "projectplan"
+      },
+      "to": "PROJECTESTIMATECOST_1"
+    },
+    "PROJECTESTIMATECOST_1": {
+      "type": "PROJECTESTIMATECOST",
+      "category": "Project Planning",
+      "to": "PROJECTQUOTE_1"
+    },
+    "PROJECTQUOTE_1": {
+      "type": "PROJECTQUOTE",
+      "category": "Project Planning",
+      "to": "PROJECTQUOTE_1"
+    }
+  },
+  "collections": {
+    "ERPNextUsers": {},
+    "Task": {},
+    "Project": {
+      "schema": {
+        "type": "object",
+        "title": "Projects",
+        "properties": {
+          "project_name": {
+            "title": "Project Name",
+            "type": "string"
+          },
+          "description": {
+            "title": "Description",
+            "type": "string"
+          },
+          "project_status": {
+            "title": "Status",
+            "type": "string",
+            "enum": [
+              "Open",
+              "Closed"
+            ]
+          }
+        }
+      },
+      "definitions": [
+        {
+          "key": "project_name"
+        },
+        "description",
+        "project_status"
+      ],
+      "required": []
+    }
+  }
+}

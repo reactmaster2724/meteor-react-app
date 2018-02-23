@@ -1,0 +1,1 @@
+#cannot add getcollections as meteor methods as data would be accessible to console

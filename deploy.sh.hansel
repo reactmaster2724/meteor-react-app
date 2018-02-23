@@ -1,0 +1,142 @@
+#!/bin/bash
+
+#
+## Initial variables
+#
+PROJECT_ROOT_PATH=$(cd $(dirname $BASH_SOURCE); pwd)
+
+HOST_NAME=""
+PRIVATE_KEY=""
+IP_ADDRESS=""
+AWS_ACCESS_KEY="AKIAJSCML3VTEAVLR5RA"
+AWS_SECRET_KEY="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"
+
+SPAWN_SETUP=false
+ERPNEXT_INITIAL_SETUP=false
+MONGODB_INITIAL_SETUP=false
+SERVER_DESTROY=false
+NEXTACTION_SETUP=""
+NEXTACTION_BRANCH=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
+
+
+#
+## Reset in case getopts has been used previously in the shell
+#
+OPTIND=1
+
+while getopts "I:h:i:emnsd" opt; do
+  case "$opt" in
+      I )
+      IP_ADDRESS="$OPTARG"
+      ;;
+    h )
+      HOST_NAME="$OPTARG"
+      ;;
+
+    i )
+      PRIVATE_KEY="$OPTARG"
+      ;;
+
+    e )
+      ERPNEXT_INITIAL_SETUP=true
+      ;;
+
+    m )
+      MONGODB_INITIAL_SETUP=true
+      ;;
+
+    n )
+      NEXTACTION_SETUP=true
+      ;;
+      
+    s )
+      SPAWN_SETUP=true
+      ERPNEXT_INITIAL_SETUP=true
+      MONGODB_INITIAL_SETUP=true
+      NEXTACTION_SETUP=true
+      ;;
+    d )
+      SERVER_DESTROY=true
+      ;;
+  esac
+done
+
+spawn_setup() {
+  tugboat create $HOST_NAME
+  tugboat wait $HOST_NAME
+  sleep 10
+  
+  IP_ADDRESS="`tugboat info "$HOST_NAME" | grep -Eo '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}'`"
+  ssh -o "StrictHostKeyChecking no" -i $PRIVATE_KEY root@$IP_ADDRESS /bin/bash -c "'
+    docker rm -f route53 route53erp haproxy
+    docker run --name route53 -e AWS_ACCESS_KEY_ID="$AWS_ACCESS_KEY" -e AWS_SECRET_ACCESS_KEY="$AWS_SECRET_KEY" -e AWS_CONNECTION_REGION="ap-southeast-1" -e HOST_NAME="$HOST_NAME" -e IP_ADDRESS="$IP_ADDRESS" -e ROUTE53_UPDATE_FREQUENCY=600 hanselke/route53:v1.7.1 '/opt/route53/r53dyndns.py' -I "$IP_ADDRESS" -R "$HOST_NAME"
+    docker run --name route53erp -e AWS_ACCESS_KEY_ID="$AWS_ACCESS_KEY" -e AWS_SECRET_ACCESS_KEY="$AWS_SECRET_KEY" -e AWS_CONNECTION_REGION="ap-southeast-1" -e HOST_NAME='erp.'+"$HOST_NAME" -e IP_ADDRESS="$IP_ADDRESS" -e ROUTE53_UPDATE_FREQUENCY=600 hanselke/route53:v1.7.1 '/opt/route53/r53dyndns.py' -I "$IP_ADDRESS"  -R 'erp.'"$HOST_NAME"
+    docker run --name haproxy -d -p 127.0.0.1:80:80 -v /var/run/docker.sock:/tmp/docker.sock:ro jwilder/nginx-proxy
+    '"
+
+  
+}
+
+erpnext_initial_setup() {
+  IP_ADDRESS="`tugboat info "$HOST_NAME" | grep -Eo '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}'`"
+  ssh -o "StrictHostKeyChecking no" -i $PRIVATE_KEY root@$IP_ADDRESS /bin/bash -c "'
+    docker rm -f erpdata erpnext &> /dev/null
+    docker create -v /home/frappe/frappe-bench/sites/site1.local/ -v /var/lib/mysql --name erpdata davidgu/erpnext
+    docker run -d -p 127.0.0.1:3500:80 --name erpnext -e VIRTUAL_HOST='erp.'+"$HOST_NAME" -e VIRTUAL_PORT="3500" --volumes-from erpdata davidgu/erpnext
+  '"
+}
+
+mongodb_initial_setup() {
+  IP_ADDRESS="`tugboat info "$HOST_NAME" | grep -Eo '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}'`"
+  ssh -o "StrictHostKeyChecking no" -i $PRIVATE_KEY root@$IP_ADDRESS /bin/bash -c "'
+    rm -rf /opt/mongo_data &> /dev/null
+    mkdir /opt/mongo_data &> /dev/null
+    docker rm -f mongo &> /dev/null
+    docker run -d -p 127.0.0.1:27017:27017 --name mongo -v /opt/mongo_data:/data/db mongo
+  '"
+}
+
+nextaction_setup() {
+  IP_ADDRESS="`tugboat info "$HOST_NAME" | grep -Eo '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}'`"
+  meteor build --architecture=os.linux.x86_64 ./
+  scp -o "StrictHostKeyChecking no" -i $PRIVATE_KEY ./"$NEXTACTION_BRANCH".tar.gz root@$IP_ADDRESS:/opt
+  ssh -o "StrictHostKeyChecking no" -i $PRIVATE_KEY root@$IP_ADDRESS /bin/bash -c "'
+    docker rm -f nextaction &> /dev/null
+    rm -rf /opt/mongodb &> /dev/null
+    docker run --name nextaction -d -e VIRTUAL_HOST="$HOST_NAME" -e VIRTUAL_PORT="4000" -e ROOT_URL='http://'+"$HOST_NAME" -e MONGO_URL='mongodb://'+"$HOST_NAME"+':27017/nextaction' -v /opt:/bundle -p 127.0.0.1:4000:80 meteorhacks/meteord:base
+  '"
+}
+
+server_destroy() {
+  IP_ADDRESS="`tugboat info "$HOST_NAME" | grep -Eo '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}'`"
+  ssh -o "StrictHostKeyChecking no" -i $PRIVATE_KEY root@$IP_ADDRESS /bin/bash -c "'
+    docker rm -f nextaction &> /dev/null
+    rm -rf /opt/mongodb &> /dev/null
+    docker rm -f route53 route53erp haproxy
+    docker run -d --name route53 -e AWS_ACCESS_KEY_ID="$AWS_ACCESS_KEY" -e AWS_SECRET_ACCESS_KEY="$AWS_SECRET_KEY" -e AWS_CONNECTION_REGION="ap-southeast-1" -e HOST_NAME="$HOST_NAME" -e IP_ADDRESS="$IP_ADDRESS" -e ROUTE53_UPDATE_FREQUENCY=600 hanselke/route53:v1.7.1 '/opt/route53/r53dyndns.py' -I "8.8.8.8"  -R "$HOST_NAME"
+    docker run -d --name route53erp -e AWS_ACCESS_KEY_ID="$AWS_ACCESS_KEY" -e AWS_SECRET_ACCESS_KEY="$AWS_SECRET_KEY" -e AWS_CONNECTION_REGION="ap-southeast-1" -e HOST_NAME='erp.'+"$HOST_NAME" -e IP_ADDRESS="$IP_ADDRESS" -e ROUTE53_UPDATE_FREQUENCY=600 hanselke/route53:v1.7.1 '/opt/route53/r53dyndns.py' -I "8.8.8.8" -R "$HOST_NAME"
+  '"
+ sleep 10
+ tugboat destroy $HOST_NAME
+}
+
+if [[ "$SERVER_DESTROY" = true ]]; then
+  server_destroy
+fi
+
+if [[ "$SPAWN_SETUP" = true ]]; then
+  spawn_setup
+fi
+
+if [[ "$ERPNEXT_INITIAL_SETUP" = true ]]; then
+  erpnext_initial_setup
+fi
+
+if [[ "$MONGODB_INITIAL_SETUP" = true ]]; then
+  mongodb_initial_setup
+fi
+
+if [[ "$NEXTACTION_SETUP" = true ]]; then
+  nextaction_setup
+fi
+

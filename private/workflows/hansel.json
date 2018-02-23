@@ -1,0 +1,80 @@
+{
+  "overrides": {},
+  "definitions": {
+    "LEADS": [],
+    "OPPORTUNITIES": [],
+    "B_FIRST": [],
+    "B_SECOND": []
+  },
+  "schemas": {
+    "LEADS": {
+      "type": "Object",
+      "title": "Submit a lead",
+      "properties": {
+        "lead_name": {
+          "title": "Lead Name",
+          "type": "string"
+        }
+      }
+    },
+    "B_FIRST": {
+      "type": "object",
+      "title": "B First",
+      "properties": {}
+    },
+    "OPPORTUNITIES": {
+      "type": "object",
+      "title": "Your Opportunities",
+      "properties": {}
+    },
+    "B_SECOND": {
+      "type": "object",
+      "title": "B Second",
+      "properties": {}
+    }
+  },
+  "labels": {
+    "LEADS": "Leads",
+    "OPPORTUNITIES": "Opportunities",
+    "B_FIRST": "B First",
+    "B_SECOND": "B Second"
+  },
+  "nodes": {
+    "ENTRY": {
+      "type": "INBOX",
+      "to": "WORKFLOW_ENTRIES",
+      "module": {
+        "name": "attachments"
+      }
+    },
+    "WORKFLOW_ENTRIES": {
+      "type": "OPERATION",
+      "operation_type": "SelectEntryPoint",
+      "to": [
+        "LEADS",
+        "B_FIRST"
+      ]
+    },
+    "LEADS": {
+      "type": "LEADS",
+      "to": "OPPORTUNITIES",
+      "category": "SALES"
+    },
+    "OPPORTUNITIES": {
+      "type": "OPPORTUNITIES",
+      "to": "OUTBOX",
+      "category": "SALES"
+    },
+    "B_FIRST": {
+      "type": "B_FIRST",
+      "to": "B_SECOND",
+      "category": "B"
+    },
+    "B_SECOND": {
+      "type": "B_SECOND",
+      "to": "OUTBOX",
+      "category": "B"
+    }
+  },
+  "collections": {}
+}

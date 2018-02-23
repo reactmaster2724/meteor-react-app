@@ -1,0 +1,610 @@
+{
+  "overrides": {},
+  "definitions": {
+    "MOMSAT": {
+      "title":"Foreign worker MOM Self Assessment Test"
+    },
+    "APPLYPASS": {"title": "Job Applicant"},
+    "ISSUEPASS": {"title": "Job Applicant"}
+  },
+  "schemas": {
+    "MOMSAT": {
+      "definitions": {
+        "fieldset1": {
+          "type": "object",
+          "properties": {
+            "applicant_name": {
+              "type": "string",
+              "title": "Applicant Name",
+              "key": "applicant_name",
+              "htmlClass": "half-width label-left"
+            },
+            "email_id": {
+              "type": "string",
+              "title": "Email Address",
+              "key": "email_id",
+              "htmlClass": "half-width label-left",
+              "format": "email"
+            },
+            "applicantstatus": {
+              "type": "string",
+              "title": "Applicant Status",
+              "key": "applicantstatus",
+              "htmlClass": "half-width label-left",
+              "enum": [
+                "Open",
+                "Replied",
+                "Rejected",
+                "Hold"
+              ]
+            },
+            "job_name": {
+              "type": "string",
+              "title": "job_name",
+              "key": "job_name",
+              "htmlClass": "hidden"
+            },
+            "cover_letter": {
+              "type": "string",
+              "title": "Cover Letters",
+              "key": "cover_letter",
+              "htmlClass": "",
+              "format": "textarea"
+            }
+          },
+          "required":[
+            "applicant_name",
+            "job_name"
+          ]
+        },
+        "fieldset2": {
+          "type": "object",
+          "properties": {
+            "SalaryID": {
+              "type": "string",
+              "title": "Fixed Monthly Salary SGD",
+              "htmlClass": "half-width label-left",
+              "key": "SalaryID"
+            },
+            "JobSearchID": {
+              "type": "string",
+              "title": "Occuptation",
+              "htmlClass": "half-width label-left",
+              "key": "JobSearchID"
+            },
+            "ExperienceID": {
+              "type": "string",
+              "title": "Total years of working experience",
+              "htmlClass": "half-width label-left",
+              "key": "ExperienceID"
+            },
+            "ExperienceLocalID": {
+              "type": "string",
+              "title": "Years of working experience in Singapore",
+              "htmlClass": "half-width label-left",
+              "key": "ExperienceLocalID"
+            },
+            "numberOfEducation": {
+              "type": "string",
+              "title": "Number of educational Qualifications",
+              "htmlClass": "half-width label-left",
+              "key": "numberOfEducation"
+            },
+            "countrySelected": {
+              "type": "string",
+              "title": "Country of qualification",
+              "htmlClass": "half-width label-left",
+              "key": "countrySelected"
+            },
+            "stateSelected": {
+              "type": "string",
+              "title": "State",
+              "htmlClass": "half-width label-left",
+              "key": "stateSelected"
+            },
+            "nameSelected": {
+              "type": "string",
+              "title": "Name",
+              "htmlClass": "half-width label-left",
+              "key": "nameSelected"
+            },
+            "firstQual": {
+              "type": "string",
+              "title": "Qualifications",
+              "htmlClass": "half-width label-left",
+              "key": "nameSelected"
+            },
+            "firstFacultySel": {
+              "type": "string",
+              "title": "Faculty",
+              "htmlClass": "half-width label-left",
+              "key": "firstFacultySel"
+            },
+            "firstEduSpecSelected": {
+              "type": "string",
+              "title": "Specialisation",
+              "htmlClass": "half-width label-left",
+              "key": "firstEduSpecSelected"
+            },
+            "firstStudymodeID": {
+              "type": "string",
+              "title": "Mode of Study",
+              "htmlClass": "half-width label-left",
+              "key": "firstStudymodeID"
+            },
+            "yearStudy": {
+              "type": "string",
+              "title": "Study Period year",
+              "htmlClass": "half-width label-left",
+              "key": "yearStudy"
+            },
+            "monthStudy": {
+              "type": "string",
+              "title": "Study Period month",
+              "htmlClass": "half-width label-left",
+              "key": "monthStudy"
+            },
+            "firstYearGrad": {
+              "type": "string",
+              "title": "Year of graduation",
+              "htmlClass": "half-width label-left",
+              "key": "firstYearGrad"
+            },
+            "NationalityID": {
+              "type": "string",
+              "title": "Nationality",
+              "htmlClass": "half-width label-left",
+              "key": "NationalityID"
+            },
+            "DOB": {
+              "type": "string",
+              "title": "Date of birth",
+              "htmlClass": "half-width label-left",
+              "key": "DOB"
+            },
+            "DOA": {
+              "type": "string",
+              "title": "Date of Application",
+              "htmlClass": "half-width label-left",
+              "key": "DOA"
+            }
+          }
+        }
+      },
+      "type": "object",
+      "properties": {
+        "fieldset1": {
+          "title": "Applicant",
+          "$ref": "#/definitions/fieldset1"
+        },
+        "fieldset2": {
+          "title": "Pass Application details",
+          "$ref": "#/definitions/fieldset2"
+        }
+      }
+    },
+    "APPLYPASS": {
+      "definitions": {
+        "fieldset1": {
+          "type": "object",
+          "properties": {
+            "applicant_name": {
+              "type": "string",
+              "title": "Applicant Name",
+              "key":"applicant_name",
+              "htmlClass":"half-width label-left"
+            },
+            "email_id": {
+              "type": "string",
+              "title":"Email Address",
+              "key":"email_id",
+              "htmlClass":"half-width label-left",
+              "format":"email"
+            },
+            "applicantstatus": {
+              "type": "string",
+              "title":"Applicant Status",
+              "key":"applicantstatus",
+              "htmlClass":"half-width label-left",
+              "enum": [
+                "Open",
+                "Replied",
+                "Rejected",
+                "Hold"
+              ]
+            },
+            "job_name":{
+              "type":"string",
+              "title":"job_name",
+              "key":"job_name",
+              "htmlClass":"hidden"
+            },
+            "cover_letter":{
+              "type":"string",
+              "title":"Cover Letters",
+              "key":"cover_letter",
+              "htmlClass":"",
+              "format":"textarea"
+            }
+          }
+        },
+        "fieldset2": {
+          "type": "object",
+          "properties": {
+            "SalaryID": {
+              "type": "string",
+              "title":"Fixed Monthly Salary SGD",
+              "htmlClass":"half-width label-left",
+              "key":"SalaryID"
+            },
+            "JobSearchID": {
+              "type": "string",
+              "title":"Occuptation",
+              "htmlClass":"half-width label-left",
+              "key":"JobSearchID"
+            },
+            "ExperienceID": {
+              "type": "string",
+              "title":"Total years of working experience",
+              "htmlClass":"half-width label-left",
+              "key":"ExperienceID"
+            },
+            "ExperienceLocalID": {
+              "type": "string",
+              "title":"Years of working experience in Singapore",
+              "htmlClass":"half-width label-left",
+              "key":"ExperienceLocalID"
+            },
+            "numberOfEducation": {
+              "type": "string",
+              "title":"Number of educational Qualifications",
+              "htmlClass":"half-width label-left",
+              "key":"numberOfEducation"
+            },
+            "countrySelected": {
+              "type": "string",
+              "title":"Country of qualification",
+              "htmlClass":"half-width label-left",
+              "key":"countrySelected"
+            },
+            "stateSelected": {
+              "type": "string",
+              "title":"State",
+              "htmlClass":"half-width label-left",
+              "key":"stateSelected"
+            },
+            "nameSelected": {
+              "type": "string",
+              "title":"Name",
+              "htmlClass":"half-width label-left",
+              "key":"nameSelected"
+            },
+            "firstQual": {
+              "type": "string",
+              "title":"Qualifications",
+              "htmlClass":"half-width label-left",
+              "key":"nameSelected"
+            },
+            "firstFacultySel": {
+              "type": "string",
+              "title":"Faculty",
+              "htmlClass":"half-width label-left",
+              "key":"firstFacultySel"
+            },
+            "firstEduSpecSelected": {
+              "type": "string",
+              "title":"Specialisation",
+              "htmlClass":"half-width label-left",
+              "key":"firstEduSpecSelected"
+            },
+            "firstStudymodeID": {
+              "type": "string",
+              "title":"Mode of Study",
+              "htmlClass":"half-width label-left",
+              "key":"firstStudymodeID"
+            },
+            "yearStudy": {
+              "type": "string",
+              "title":"Study Period year",
+              "htmlClass":"half-width label-left",
+              "key":"yearStudy"
+            },
+            "monthStudy": {
+              "type": "string",
+              "title":"Study Period month",
+              "htmlClass":"half-width label-left",
+              "key":"monthStudy"
+            },
+            "firstYearGrad": {
+              "type": "string",
+              "title":"Year of graduation",
+              "htmlClass":"half-width label-left",
+              "key":"firstYearGrad"
+            },
+            "NationalityID": {
+              "type": "string",
+              "title":"Nationality",
+              "htmlClass":"half-width label-left",
+              "key":"NationalityID"
+            },
+            "DOB": {
+              "type": "string",
+              "title":"Date of birth",
+              "htmlClass":"half-width label-left",
+              "key":"DOB"
+            },
+            "DOA": {
+              "type": "string",
+              "title":"Date of Application",
+              "htmlClass":"half-width label-left",
+              "key":"DOA"
+            }
+          }
+        }
+      },
+      "type": "object",
+      "properties": {
+        "fieldset1": {
+          "title": "Applicant",
+          "$ref": "#/definitions/fieldset1"
+        },
+        "fieldset2": {
+          "title": "Pass Application details",
+          "$ref": "#/definitions/fieldset2"
+        }
+      }
+    },
+    "ISSUEPASS": {
+      "definitions": {
+        "fieldset1": {
+          "type": "object",
+          "properties": {
+            "applicant_name": {
+              "type": "string",
+              "title": "Applicant Name",
+              "key":"applicant_name",
+              "htmlClass":"half-width label-left"
+            },
+            "email_id": {
+              "type": "string",
+              "title":"Email Address",
+              "key":"email_id",
+              "htmlClass":"half-width label-left",
+              "format":"email"
+            },
+            "applicantstatus": {
+              "type": "string",
+              "title":"Applicant Status",
+              "key":"applicantstatus",
+              "htmlClass":"half-width label-left",
+              "enum": [
+                "Open",
+                "Replied",
+                "Rejected",
+                "Hold"
+              ]
+            },
+            "job_title":{
+              "type":"string",
+              "title":"Job Title",
+              "key":"job_title",
+              "htmlClass":"hidden"
+            },
+            "cover_letter":{
+              "type":"string",
+              "title":"Cover Letters",
+              "key":"cover_letter",
+              "htmlClass":"",
+              "format":"textarea"
+            }
+          }
+        },
+        "fieldset2": {
+          "type": "object",
+          "properties": {
+            "interviewdate": {
+              "type": "string",
+              "title":"MOM Pass Interview Date",
+              "htmlClass":"half-width label-left",
+              "key":"SalaryID",
+              "format":"date"
+            }
+          }
+        }
+      },
+      "type": "object",
+      "properties": {
+        "fieldset1": {
+          "title": "Applicant",
+          "$ref": "#/definitions/fieldset1"
+        },
+        "fieldset2": {
+          "title": "MOM Interview date",
+          "$ref": "#/definitions/fieldset2"
+        }
+      }
+    }
+  },
+  "labels": {
+    "MOMSAT": "Self Assessment Test",
+    "APPLYPASS": "Pass Application",
+    "ISSUEPASS": "Issue Pass"
+  },
+  "nodes": {
+    "ENTRY": {
+      "type": "INBOX",
+      "to": "WORKFLOW_ENTRIES"
+    },
+    "WORKFLOW_ENTRIES": {
+      "type": "OPERATION",
+      "operation_type": "SelectEntryPoint",
+      "to": [
+        "MOMSAT_1"
+      ]
+    },
+    "MOMSAT_1": {
+      "type": "MOMSAT",
+      "to": "APPLYPASS_1",
+      "module": {
+        "name": "mom_sat"
+      },
+      "category": "Recruitment"
+    },
+    "APPLYPASS_1": {
+      "type": "APPLYPASS",
+      "label": "Apply for Pass",
+      "to": "ISSUEPASS_1",
+      "module": {
+        "name": "mom_apply_pass"
+      },
+      "category": "Recruitment"
+    },
+    "ISSUEPASS_1": {
+      "type": "ISSUEPASS",
+      "label": "Issue Pass",
+      "to": "OUTBOX",
+      "module": {
+        "name": "bizfile"
+      },
+      "category": "Recruitment"
+    }
+  },
+  "collections": {
+    "ERPNextUsers": {},
+    "Task": {},
+    "jobopening": {
+      "schema": {
+        "type": "object",
+        "title": "New Job Opening",
+        "properties": {
+          "job_title": {
+            "title": "Job Title",
+            "type": "string"
+          },
+          "description": {
+            "title": "Description",
+            "type": "string"
+          },
+          "jobstatus": {
+            "title": "Status",
+            "type": "string",
+            "enum": [
+              "Open",
+              "Closed"
+            ]
+          },
+          "customer": {
+            "title": "Customer Name",
+            "type": "string"
+          }
+        }
+      },
+      "definitions": [
+        {
+          "key": "job_title"
+        },
+        "description",
+        "jobstatus",
+        "customer"
+      ]
+    },
+    "customer": {
+      "schema": {
+        "type": "object",
+        "title": "Customer",
+        "properties": {
+          "customer_name": {
+            "title": "Customer Name",
+            "type": "string"
+          },
+          "customer_type": {
+            "title": "Customer type",
+            "type": "string",
+            "enum": [
+              "Company",
+              "Individual"
+            ]
+          },
+          "customer_group": {
+            "title": "Customer Group",
+            "type": "string",
+            "enum": [
+              "All Customer Groups",
+              "Commercial",
+              "Government",
+              "Individual",
+              "Non Profit"
+            ]
+          },
+          "territory": {
+            "title": "Geographical Territory",
+            "type": "string",
+            "enum": [
+              "Rest Of The World",
+              "Singapore"
+            ]
+          }
+        }
+      },
+      "definitions": [
+        {
+          "key": "customer_name",
+          "htmlClass": "half-width label-left"
+        },
+        {
+          "key": "customer_type",
+          "htmlClass": "half-width label-left"
+        },
+        {
+          "key": "customer_group",
+          "htmlClass": "half-width label-left"
+        },
+        {
+          "key": "territory",
+          "htmlClass": "half-width label-left"
+        }
+      ]
+    },
+    "jobApplicant": {
+      "schema": {
+        "type": "object",
+        "title": "Job Applicant",
+        "properties": {
+          "applicant_name": {
+            "title": "Applicant Name",
+            "type": "string"
+          },
+          "email_id": {
+            "title": "Email Address",
+            "type": "string"
+          },
+          "applicantstatus": {
+            "title": "Status",
+            "type": "string",
+            "enum": [
+              "Open",
+              "Replied",
+              "Rejected",
+              "Hold"
+            ]
+          },
+          "job_name": {
+            "title": "Job Name",
+            "type": "string"
+          },
+          "cover_letter": {
+            "title": "Cover Letter",
+            "type": "string"
+          }
+        }
+      },
+      "definitions": [
+        "job_name",
+        "applicant_name",
+        "applicantstatus",
+        "email_id",
+        "cover_letter"
+      ]
+    }
+  }
+}

@@ -1,0 +1,735 @@
+{
+   "overrides": {
+
+   },
+   "definitions": {
+
+      "JOBOPENING": [{
+         "type": "fieldset",
+         "title": "Job Request Details",
+         "items": [{
+               "key": "job_title",
+               "htmlClass": "half-width label-left",
+               "type": "autocomplete",
+               "query": {
+                  "model": "jobopening",
+                  "field": "job_title",
+                  "map": {
+                     "description": "description",
+                     "status": "status"
+                  }
+               }
+            },
+            {
+               "key": "status",
+               "htmlClass": "half-width label-left"
+            },
+            {
+               "key": "description",
+               "htmlClass": "textarea"
+            }
+
+         ]
+      }],
+      "SCREENING": [{
+            "type": "fieldset",
+            "title": "Job Request Details",
+            "items": [{
+                  "key": "Jobtitle",
+                  "htmlClass": "half-width label-left",
+                  "type": "autocomplete",
+                  "query": {
+                     "model": "jobopening",
+                     "field": "Jobtitle",
+                     "map": {
+                        "Description": "Description",
+                        "Status": "Status"
+                     }
+                  }
+               },
+               {
+                  "key": "Description",
+                  "htmlClass": "half-width label-left"
+               },
+               {
+                  "key": "Status",
+                  "htmlClass": "half-width label-left"
+               }
+            ]
+         }
+      ],
+      "SIGNCONTRACT": [{
+            "type": "fieldset",
+            "title": "Job Request Details",
+            "items": [{
+                  "key": "Jobtitle",
+                  "htmlClass": "half-width label-left",
+                  "type": "autocomplete",
+                  "query": {
+                     "model": "jobopening",
+                     "field": "Jobtitle",
+                     "map": {
+                        "Description": "Description",
+                        "Status": "Status"
+                     }
+                  }
+               },
+               {
+                  "key": "Description",
+                  "htmlClass": "half-width label-left"
+               },
+               {
+                  "key": "Status",
+                  "htmlClass": "half-width label-left"
+               }
+            ]
+         },
+         {
+            "type": "fieldset",
+            "title": "Offer Letter Details",
+            "items": [{
+                  "key": "Salaryproposed",
+                  "placeholder": "SGD 2000.00",
+                  "htmlClass": "half-width label-left"
+               },
+               {
+                  "key": "Positiontype",
+                  "htmlClass": "half-width label-left"
+               },
+               {
+                  "key": "Statusofapplicant",
+                  "htmlClass": "half-width label-left"
+               }
+            ]
+         }
+      ],
+      "ONBOARDING": [{
+            "type": "fieldset",
+            "title": "Job Request Details",
+            "items": [{
+                  "key": "Jobtitle",
+                  "htmlClass": "half-width label-left",
+                  "type": "autocomplete",
+                  "query": {
+                     "model": "jobopening",
+                     "field": "Jobtitle",
+                     "map": {
+                        "Description": "Description",
+                        "Status": "Status"
+                     }
+                  }
+               },
+               {
+                  "key": "Description",
+                  "htmlClass": "half-width label-left"
+               },
+               {
+                  "key": "Status",
+                  "htmlClass": "half-width label-left"
+               }
+            ]
+         },
+         {
+            "type": "fieldset",
+            "title": "Offer Letter Details",
+            "items": [{
+                  "key": "Salaryproposed",
+                  "placeholder": "SGD 2000.00",
+                  "htmlClass": "half-width label-left"
+               },
+               {
+                  "key": "Positiontype",
+                  "htmlClass": "half-width label-left"
+               },
+               {
+                  "key": "Statusofapplicant",
+                  "htmlClass": "half-width label-left"
+               }
+            ]
+         },
+         {
+            "type": "fieldset",
+            "title": "Onboarding Details",
+            "items": [{
+                  "key": "Bank",
+                  "placeholder": "DBS",
+                  "htmlClass": "half-width label-left"
+               },
+               {
+                  "key": "Branch",
+                  "placeholder": "Toa Payoh",
+                  "htmlClass": "half-width label-left"
+               },
+               {
+                  "key": "Accountno",
+                  "placeholder": "12 3456 78",
+                  "htmlClass": "half-width label-left"
+               },
+               {
+                  "key": "Entry",
+                  "htmlClass": "half-width label-left"
+               },
+               {
+                  "key": "Exit",
+                  "htmlClass": "half-width label-left"
+               },
+               {
+                  "key": "Contractsigned",
+                  "htmlClass": "half-width label-left"
+               },
+               {
+                  "key": "Officeemail",
+                  "placeholder": "xyz@openbusiness.com.sg",
+                  "htmlClass": "half-width label-left"
+               },
+               {
+                  "key": "Probationenddate",
+                  "htmlClass": "half-width label-left"
+               },
+               {
+                  "key": "Inventoryrecord",
+                  "placeholder": "Inventory Record",
+                  "type": "textarea"
+               }
+            ]
+         }
+      ]
+   },
+   "schemas": {
+
+      "JOBOPENING": {
+         "type": "object",
+         "title": "Job Opening",
+         "properties": {
+            "Jobtitle": {
+               "title": "Job Title",
+               "type": "string"
+            },
+            "Description": {
+               "title": "Description",
+               "type": "string"
+            },
+            "Status": {
+               "title": "Job Opening Status",
+               "type": "string"
+            }
+         },
+         "required": [
+
+         ]
+      },
+      "SCREENING": {
+         "type": "object",
+         "title": "Screening",
+         "properties": {
+            "Jobtitle": {
+               "title": "Job Title",
+               "type": "string"
+            },
+            "Description": {
+               "title": "Designation",
+               "type": "string"
+            },
+            "Status": {
+               "title": "Status of Job Opening",
+               "type": "string"
+            },
+            "featuresname": {
+               "title": "Feature Name",
+               "type": "string",
+               "validationMessage": "Add Your Feature"
+            },
+            "priority": {
+               "title": "Priority",
+               "type": "string",
+               "enum": [
+                  "Low",
+                  "Medium",
+                  "High",
+                  "Can be avoided"
+               ]
+            },
+            "notes": {
+               "title": "Generic Notes",
+               "type": "string"
+            }
+         },
+         "required": [
+
+         ]
+      },
+      "SIGNCONTRACT": {
+         "type": "object",
+         "title": "Sign Contract",
+         "properties": {
+            "Jobtitle": {
+               "title": "Job Title",
+               "type": "string"
+            },
+            "Description": {
+               "title": "Designation",
+               "type": "string"
+            },
+            "Status": {
+               "title": "Status of Job Opening",
+               "type": "string"
+            },
+            "featuresname": {
+               "title": "Feature Name",
+               "type": "string",
+               "validationMessage": "Add Your Feature"
+            },
+            "priority": {
+               "title": "Priority",
+               "type": "string",
+               "enum": [
+                  "Low",
+                  "Medium",
+                  "High",
+                  "Can be avoided"
+               ]
+            },
+            "notes": {
+               "title": "Generic Notes",
+               "type": "string"
+            },
+            "Salaryproposed": {
+               "title": "Salary Proposed",
+               "type": "string"
+            },
+            "Positiontype": {
+               "title": "Position Type",
+               "type": "string",
+               "enum": [
+                  "Intern",
+                  "Part Time",
+                  "Full time",
+                  ""
+               ]
+            },
+            "Statusofapplicant": {
+               "title": "Offer Letter Status",
+               "type": "string",
+               "enum": [
+                  "Sent",
+                  "Negotiation",
+                  "Accepted",
+                  "Rejected"
+               ]
+            }
+         },
+         "required": [
+
+         ]
+      },
+      "ONBOARDING": {
+         "type": "object",
+         "title": "On boarding",
+         "properties": {
+            "Jobtitle": {
+               "title": "Job Title",
+               "type": "string"
+            },
+            "Description": {
+               "title": "Designation",
+               "type": "string"
+            },
+            "Status": {
+               "title": "Status of Job Opening",
+               "type": "string"
+            },
+            "featuresname": {
+               "title": "Feature Name",
+               "type": "string",
+               "validationMessage": "Add Your Feature"
+            },
+            "priority": {
+               "title": "Priority",
+               "type": "string",
+               "enum": [
+                  "Low",
+                  "Medium",
+                  "High",
+                  "Can be avoided"
+               ]
+            },
+            "notes": {
+               "title": "Generic Notes",
+               "type": "string"
+            },
+            "Salaryproposed": {
+               "title": "Salary Proposed",
+               "type": "string"
+            },
+            "Positiontype": {
+               "title": "Position Type",
+               "type": "string",
+               "enum": [
+                  "Intern",
+                  "Part Time",
+                  "Full time",
+                  ""
+               ]
+            },
+            "Statusofapplicant": {
+               "title": "Offer Letter Status",
+               "type": "string",
+               "enum": [
+                  "Sent",
+                  "Negotiation",
+                  "Accepted",
+                  "Rejected"
+               ]
+            },
+            "Bank": {
+               "title": "Bank",
+               "type": "string"
+            },
+            "Branch": {
+               "title": "Branch",
+               "type": "string"
+            },
+            "Accountno": {
+               "title": "Account no",
+               "type": "string"
+            },
+            "Entry": {
+               "title": "Entry",
+               "type": "string",
+               "format": "date"
+            },
+            "Exit": {
+               "title": "Exit",
+               "type": "string",
+               "format": "date"
+            },
+            "Contractsigned": {
+               "title": "Contract Signed",
+               "type": "string",
+               "format": "date"
+            },
+            "Officeemail": {
+               "title": "Office Email",
+               "type": "string"
+            },
+            "Probationenddate": {
+               "title": "Probation End Date",
+               "type": "string",
+               "format": "date"
+            },
+            "Inventoryrecord": {
+               "title": "Inventory Record",
+               "type": "string"
+            }
+         },
+         "required": [
+
+         ]
+      }
+   },
+   "labels": {
+      "JOBOPENING": "Job Opening",
+      "SCREENING": "Posting and Screening",
+      "SIGNCONTRACT": "Signing Contract",
+      "ONBOARDING": "Onboarding"
+   },
+   "nodes": {
+      "ENTRY": {
+         "type": "INBOX",
+         "to": "WORKFLOW_ENTRIES",
+         "module": {
+            "name": "attachments"
+         }
+      },
+      "WORKFLOW_ENTRIES": {
+         "type": "OPERATION",
+         "operation_type": "SelectEntryPoint",
+         "to": [
+            "JOBOPENING_1"
+         ]
+      },
+      "JOBOPENING_1": {
+         "type": "JOBOPENING",
+         "label": "Third Lane",
+         "to": "SCREENING_1",
+         "module": {
+            "name": "attachments"
+         },
+         "category": "OpenB_HR"
+      },
+      "SCREENING_1": {
+         "type": "SCREENING",
+         "label": "Fourth Lane",
+         "to": "SIGNCONTRACT_1",
+         "module": {
+            "name": "attachments"
+         },
+         "category": "OpenB_HR"
+      },
+      "SIGNCONTRACT_1": {
+         "type": "SIGNCONTRACT",
+         "label": "Fifth Lane",
+         "to": "ONBOARDING_1",
+         "module": {
+            "name": "attachments"
+         },
+         "category": "OpenB_HR"
+      },
+      "ONBOARDING_1": {
+         "type": "ONBOARDING",
+         "label": "Out Lane",
+         "to": "OUTBOX",
+         "module": {
+            "name": "attachments"
+         },
+         "category": "OpenB_HR"
+      }
+   },
+   "collections": {
+      "Customers": {
+         "schema": {
+            "type": "object",
+            "title": "Customer",
+            "properties": {
+               "Customers_Name": {
+                  "title": "Company Name",
+                  "type": "string"
+               },
+               "Customers_MainLine": {
+                  "title": "Main Line",
+                  "type": "string"
+               },
+               "Customers_Address": {
+                  "title": "Address",
+                  "type": "string"
+               },
+               "Customers_Website": {
+                  "title": "Website",
+                  "type": "string"
+               },
+               "Customers_Industry": {
+                  "title": "Industry",
+                  "type": "string"
+               }
+            }
+         },
+         "definitions": [{
+               "key": "Customers_Name",
+               "htmlClass": "half-width label-left"
+            },
+            {
+               "key": "Customers_MainLine",
+               "htmlClass": "half-width label-left"
+            },
+            {
+               "key": "Customers_Address",
+               "htmlClass": "half-width label-left"
+            },
+            {
+               "key": "Customers_Industry",
+               "htmlClass": "half-width label-left"
+            },
+            {
+               "key": "Customers_Website",
+               "htmlClass": "halfwidth label-left"
+            }
+         ]
+      },
+      "users": {
+         "schema": {
+            "type": "object",
+            "title": "Customer",
+            "properties": {
+               "display_name": {
+                  "title": "First Name",
+                  "type": "string"
+               },
+               "Email": {
+                  "title": "Email",
+                  "type": "string"
+               }
+            },
+            "required": [
+               "display_name",
+               "Email"
+            ]
+         },
+         "definitions": [{
+               "key": "display_name",
+               "htmlClass": "half-width label-left"
+            },
+            {
+               "key": "Email",
+               "htmlClass": "half-width label-left"
+            }
+         ]
+      },
+      "JobOpening": {
+         "schema": {
+            "type": "object",
+            "title": "New Job Opening",
+            "properties": {
+               "JobOpening_Jobtitle": {
+                  "title": "Job Title",
+                  "type": "string"
+               },
+               "JobOpening_Description": {
+                  "title": "Description",
+                  "type": "string"
+               },
+               "JobOpening_Status": {
+                  "title": "Status",
+                  "type": "string",
+                  "enum": [
+                     "Open",
+                     "Closed"
+                  ]
+               }
+            }
+         },
+         "definitions": [
+            "JobOpening_Jobtitle",
+            "JobOpening_Description",
+            "JobOpening_Status"
+         ]
+      },
+      "JobPortals": {
+         "schema": {
+            "type": "object",
+            "title": "New Job Opening",
+            "properties": {
+               "Jobportal": {
+                  "title": "Job Portal",
+                  "type": "string"
+               }
+            }
+         },
+         "definitions": [
+            "Jobportal"
+         ]
+      },
+      "JobApplicant": {
+         "schema": {
+            "type": "object",
+            "title": "New Job Applicant",
+            "properties": {
+               "JobApplicant_name": {
+                  "title": "Applicant Name",
+                  "type": "string"
+               },
+               "JobApplicant_emailid": {
+                  "title": "Email id",
+                  "type": "string"
+               },
+               "JobApplicant_homephone": {
+                  "title": "Home Phone id",
+                  "type": "string"
+               },
+               "JobApplicant_mobilephone": {
+                  "title": "Mobile Phone id",
+                  "type": "string"
+               }
+            }
+         },
+         "definitions": [
+            "JobApplicant_name",
+            "JobApplicant_emailid",
+            "JobApplicant_homephone",
+            "JobApplicant_mobilephone"
+         ]
+      },
+      "Contact": {
+         "schema": {
+            "type": "object",
+            "title": "New Contact",
+            "properties": {
+               "contact_firstname": {
+                  "title": "Name",
+                  "type": "string"
+               },
+               "contact_designation": {
+                  "title": "Designation",
+                  "type": "string"
+               },
+               "contact_phone": {
+                  "title": "Phone",
+                  "type": "string"
+               },
+               "contact_emailid": {
+                  "title": "Email",
+                  "type": "string"
+               }
+            }
+         },
+         "definitions": [
+            "contact_firstname",
+            "contact_designation",
+            "contact_phone",
+            "contact_emailid"
+         ]
+      },
+      "Company": {
+         "schema": {
+            "type": "object",
+            "title": "New Job Applicant",
+            "properties": {
+               "Company_Name": {
+                  "title": "Name",
+                  "type": "string"
+               },
+               "Company_Phone_no": {
+                  "title": "Phone",
+                  "type": "string"
+               },
+               "Company_Address": {
+                  "title": "Address",
+                  "type": "string"
+               },
+               "Company_Domain": {
+                  "title": "Domain",
+                  "type": "string"
+               },
+               "Company_Website": {
+                  "title": "Website",
+                  "type": "string"
+               }
+            }
+         },
+         "definitions": [
+            "Company_Name",
+            "Company_Phone_no",
+            {
+               "key": "Company_Address",
+               "type": "textarea"
+            },
+            "Company_Domain",
+            "Company_Website"
+         ]
+      },
+      "Address": {
+         "schema": {
+            "type": "object",
+            "title": "New Address",
+            "properties": {
+               "Address_lead_name": {
+                  "title": "Name",
+                  "type": "string"
+               },
+               "Address_address_line1": {
+                  "title": "Designation",
+                  "type": "string"
+               },
+               "Address_address_line2": {
+                  "title": "Phone",
+                  "type": "string"
+               }
+            }
+         },
+         "definitions": [
+            "Address_lead_name",
+            "Address_address_line1",
+            "Address_address_line2"
+         ]
+      }
+   }
+}

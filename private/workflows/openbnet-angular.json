@@ -1,0 +1,2566 @@
+{
+  "printviews": {
+    "INVOICE": [
+      {
+        "type": "help",
+        "helpvalue": "<h3>Sunyu Products & Services Pte Ltd</h3>No. 67 Tampines Industrial Avenue 5, T5 @ Tampines, Singapore 528643<br>Tel: +65 6260 4500 Fax: +65 6260 5737<br>REG NO: 200706909K GST REG NO: 200706909K"
+      },
+      {
+        "type": "help",
+        "helpvalue": "<h2>DELIVERY ORDER</h2>",
+        "htmlClass": "full-width text-center"
+      },
+      {
+        "type": "fieldset",
+        "htmlClass": "width70",
+        "items": [
+          {
+            "type": "help",
+            "helpvalue": "SOLD TO:"
+          },
+          {
+            "key": "companyname",
+            "notitle": true,
+            "htmlClass": "bold upcase"
+          },
+          {
+            "key": "address",
+            "notitle": true,
+            "htmlClass": "upcase"
+          },
+          {
+            "key": "mainline",
+            "title": "TEL:",
+            "htmlClass": "label-left no-width upcase"
+          },
+          {
+            "key": "contactdetails",
+            "notitle": true,
+            "items": [
+              {
+                "key": "contactdetails[].contactperson",
+                "title": "ATTN:",
+                "htmlClass": "label-left no-width"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "fieldset",
+        "htmlClass": "width30",
+        "items": [
+          {
+            "key": "donumber",
+            "title": "do no.",
+            "htmlClass": "label-left upcase"
+          },
+          {
+            "key": "deliverydate",
+            "format": "yyyy-mm-dd",
+            "title": "date",
+            "htmlClass": "label-left upcase"
+          },
+          {
+            "key": "invoiceno",
+            "title": "ref no.",
+            "htmlClass": "label-left upcase"
+          }
+        ]
+      },
+      {
+        "type": "fieldset",
+        "title": "Item Details",
+        "items": [
+          {
+            "key": "products",
+            "notitle": true,
+            "type": "arraytable",
+            "style": {
+              "add": "btn-success"
+            },
+            "items": [
+              {
+                "key": "products.total",
+                "type": "total",
+                "expression": "sum(range~productdetails[].subtotal)"
+              },
+              {
+                "key": "products.productdetails",
+                "type": "table",
+                "add": "New Entry",
+                "items": [
+                  {
+                    "key": "products.productdetails[].item_code",
+                    "type": "label",
+                    "title": "Item Code",
+                    "query": {
+                      "model": "itemprice",
+                      "field": "Itemcode",
+                      "filter": {},
+                      "map": {
+                        "Price": "price",
+                        "Image": "image"
+                      }
+                    },
+                    "chain": {
+                      "using": "Itemcode",
+                      "find": [
+                        {
+                          "model": "products",
+                          "field": "item_code",
+                          "map": {
+                            "stock_uom": "uom",
+                            "image": "image"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "key": "products.productdetails[].stock_uom",
+                    "title": "UOM",
+                    "type": "label"
+                  },
+                  {
+                    "key": "products.productdetails[].qty",
+                    "title": "Quantity",
+                    "type": "label"
+                  },
+                  {
+                    "key": "products.productdetails[].price",
+                    "title": "Price (S$)",
+                    "type": "label"
+                  },
+                  {
+                    "key": "products.productdetails[].subtotal",
+                    "type": "total",
+                    "title": "Subtotal (S$)",
+                    "expression": "productdetails[].qty*productdetails[].price"
+                  },
+                  {
+                    "key": "products.productdetails[].more",
+                    "type": "array",
+                    "add": null,
+                    "notitle": true,
+                    "items": [
+                      {
+                        "key": "products.productdetails[].more[].remarks",
+                        "type": "label",
+                        "title": "Remarks"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "shippingaddress",
+        "type": "textarea",
+        "htmlClass": "upcase bold-label margin-top"
+      },
+      {
+        "type": "fieldset",
+        "htmlClass": "margin-top",
+        "items": [
+          {
+            "key": "companyname",
+            "notitle": true,
+            "htmlClass": "upcase half-width"
+          },
+          {
+            "type": "help",
+            "helpvalue": "Goods received in good order and condition",
+            "htmlClass": "half-width"
+          }
+        ]
+      },
+      {
+        "type": "fieldset",
+        "items": [
+          {
+            "key": "contactdetails",
+            "notitle": true,
+            "htmlClass": "half-width",
+            "items": [
+              {
+                "key": "contactdetails[].contactperson",
+                "title": "Issued by",
+                "htmlClass": "label-left no-width"
+              }
+            ]
+          },
+          {
+            "type": "help",
+            "helpvalue": "&nbsp;",
+            "htmlClass": "half-width"
+          }
+        ]
+      },
+      {
+        "type": "fieldset",
+        "items": [
+          {
+            "type": "help",
+            "helpvalue": "&nbsp;",
+            "htmlClass": "line half-width-spacing"
+          },
+          {
+            "type": "help",
+            "helpvalue": "&nbsp;",
+            "htmlClass": "line half-width-spacing"
+          }
+        ]
+      },
+      {
+        "type": "fieldset",
+        "items": [
+          {
+            "type": "help",
+            "helpvalue": "&nbsp;",
+            "htmlClass": "half-width"
+          },
+          {
+            "type": "help",
+            "helpvalue": "Receivers’s Signature & Company Stamp",
+            "htmlClass": "half-width"
+          }
+        ]
+      }
+    ]
+  },
+  "definitions": {
+    "LEAD_SALES": [
+      {
+        "type": "fieldset",
+        "title": "Lead Details",
+        "items": [
+          {
+            "key": "lead_name",
+            "htmlClass": "half-width label-left"
+          },
+          {
+            "key": "email_id",
+            "htmlClass": "half-width label-left"
+          },
+          {
+            "key": "phone",
+            "htmlClass": "half-width label-left"
+          },
+          {
+            "key": "mobile_no",
+            "htmlClass": "half-width label-left"
+          },
+          {
+            "key": "leadstatus",
+            "htmlClass": "half-width label-left"
+          },
+          {
+            "key": "source",
+            "htmlClass": "half-width label-left"
+          },
+          {
+            "key": "lead_owner",
+            "htmlClass": "label-center"
+          },
+          {
+            "key": "contact_by",
+            "htmlClass": "label-center"
+          },
+          {
+            "key": "contact_date",
+            "htmlClass": "half-width label-left"
+          },
+          {
+            "key": "website",
+            "htmlClass": "half-width label-left"
+          }
+        ]
+      }
+    ],
+    "OPPORTUNITY": [
+      {
+        "type": "fieldset",
+        "title": "Company Details",
+        "items": [
+          {
+            "key": "companyname",
+            "type": "label"
+          },
+          {
+            "key": "mainline",
+            "htmlClass": "half-width label-left",
+            "type": "label"
+          },
+          {
+            "key": "industry",
+            "htmlClass": "half-width label-left",
+            "type": "label"
+          },
+          {
+            "key": "uen",
+            "htmlClass": "half-width label-left",
+            "type": "label"
+          },
+          {
+            "key": "address1",
+            "htmlClass": "label-center",
+            "type": "label"
+          },
+          {
+            "key": "address2",
+            "htmlClass": "label-center",
+            "type": "label"
+          },
+          {
+            "key": "website",
+            "htmlClass": "label-center",
+            "type": "label"
+          }
+        ]
+      },
+      {
+        "type": "fieldset",
+        "title": "Contact Details",
+        "items": [
+          {
+            "key": "contactdetails",
+            "type": "arraytable",
+            "style": {
+              "add": "btn-success"
+            },
+            "items": [
+              {
+                "key": "contactdetails1",
+                "type": "table",
+                "add": "New Contact",
+                "items": [
+                  "contactdetails1[].contactperson",
+                  "contactdetails1[].title",
+                  "contactdetails1[].mobileno",
+                  "contactdetails1[].email",
+                  {
+                    "key": "contactdetails1[].more",
+                    "type": "row",
+                    "add": "New Log",
+                    "items": [
+                      "contactdetails1[].more[].date",
+                      "contactdetails1[].more[].item",
+                      {
+                        "key": "contactdetails1[].more[].description",
+                        "type": "textarea"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "fieldset",
+        "title": "Sales Information",
+        "items": [
+          {
+            "key": "source",
+            "htmlClass": "half-width label-left"
+          },
+          {
+            "key": "sourceowner",
+            "htmlClass": "half-width label-left"
+          },
+          {
+            "key": "salesperson",
+            "htmlClass": "half-width label-left"
+          },
+          {
+            "key": "nextcontact",
+            "htmlClass": "half-width label-left"
+          },
+          {
+            "key": "potential",
+            "htmlClass": "half-width label-left"
+          }
+        ]
+      },
+      {
+        "type": "fieldset",
+        "title": "Scheduling Information",
+        "items": [
+          {
+            "key": "meetingdate",
+            "htmlClass": "half-width label-left"
+          },
+          {
+            "key": "meetingtime",
+            "htmlClass": "half-width label-left"
+          },
+          {
+            "key": "location",
+            "htmlClass": "half-width label-left"
+          }
+        ]
+      },
+      {
+        "key": "notes",
+        "type": "textarea"
+      }
+    ],
+    "MEET_SALES": [
+      {
+        "type": "fieldset",
+        "title": "Meeting Details",
+        "items": [
+          {
+            "key": "companyname",
+            "htmlClass": "half-width label-left"
+          },
+          {
+            "key": "mainline",
+            "htmlClass": "half-width label-left"
+          },
+          {
+            "key": "address",
+            "htmlClass": "half-width label-left"
+          },
+          {
+            "key": "website",
+            "htmlClass": "half-width label-left"
+          },
+          {
+            "key": "industry",
+            "htmlClass": "half-width label-left"
+          }
+        ]
+      },
+      {
+        "type": "fieldset",
+        "title": "Contact Details",
+        "items": [
+          {
+            "key": "contactdetails",
+            "type": "arraytable",
+            "style": {
+              "add": "btn-success"
+            },
+            "items": [
+              {
+                "key": "contactdetails1",
+                "type": "table",
+                "add": "New Contact",
+                "items": [
+                  "contactdetails1[].contactperson",
+                  "contactdetails1[].title",
+                  "contactdetails1[].mobileno",
+                  "contactdetails1[].email",
+                  {
+                    "key": "contactdetails1[].more",
+                    "type": "row",
+                    "add": "New Log",
+                    "items": [
+                      "contactdetails1[].more[].date",
+                      "contactdetails1[].more[].item",
+                      {
+                        "key": "contactdetails1[].more[].description",
+                        "type": "textarea"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "fieldset",
+        "title": "Initial Requirements Gathering",
+        "items": [
+          {
+            "key": "requirementsgathering",
+            "type": "arraytable",
+            "style": {
+              "add": "btn-success"
+            },
+            "items": [
+              {
+                "key": "rg",
+                "type": "table",
+                "add": "New Requirement",
+                "items": [
+                  "rg[].who",
+                  "rg[].painpoint",
+                  {
+                    "key": "rg[].more",
+                    "type": "row",
+                    "add": null,
+                    "items": [
+                      {},
+                      {
+                        "key": "rg[].more[].remarks",
+                        "type": "textarea"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "fieldset",
+        "title": "Sales Information",
+        "items": [
+          {
+            "key": "source",
+            "htmlClass": "half-width label-left"
+          },
+          {
+            "key": "sourceowner",
+            "htmlClass": "half-width label-left"
+          },
+          {
+            "key": "salesperson",
+            "htmlClass": "half-width label-left"
+          },
+          {
+            "key": "nextcontact",
+            "htmlClass": "half-width label-left"
+          },
+          {
+            "key": "potential",
+            "htmlClass": "half-width label-left"
+          }
+        ]
+      },
+      {
+        "type": "fieldset",
+        "title": "Scheduling Information",
+        "items": [
+          {
+            "key": "meetingdate",
+            "htmlClass": "half-width label-left"
+          },
+          {
+            "key": "meetingtime",
+            "htmlClass": "half-width label-left"
+          },
+          {
+            "key": "location",
+            "htmlClass": "half-width label-left"
+          }
+        ]
+      },
+      {
+        "key": "Meeting Details",
+        "add": "New Meeting",
+        "style": {
+          "add": "btn-success"
+        },
+        "items": [
+          {
+            "key": "Meeting Details[].attendees",
+            "htmlClass": "half-width label-left"
+          },
+          {
+            "key": "Meeting Details[].mom",
+            "type": "textarea"
+          }
+        ]
+      },
+      {
+        "key": "notes",
+        "type": "textarea"
+      }
+    ],
+    "QUOTE_SALES": [
+      {
+        "type": "fieldset",
+        "title": "Company Details",
+        "items": [
+          {
+            "key": "companyname",
+            "type": "autocomplete",
+            "htmlClass": "label-center",
+            "query": {
+              "model": "customers",
+              "field": "Name",
+              "map": {
+                "MainLine": "mainline",
+                "Website": "website",
+                "Address1": "address1",
+                "Address2": "address2",
+                "Industry": "industry",
+                "UEN": "uen"
+              }
+            },
+            "chain": {
+              "using": "Name",
+              "find": [
+                {
+                  "model": "contactdetails",
+                  "field": "Name",
+                  "map": {
+                    "Contactperson": "contactperson",
+                    "Title": "title",
+                    "Mobileno": "mobileno",
+                    "Email": "email"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "key": "mainline",
+            "htmlClass": "half-width label-left"
+          },
+          {
+            "key": "industry",
+            "htmlClass": "half-width label-left"
+          },
+          {
+            "key": "uen",
+            "htmlClass": "half-width label-left"
+          },
+          {
+            "key": "address1",
+            "htmlClass": "label-center"
+          },
+          {
+            "key": "address2",
+            "htmlClass": "label-center"
+          },
+          {
+            "key": "website",
+            "htmlClass": "label-center"
+          }
+        ]
+      },
+      {
+        "type": "fieldset",
+        "title": "Contact Details",
+        "items": [
+          {
+            "key": "contactdetails",
+            "type": "arraytable",
+            "style": {
+              "add": "btn-success"
+            },
+            "items": [
+              {
+                "key": "contactdetails1",
+                "type": "table",
+                "add": "New Contact",
+                "items": [
+                  "contactdetails1[].contactperson",
+                  "contactdetails1[].title",
+                  "contactdetails1[].mobileno",
+                  "contactdetails1[].email",
+                  {
+                    "key": "contactdetails1[].more",
+                    "type": "row",
+                    "add": "New Log",
+                    "items": [
+                      "contactdetails1[].more[].date",
+                      "contactdetails1[].more[].item",
+                      {
+                        "key": "contactdetails1[].more[].description",
+                        "type": "textarea"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "fieldset",
+        "title": "Initial Requirements Gathering",
+        "items": [
+          {
+            "key": "requirementsgathering",
+            "type": "arraytable",
+            "style": {
+              "add": "btn-success"
+            },
+            "items": [
+              {
+                "key": "rg",
+                "type": "table",
+                "add": "New Requirement",
+                "items": [
+                  {
+                    "key": "rg[].who",
+                    "type": "label"
+                  },
+                  {
+                    "key": "rg[].painpoint",
+                    "type": "label"
+                  },
+                  {
+                    "key": "rg[].more",
+                    "type": "row",
+                    "add": null,
+                    "items": [
+                      {},
+                      {
+                        "key": "rg[].more[].remarks",
+                        "type": "label"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "fieldset",
+        "title": "Sales Information",
+        "items": [
+          {
+            "key": "source",
+            "htmlClass": "half-width label-left"
+          },
+          {
+            "key": "sourceowner",
+            "htmlClass": "half-width label-left"
+          },
+          {
+            "key": "salesperson",
+            "htmlClass": "half-width label-left"
+          },
+          {
+            "key": "nextcontact",
+            "htmlClass": "half-width label-left"
+          },
+          {
+            "key": "potential",
+            "htmlClass": "half-width label-left"
+          }
+        ]
+      },
+      {
+        "type": "fieldset",
+        "title": "Scheduling Information",
+        "items": [
+          {
+            "key": "meetingdate",
+            "htmlClass": "half-width label-left"
+          },
+          {
+            "key": "meetingtime",
+            "htmlClass": "half-width label-left"
+          },
+          {
+            "key": "location",
+            "htmlClass": "half-width label-left"
+          }
+        ]
+      },
+      {
+        "key": "Meeting Details",
+        "add": "New Meeting",
+        "style": {
+          "add": "btn-success"
+        },
+        "items": [
+          {
+            "key": "Meeting Details[].attendees",
+            "htmlClass": "half-width label-left"
+          },
+          {
+            "key": "Meeting Details[].mom",
+            "type": "textarea"
+          }
+        ]
+      },
+      {
+        "key": "notes",
+        "type": "textarea"
+      },
+      {
+        "type": "fieldset",
+        "title": "Product Details",
+        "items": [
+          {
+            "key": "productdetails",
+            "type": "arraytable",
+            "style": {
+              "add": "btn-success"
+            },
+            "items": [
+              {
+                "key": "total",
+                "type": "total",
+                "expression": "sum(range~productdetails1[].subtotal)"
+              },
+              {
+                "key": "productdetails1",
+                "type": "table",
+                "add": "New Item",
+                "items": [
+                  "productdetails1[].itemcode",
+                  "productdetails1[].quantity",
+                  "productdetails1[].price",
+                  {
+                    "key": "productdetails1[].subtotal",
+                    "type": "total",
+                    "expression": "productdetails1[].quantity*productdetails1[].price"
+                  },
+                  {
+                    "key": "productdetails1[].more",
+                    "type": "array",
+                    "add": null,
+                    "items": [
+                      {
+                        "key": "productdetails1[].more[].image",
+                        "type": "image",
+                        "url": "assets/openb-logo.png",
+                        "width": 400,
+                        "htmlClass": "half-width"
+                      },
+                      {
+                        "key": "productdetails1[].more[].balancequantity",
+                        "htmlClass": "half-width text-left"
+                      },
+                      {
+                        "key": "productdetails1[].more[].uom",
+                        "htmlClass": "half-width text-left"
+                      },
+                      {
+                        "key": "productdetails1[].more[].length",
+                        "htmlClass": "half-width text-left"
+                      },
+                      {
+                        "key": "productdetails1[].more[].remarks",
+                        "htmlClass": "half-width label-left",
+                        "type": "textarea"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "INVOICE_SALES": [
+      {
+        "type": "fieldset",
+        "title": "Company Details",
+        "items": [
+          {
+            "key": "companyname",
+            "type": "autocomplete",
+            "htmlClass": "label-center",
+            "query": {
+              "model": "customers",
+              "field": "Name",
+              "map": {
+                "MainLine": "mainline",
+                "Website": "website",
+                "Address1": "address1",
+                "Address2": "address2",
+                "Industry": "industry",
+                "UEN": "uen"
+              }
+            },
+            "chain": {
+              "using": "Name",
+              "find": [
+                {
+                  "model": "contactdetails",
+                  "field": "Name",
+                  "map": {
+                    "Contactperson": "contactperson",
+                    "Title": "title",
+                    "Mobileno": "mobileno",
+                    "Email": "email"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "key": "mainline",
+            "htmlClass": "half-width label-left"
+          },
+          {
+            "key": "industry",
+            "htmlClass": "half-width label-left"
+          },
+          {
+            "key": "uen",
+            "htmlClass": "half-width label-left"
+          },
+          {
+            "key": "address1",
+            "htmlClass": "label-center"
+          },
+          {
+            "key": "address2",
+            "htmlClass": "label-center"
+          },
+          {
+            "key": "website",
+            "htmlClass": "label-center"
+          }
+        ]
+      },
+      {
+        "type": "fieldset",
+        "title": "Contact Details",
+        "items": [
+          {
+            "key": "contactdetails",
+            "type": "arraytable",
+            "style": {
+              "add": "btn-success"
+            },
+            "items": [
+              {
+                "key": "contactdetails1",
+                "type": "table",
+                "add": "New Contact",
+                "items": [
+                  "contactdetails1[].contactperson",
+                  "contactdetails1[].title",
+                  "contactdetails1[].mobileno",
+                  "contactdetails1[].email",
+                  {
+                    "key": "contactdetails1[].more",
+                    "type": "row",
+                    "add": "New Log",
+                    "items": [
+                      "contactdetails1[].more[].date",
+                      "contactdetails1[].more[].item",
+                      {
+                        "key": "contactdetails1[].more[].description",
+                        "type": "textarea"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "fieldset",
+        "title": "Initial Requirements Gathering",
+        "items": [
+          {
+            "key": "requirementsgathering",
+            "type": "arraytable",
+            "style": {
+              "add": "btn-success"
+            },
+            "items": [
+              {
+                "key": "rg",
+                "type": "table",
+                "add": "New Requirement",
+                "items": [
+                  {
+                    "key": "rg[].who",
+                    "type": "label"
+                  },
+                  {
+                    "key": "rg[].painpoint",
+                    "type": "label"
+                  },
+                  {
+                    "key": "rg[].more",
+                    "type": "row",
+                    "add": null,
+                    "items": [
+                      {},
+                      {
+                        "key": "rg[].more[].remarks",
+                        "type": "label"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "fieldset",
+        "title": "Sales Information",
+        "items": [
+          {
+            "key": "source",
+            "htmlClass": "half-width label-left"
+          },
+          {
+            "key": "sourceowner",
+            "type": "autocomplete",
+            "htmlClass": "half-width label-left",
+            "query": {
+              "model": "users",
+              "field": "display_name"
+            }
+          },
+          {
+            "key": "salesperson",
+            "type": "autocomplete",
+            "htmlClass": "half-width label-left",
+            "query": {
+              "model": "users",
+              "field": "display_name"
+            }
+          },
+          {
+            "key": "nextcontact",
+            "htmlClass": "half-width label-left"
+          },
+          {
+            "key": "potential",
+            "htmlClass": "half-width label-left"
+          }
+        ]
+      },
+      {
+        "type": "fieldset",
+        "title": "Scheduling Information",
+        "items": [
+          {
+            "key": "meetingdate",
+            "htmlClass": "half-width label-left"
+          },
+          {
+            "key": "meetingtime",
+            "htmlClass": "half-width label-left"
+          },
+          {
+            "key": "location",
+            "htmlClass": "half-width label-left"
+          }
+        ]
+      },
+      {
+        "key": "Meeting Details",
+        "add": "New Meeting",
+        "style": {
+          "add": "btn-success"
+        },
+        "items": [
+          {
+            "key": "Meeting Details[].attendees",
+            "htmlClass": "half-width label-left"
+          },
+          {
+            "key": "Meeting Details[].mom",
+            "type": "textarea"
+          }
+        ]
+      },
+      {
+        "key": "notes",
+        "type": "textarea"
+      },
+      {
+        "type": "fieldset",
+        "title": "Product Details",
+        "items": [
+          {
+            "key": "productdetails",
+            "type": "arraytable",
+            "style": {
+              "add": "btn-success"
+            },
+            "items": [
+              {
+                "key": "total",
+                "type": "total",
+                "expression": "sum(range~productdetails1[].subtotal)"
+              },
+              {
+                "key": "productdetails1",
+                "type": "table",
+                "add": "New Item",
+                "items": [
+                  "productdetails1[].itemcode",
+                  "productdetails1[].quantity",
+                  "productdetails1[].price",
+                  {
+                    "key": "productdetails1[].subtotal",
+                    "type": "total",
+                    "expression": "productdetails1[].quantity*productdetails1[].price"
+                  },
+                  {
+                    "key": "productdetails1[].more",
+                    "type": "array",
+                    "add": null,
+                    "items": [
+                      {
+                        "key": "productdetails1[].more[].image",
+                        "type": "image",
+                        "url": "assets/openb-logo.png",
+                        "width": 400,
+                        "htmlClass": "half-width"
+                      },
+                      {
+                        "key": "productdetails1[].more[].balancequantity",
+                        "htmlClass": "half-width text-left"
+                      },
+                      {
+                        "key": "productdetails1[].more[].uom",
+                        "htmlClass": "half-width text-left"
+                      },
+                      {
+                        "key": "productdetails1[].more[].length",
+                        "htmlClass": "half-width text-left"
+                      },
+                      {
+                        "key": "productdetails1[].more[].remarks",
+                        "htmlClass": "half-width label-left",
+                        "type": "textarea"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "schemas": {
+    "LEAD_SALES": {
+      "type": "object",
+      "title": "Submit your lead",
+      "properties": {
+        "lead_name": {
+          "title": "Lead Name",
+          "type": "string"
+        },
+        "leadstatus": {
+          "type": "string",
+          "title": "Lead Status",
+          "enum": [
+            "Lead",
+            "Open",
+            "Replied",
+            "Opportunity",
+            "Quotation",
+            "Lost Quotation",
+            "Interested",
+            "Converted",
+            "Do Not Contact"
+          ]
+        },
+        "lead_owner": {
+          "title": "Lead Owner",
+          "type": "string"
+        },
+        "email_id": {
+          "title": "Email Address",
+          "type": "string",
+          "pattern": "^[^@^-]+@[^@^.]+\\.[a-zA-Z0-9]{2,}(\\.[a-zA-Z0-9]{2,})?$",
+          "validationMessage": "Please enter in a proper email format"
+        },
+        "source": {
+          "title": "Lead Source",
+          "type": "string"
+        },
+        "contact_by": {
+          "title": "Contact By",
+          "type": "string"
+        },
+        "contact_date": {
+          "title": "Contact Date",
+          "type": "string",
+          "format": "date"
+        },
+        "phone": {
+          "title": "Phone Number",
+          "type": "string"
+        },
+        "mobile_no": {
+          "title": "Mobile Number",
+          "type": "string"
+        },
+        "website": {
+          "title": "Website Url",
+          "type": "string"
+        }
+      },
+      "required": [
+        "lead_name"
+      ]
+    },
+    "OPPORTUNITY": {
+      "type": "object",
+      "title": "Schedule a Meeting",
+      "properties": {
+        "source": {
+          "title": "Source",
+          "type": "string"
+        },
+        "sourceowner": {
+          "title": "Source Owner",
+          "type": "string"
+        },
+        "salesperson": {
+          "title": "Sales Person",
+          "type": "string"
+        },
+        "nextcontact": {
+          "title": "Next Contact",
+          "type": "string",
+          "format": "date"
+        },
+        "potential": {
+          "title": "Potential",
+          "type": "string",
+          "enum": [
+            "Low",
+            "Medium",
+            "High"
+          ]
+        },
+        "address": {
+          "title": "Address",
+          "type": "string"
+        },
+        "contactdetails": {},
+        "contactdetails1": {
+          "title": "Contact Information",
+          "type": "array",
+          "maxItems": 100,
+          "items": {
+            "type": "object",
+            "properties": {
+              "contactperson": {
+                "title": "Contact Person",
+                "type": "string"
+              },
+              "title": {
+                "title": "Title",
+                "type": "string"
+              },
+              "directline": {
+                "title": "Direct Line",
+                "type": "string"
+              },
+              "mobileno": {
+                "title": "Mobile",
+                "type": "string"
+              },
+              "email": {
+                "title": "Email",
+                "type": "string"
+              },
+              "more": {
+                "title": "Call Log",
+                "type": "array",
+                "maxItems": 100,
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "date": {
+                      "title": "Date",
+                      "type": "string",
+                      "format": "date"
+                    },
+                    "item": {
+                      "title": "Call",
+                      "type": "string"
+                    },
+                    "description": {
+                      "title": "Description",
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "required": [
+              "contactperson"
+            ]
+          }
+        },
+        "notes": {
+          "title": "Notes on customer",
+          "type": "string"
+        },
+        "meetingdate": {
+          "title": "Meeting date",
+          "type": "string",
+          "format": "date"
+        },
+        "meetingtime": {
+          "title": "Meeting Time",
+          "type": "string",
+          "format": "time"
+        },
+        "location": {
+          "title": "Location",
+          "type": "string"
+        },
+        "companyname": {
+          "title": "Company Name",
+          "type": "string",
+          "validationMessage": "Add Your Company"
+        },
+        "mainline": {
+          "title": "Main Line",
+          "type": "string"
+        },
+        "address1": {
+          "title": "Address Line 1",
+          "type": "string"
+        },
+        "address2": {
+          "title": "Address Line 2",
+          "type": "string"
+        },
+        "uen": {
+          "title": "UEN",
+          "type": "string"
+        },
+        "website": {
+          "title": "Website",
+          "type": "string"
+        },
+        "industry": {
+          "title": "Industry",
+          "type": "string",
+          "enum": [
+            "Business Process Services",
+            "Project Services",
+            "Goods Distribution",
+            "Goods retail",
+            "Service Retail",
+            "Food & Beverage",
+            "Logistics",
+            "Consumer Services",
+            "Property Operations",
+            "Equipment leasing"
+          ]
+        }
+      },
+      "required": [
+        "source",
+        "sourceowner",
+        "companyname"
+      ]
+    },
+    "MEET_SALES": {
+      "type": "object",
+      "title": "Meet the client",
+      "properties": {
+        "source": {
+          "title": "Source",
+          "type": "string"
+        },
+        "sourceowner": {
+          "title": "Source Owner",
+          "type": "string"
+        },
+        "salesperson": {
+          "title": "Sales Person",
+          "type": "string"
+        },
+        "nextcontact": {
+          "title": "Next Contact",
+          "type": "string",
+          "format": "date"
+        },
+        "potential": {
+          "title": "Potential",
+          "type": "string",
+          "enum": [
+            "Low",
+            "Medium",
+            "High"
+          ]
+        },
+        "companyname": {
+          "title": "Company Name",
+          "type": "string",
+          "validationMessage": "Add Your Company"
+        },
+        "mainline": {
+          "title": "Main Line",
+          "type": "string"
+        },
+        "address": {
+          "title": "Address",
+          "type": "string"
+        },
+        "website": {
+          "title": "Website",
+          "type": "string"
+        },
+        "industry": {
+          "title": "Customer Group",
+          "type": "string",
+          "enum": [
+            "Business Process Services",
+            "Project Services",
+            "Goods Distribution",
+            "Goods retail",
+            "Service Retail",
+            "Food & Beverage",
+            "Logistics",
+            "Consumer Services",
+            "Property Operations",
+            "Equipment leasing"
+          ]
+        },
+        "contactdetails": {},
+        "contactdetails1": {
+          "title": "Contact Information",
+          "type": "array",
+          "maxItems": 100,
+          "items": {
+            "type": "object",
+            "properties": {
+              "contactperson": {
+                "title": "Contact Person",
+                "type": "string"
+              },
+              "title": {
+                "title": "Title",
+                "type": "string"
+              },
+              "directline": {
+                "title": "Direct Line",
+                "type": "string"
+              },
+              "mobileno": {
+                "title": "Mobile",
+                "type": "string"
+              },
+              "email": {
+                "title": "Email",
+                "type": "string"
+              },
+              "more": {
+                "title": "Call Log",
+                "type": "array",
+                "maxItems": 100,
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "date": {
+                      "title": "Date",
+                      "type": "string",
+                      "format": "date"
+                    },
+                    "item": {
+                      "title": "Call",
+                      "type": "string"
+                    },
+                    "description": {
+                      "title": "Description",
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "required": [
+              "contactperson"
+            ]
+          }
+        },
+        "requirementsgathering": {},
+        "rg": {
+          "title": "Contact Information",
+          "type": "array",
+          "maxItems": 100,
+          "items": {
+            "type": "object",
+            "properties": {
+              "who": {
+                "title": "Who",
+                "type": "string"
+              },
+              "painpoint": {
+                "title": "Pain Point",
+                "type": "string"
+              },
+              "more": {
+                "title": "Others",
+                "type": "array",
+                "maxItems": 100,
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "remarks": {
+                      "title": "Remarks",
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "required": []
+          }
+        },
+        "notes": {
+          "title": "Notes on customer",
+          "type": "string"
+        },
+        "meetingdate": {
+          "title": "Meeting date",
+          "type": "string",
+          "format": "date"
+        },
+        "meetingtime": {
+          "title": "Meeting Time",
+          "type": "string",
+          "format": "time"
+        },
+        "location": {
+          "title": "Location",
+          "type": "string"
+        },
+        "Meeting Details": {
+          "type": "array",
+          "maxItems": 100,
+          "items": {
+            "type": "object",
+            "properties": {
+              "location": {
+                "title": "Location",
+                "type": "string"
+              },
+              "attendees": {
+                "title": "Attendees",
+                "type": "string"
+              },
+              "mom": {
+                "title": "Minutes of Meeting",
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "source",
+        "sourceowner",
+        "companyname"
+      ]
+    },
+    "QUOTE_SALES": {
+      "type": "object",
+      "title": "Quote the customer",
+      "properties": {
+        "source": {
+          "title": "Source",
+          "type": "string"
+        },
+        "sourceowner": {
+          "title": "Source Owner",
+          "type": "string"
+        },
+        "salesperson": {
+          "title": "Sales Person",
+          "type": "string"
+        },
+        "nextcontact": {
+          "title": "Next Contact",
+          "type": "string",
+          "format": "date"
+        },
+        "potential": {
+          "title": "Potential",
+          "type": "string",
+          "enum": [
+            "Low",
+            "Medium",
+            "High"
+          ]
+        },
+        "address": {
+          "title": "Address",
+          "type": "string"
+        },
+        "contactdetails": {},
+        "contactdetails1": {
+          "title": "Contact Information",
+          "type": "array",
+          "maxItems": 100,
+          "items": {
+            "type": "object",
+            "properties": {
+              "contactperson": {
+                "title": "Contact Person",
+                "type": "string"
+              },
+              "title": {
+                "title": "Title",
+                "type": "string"
+              },
+              "directline": {
+                "title": "Direct Line",
+                "type": "string"
+              },
+              "mobileno": {
+                "title": "Mobile",
+                "type": "string"
+              },
+              "email": {
+                "title": "Email",
+                "type": "string"
+              },
+              "more": {
+                "title": "Call Log",
+                "type": "array",
+                "maxItems": 100,
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "date": {
+                      "title": "Date",
+                      "type": "string",
+                      "format": "date"
+                    },
+                    "item": {
+                      "title": "Call",
+                      "type": "string"
+                    },
+                    "description": {
+                      "title": "Description",
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "required": [
+              "contactperson"
+            ]
+          }
+        },
+        "requirementsgathering": {},
+        "rg": {
+          "title": "Contact Information",
+          "type": "array",
+          "maxItems": 100,
+          "items": {
+            "type": "object",
+            "properties": {
+              "who": {
+                "title": "Who",
+                "type": "string"
+              },
+              "painpoint": {
+                "title": "Pain Point",
+                "type": "string"
+              },
+              "more": {
+                "title": "Others",
+                "type": "array",
+                "maxItems": 100,
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "remarks": {
+                      "title": "Remarks",
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "required": []
+          }
+        },
+        "notes": {
+          "title": "Notes on customer",
+          "type": "string"
+        },
+        "meetingdate": {
+          "title": "Meeting date",
+          "type": "string",
+          "format": "date"
+        },
+        "meetingtime": {
+          "title": "Meeting Time",
+          "type": "string",
+          "format": "time"
+        },
+        "location": {
+          "title": "Location",
+          "type": "string"
+        },
+        "Meeting Details": {
+          "type": "array",
+          "maxItems": 100,
+          "items": {
+            "type": "object",
+            "properties": {
+              "meetingdate": {
+                "title": "Meeting Date",
+                "type": "string",
+                "format": "date"
+              },
+              "meetingtime": {
+                "title": "Meeting Time",
+                "type": "string",
+                "format": "time"
+              },
+              "location": {
+                "title": "Location",
+                "type": "string"
+              },
+              "attendees": {
+                "title": "Attendees",
+                "type": "string"
+              },
+              "mom": {
+                "title": "Minutes of Meeting",
+                "type": "string"
+              }
+            }
+          }
+        },
+        "quotationno": {
+          "title": "Quotation Number",
+          "type": "string"
+        },
+        "quotationvalidity": {
+          "title": "Validity",
+          "type": "string"
+        },
+        "additionalrequirements": {
+          "title": "Additional Requirements",
+          "type": "string"
+        },
+        "Quotation": {
+          "type": "array",
+          "maxItems": 100,
+          "items": {
+            "type": "object",
+            "properties": {
+              "Product": {
+                "title": "Product",
+                "type": "string"
+              },
+              "Description": {
+                "title": "Description",
+                "type": "string"
+              },
+              "Image": {
+                "title": "Image",
+                "type": "string"
+              },
+              "Quantity": {
+                "title": "Quantity",
+                "type": "string"
+              },
+              "Price": {
+                "title": "Price",
+                "type": "string"
+              },
+              "Total": {
+                "title": "Amount",
+                "type": "number"
+              }
+            },
+            "required": [
+              "Product",
+              "Description",
+              "Quantity",
+              "Price"
+            ]
+          }
+        },
+        "productdetails": {},
+        "total": {
+          "title": "Total",
+          "type": "number"
+        },
+        "productdetails1": {
+          "title": "Contact Information",
+          "type": "array",
+          "maxItems": 100,
+          "items": {
+            "type": "object",
+            "properties": {
+              "itemcode": {
+                "title": "Item Code",
+                "type": "string"
+              },
+              "quantity": {
+                "title": "Quantity",
+                "type": "string"
+              },
+              "price": {
+                "title": "Price",
+                "type": "string"
+              },
+              "more": {
+                "title": "More Information",
+                "type": "array",
+                "maxItems": 100,
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "image": {},
+                    "balancequantity": {
+                      "title": "Balance Quantity",
+                      "type": "string"
+                    },
+                    "uom": {
+                      "title": "UOM",
+                      "type": "string"
+                    },
+                    "length": {
+                      "title": "Length",
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "companyname": {
+          "title": "Company Name",
+          "type": "string",
+          "validationMessage": "Add Your Company"
+        },
+        "mainline": {
+          "title": "Main Line",
+          "type": "string"
+        },
+        "address1": {
+          "title": "Address Line 1",
+          "type": "string"
+        },
+        "address2": {
+          "title": "Address Line 2",
+          "type": "string"
+        },
+        "uen": {
+          "title": "UEN",
+          "type": "string"
+        },
+        "website": {
+          "title": "Website",
+          "type": "string"
+        },
+        "industry": {
+          "title": "Industry",
+          "type": "string",
+          "enum": [
+            "Business Process Services",
+            "Project Services",
+            "Goods Distribution",
+            "Goods retail",
+            "Service Retail",
+            "Food & Beverage",
+            "Logistics",
+            "Consumer Services",
+            "Property Operations",
+            "Equipment leasing"
+          ]
+        }
+      },
+      "required": [
+        "source",
+        "sourceowner",
+        "companyname"
+      ]
+    },
+    "INVOICE_SALES": {
+      "type": "object",
+      "title": "Invoice the customer",
+      "properties": {
+        "source": {
+          "title": "Source",
+          "type": "string"
+        },
+        "sourceowner": {
+          "title": "Source Owner",
+          "type": "string"
+        },
+        "salesperson": {
+          "title": "Sales Person",
+          "type": "string"
+        },
+        "nextcontact": {
+          "title": "Next Contact",
+          "type": "string",
+          "format": "date"
+        },
+        "potential": {
+          "title": "Potential",
+          "type": "string",
+          "enum": [
+            "Low",
+            "Medium",
+            "High"
+          ]
+        },
+        "address": {
+          "title": "Address",
+          "type": "string"
+        },
+        "contactdetails": {},
+        "contactdetails1": {
+          "title": "Contact Information",
+          "type": "array",
+          "maxItems": 100,
+          "items": {
+            "type": "object",
+            "properties": {
+              "contactperson": {
+                "title": "Contact Person",
+                "type": "string"
+              },
+              "title": {
+                "title": "Title",
+                "type": "string"
+              },
+              "directline": {
+                "title": "Direct Line",
+                "type": "string"
+              },
+              "mobileno": {
+                "title": "Mobile",
+                "type": "string"
+              },
+              "email": {
+                "title": "Email",
+                "type": "string"
+              },
+              "more": {
+                "title": "Call Log",
+                "type": "array",
+                "maxItems": 100,
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "date": {
+                      "title": "Date",
+                      "type": "string",
+                      "format": "date"
+                    },
+                    "item": {
+                      "title": "Call",
+                      "type": "string"
+                    },
+                    "description": {
+                      "title": "Description",
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "required": [
+              "contactperson"
+            ]
+          }
+        },
+        "requirementsgathering": {},
+        "rg": {
+          "title": "Contact Information",
+          "type": "array",
+          "maxItems": 100,
+          "items": {
+            "type": "object",
+            "properties": {
+              "who": {
+                "title": "Who",
+                "type": "string"
+              },
+              "painpoint": {
+                "title": "Pain Point",
+                "type": "string"
+              },
+              "more": {
+                "title": "Others",
+                "type": "array",
+                "maxItems": 100,
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "remarks": {
+                      "title": "Remarks",
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "required": []
+          }
+        },
+        "notes": {
+          "title": "Notes on customer",
+          "type": "string"
+        },
+        "meetingdate": {
+          "title": "Meeting date",
+          "type": "string",
+          "format": "date"
+        },
+        "meetingtime": {
+          "title": "Meeting Time",
+          "type": "string",
+          "format": "time"
+        },
+        "location": {
+          "title": "Location",
+          "type": "string"
+        },
+        "Meeting Details": {
+          "type": "array",
+          "maxItems": 100,
+          "items": {
+            "type": "object",
+            "properties": {
+              "meetingdate": {
+                "title": "Meeting Date",
+                "type": "string",
+                "format": "date"
+              },
+              "meetingtime": {
+                "title": "Meeting Time",
+                "type": "string",
+                "format": "time"
+              },
+              "location": {
+                "title": "Location",
+                "type": "string"
+              },
+              "attendees": {
+                "title": "Attendees",
+                "type": "string"
+              },
+              "mom": {
+                "title": "Minutes of Meeting",
+                "type": "string"
+              }
+            }
+          }
+        },
+        "quotationno": {
+          "title": "Quotation Number",
+          "type": "string"
+        },
+        "quotationvalidity": {
+          "title": "Validity",
+          "type": "string"
+        },
+        "additionalrequirements": {
+          "title": "Additional Requirements",
+          "type": "string"
+        },
+        "Quotation": {
+          "type": "array",
+          "maxItems": 100,
+          "items": {
+            "type": "object",
+            "properties": {
+              "Product": {
+                "title": "Product",
+                "type": "string"
+              },
+              "Description": {
+                "title": "Description",
+                "type": "string"
+              },
+              "Image": {
+                "title": "Image",
+                "type": "string"
+              },
+              "Quantity": {
+                "title": "Quantity",
+                "type": "string"
+              },
+              "Price": {
+                "title": "Price",
+                "type": "string"
+              },
+              "Total": {
+                "title": "Amount",
+                "type": "number"
+              }
+            },
+            "required": [
+              "Product",
+              "Description",
+              "Quantity",
+              "Price"
+            ]
+          }
+        },
+        "productdetails": {},
+        "total": {
+          "title": "Total",
+          "type": "string"
+        },
+        "productdetails1": {
+          "title": "Contact Information",
+          "type": "array",
+          "maxItems": 100,
+          "items": {
+            "type": "object",
+            "properties": {
+              "itemcode": {
+                "title": "Item Code",
+                "type": "string"
+              },
+              "quantity": {
+                "title": "Quantity",
+                "type": "string"
+              },
+              "price": {
+                "title": "Price",
+                "type": "string"
+              },
+              "more": {
+                "title": "More Information",
+                "type": "array",
+                "maxItems": 100,
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "image": {},
+                    "balancequantity": {
+                      "title": "Balance Quantity",
+                      "type": "string"
+                    },
+                    "uom": {
+                      "title": "UOM",
+                      "type": "string"
+                    },
+                    "length": {
+                      "title": "Length",
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "companyname": {
+          "title": "Company Name",
+          "type": "string",
+          "validationMessage": "Add Your Company"
+        },
+        "mainline": {
+          "title": "Main Line",
+          "type": "string"
+        },
+        "address1": {
+          "title": "Address Line 1",
+          "type": "string"
+        },
+        "address2": {
+          "title": "Address Line 2",
+          "type": "string"
+        },
+        "uen": {
+          "title": "UEN",
+          "type": "string"
+        },
+        "website": {
+          "title": "Website",
+          "type": "string"
+        },
+        "industry": {
+          "title": "Industry",
+          "type": "string",
+          "enum": [
+            "Business Process Services",
+            "Project Services",
+            "Goods Distribution",
+            "Goods retail",
+            "Service Retail",
+            "Food & Beverage",
+            "Logistics",
+            "Consumer Services",
+            "Property Operations",
+            "Equipment leasing"
+          ]
+        }
+      },
+      "required": [
+        "source",
+        "sourceowner",
+        "companyname"
+      ]
+    }
+  },
+  "labels": {
+    "LEAD_SALES": "New Leads",
+    "OPPORTUNITY": "Process  Opportunity",
+    "MEET_SALES": "Meeting",
+    "QUOTE_SALES": "Quotation",
+    "INVOICE_SALES": "Closing"
+  },
+  "nodes": {
+    "ENTRY": {
+      "type": "INBOX",
+      "to": "WORKFLOW_ENTRIES",
+      "module": {
+        "name": "attachments"
+      }
+    },
+    "WORKFLOW_ENTRIES": {
+      "type": "OPERATION",
+      "operation_type": "SelectEntryPoint",
+      "to": [
+        "LEAD_SALES"
+      ]
+    },
+    "LEAD_SALES": {
+      "type": "LEAD_SALES",
+      "label": "Sales lane 1",
+      "to": "OPPORTUNITY",
+      "module": {
+        "name": "attachments"
+      },
+      "category": "OpenB_Sales"
+    },
+    "OPPORTUNITY": {
+      "type": "OPPORTUNITY",
+      "label": "Sales lane 2",
+      "to": "MEET_SALES",
+      "module": {
+        "name": "attachments"
+      },
+      "category": "OpenB_Sales"
+    },
+    "MEET_SALES": {
+      "type": "MEET_SALES",
+      "label": "Sales lane 3",
+      "to": "QUOTE_SALES",
+      "module": {
+        "name": "attachments"
+      },
+      "category": "OpenB_Sales"
+    },
+    "QUOTE_SALES": {
+      "type": "QUOTE_SALES",
+      "label": "Sales lane 4",
+      "to": "INVOICE_SALES",
+      "module": {
+        "name": "attachments"
+      },
+      "category": "OpenB_Sales"
+    },
+    "INVOICE_SALES": {
+      "type": "INVOICE_SALES",
+      "label": "Sales lane 5",
+      "to": "OUTBOX",
+      "module": {
+        "name": "attachments"
+      },
+      "category": "OpenB_Sales"
+    }
+  },
+  "collections": {
+    "customers": {
+      "schema": {
+        "type": "object",
+        "title": "Customer",
+        "properties": {
+          "Customers_Name": {
+            "title": "Company Name",
+            "type": "string"
+          },
+          "Customers_MainLine": {
+            "title": "Main Line",
+            "type": "string"
+          },
+          "Customers_Address": {
+            "title": "Address",
+            "type": "string"
+          },
+          "Customers_Website": {
+            "title": "Website",
+            "type": "string"
+          },
+          "Customers_Industry": {
+            "title": "Industry",
+            "type": "string"
+          }
+        }
+      },
+      "definitions": [
+        {
+          "key": "Customers_Name",
+          "htmlClass": "half-width label-left"
+        },
+        {
+          "key": "Customers_MainLine",
+          "htmlClass": "half-width label-left"
+        },
+        {
+          "key": "Customers_Address",
+          "htmlClass": "half-width label-left"
+        },
+        {
+          "key": "Customers_Industry",
+          "htmlClass": "half-width label-left"
+        },
+        {
+          "key": "Customers_Website",
+          "htmlClass": "halfwidth label-left"
+        }
+      ]
+    },
+    "users": {
+      "schema": {
+        "type": "object",
+        "title": "Customer",
+        "properties": {
+          "display_name": {
+            "title": "First Name",
+            "type": "string"
+          },
+          "Email": {
+            "title": "Email",
+            "type": "string"
+          }
+        },
+        "required": [
+          "display_name",
+          "Email"
+        ]
+      },
+      "definitions": [
+        {
+          "key": "display_name",
+          "htmlClass": "half-width label-left"
+        },
+        {
+          "key": "Email",
+          "htmlClass": "half-width label-left"
+        }
+      ]
+    },
+    "products": {
+      "schema": {
+        "type": "object",
+        "title": "New Product",
+        "properties": {
+          "Product_name": {
+            "title": "Product Name",
+            "type": "string"
+          },
+          "Product_Price": {
+            "title": "Price",
+            "type": "string"
+          }
+        }
+      },
+      "definitions": [
+        "Product_name",
+        "Product_Price"
+      ]
+    },
+    "itemprice": {
+      "schema": {
+        "type": "object",
+        "title": "New Product",
+        "properties": {
+          "Itemcode": {
+            "title": "Item Code",
+            "type": "string"
+          },
+          "Pricelist": {
+            "title": "Price List",
+            "type": "string"
+          },
+          "Price": {
+            "title": "Price",
+            "type": "string"
+          },
+          "Itemname": {
+            "title": "Product Name",
+            "type": "string"
+          }
+        }
+      },
+      "definitions": [
+        "Itemcode",
+        "Itemname",
+        "Pricelist",
+        "Price"
+      ]
+    },
+    "Contact": {
+      "schema": {
+        "type": "object",
+        "title": "New Contact",
+        "properties": {
+          "contact_firstname": {
+            "title": "Name",
+            "type": "string"
+          },
+          "contact_designation": {
+            "title": "Designation",
+            "type": "string"
+          },
+          "contact_phone": {
+            "title": "Phone",
+            "type": "string"
+          },
+          "contact_emailid": {
+            "title": "Email",
+            "type": "string"
+          }
+        }
+      },
+      "definitions": [
+        "contact_firstname",
+        "contact_designation",
+        "contact_phone",
+        "contact_emailid"
+      ]
+    },
+    "Company": {
+      "schema": {
+        "type": "object",
+        "title": "New Job Applicant",
+        "properties": {
+          "Company_Name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "Company_Phone_no": {
+            "title": "Phone",
+            "type": "string"
+          },
+          "Company_Address": {
+            "title": "Address",
+            "type": "string"
+          },
+          "Company_Domain": {
+            "title": "Domain",
+            "type": "string"
+          },
+          "Company_Website": {
+            "title": "Website",
+            "type": "string"
+          }
+        }
+      },
+      "definitions": [
+        "Company_Name",
+        "Company_Phone_no",
+        {
+          "key": "Company_Address",
+          "type": "textarea"
+        },
+        "Company_Domain",
+        "Company_Website"
+      ]
+    },
+    "Lead": {
+      "schema": {
+        "title": "New Lead",
+        "type": "object",
+        "properties": {
+          "Lead_company_name": {
+            "title": "Company Name",
+            "type": "string"
+          },
+          "Lead_industry": {
+            "title": "Industry",
+            "type": "string"
+          },
+          "Lead_website": {
+            "title": "Website",
+            "type": "string"
+          },
+          "Lead_mainline": {
+            "title": "Main Line",
+            "type": "number"
+          },
+          "Lead_uen": {
+            "title": "UEN",
+            "type": "string"
+          },
+          "Lead_addressline1": {
+            "title": "Address line 1",
+            "type": "string"
+          },
+          "Lead_addressline2": {
+            "title": "Address line 2",
+            "type": "string"
+          }
+        }
+      },
+      "definitions": [
+        {
+          "key": "Lead_company_name",
+          "htmlClass": "half-width label-left"
+        },
+        {
+          "key": "Lead_industry",
+          "htmlClass": "half-width label-left"
+        },
+        {
+          "key": "Lead_website",
+          "htmlClass": "half-width label-left"
+        },
+        {
+          "key": "Lead_mainline",
+          "htmlClass": "half-width label-left"
+        },
+        {
+          "key": "Lead_uen",
+          "htmlClass": "half-width label-left"
+        },
+        "Lead_addressline1",
+        "Lead_addressline2"
+      ]
+    },
+    "Address": {
+      "schema": {
+        "type": "object",
+        "title": "New Address",
+        "properties": {
+          "Address_lead_name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "Address_address_line1": {
+            "title": "Designation",
+            "type": "string"
+          },
+          "Address_address_line2": {
+            "title": "Phone",
+            "type": "string"
+          }
+        }
+      },
+      "definitions": [
+        "Address_lead_name",
+        "Address_address_line1",
+        "Address_address_line2"
+      ]
+    }
+  },
+  "overrides": {}
+}

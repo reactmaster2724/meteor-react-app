@@ -1,0 +1,247 @@
+// -- GENERAL --
+// remove line break spaces
+bootstrap-decorator{font-size:0;
+  > *{font-size:14px;}
+}
+.form-group{font-size:0;clear:both;
+  > *{font-size:14px;}
+}
+
+.form-group{padding:0 5px;
+  .form-control-feedback{right:5px;display:none;}
+}
+
+bootstrap-decorator{
+  fieldset{width:100%;}
+}
+
+.help-block{margin-top:0;margin-bottom:0;}
+
+.text-left{text-align:left !important;}
+.text-center{text-align:center !important;}
+.text-right{text-align:right !important;}
+
+input{
+  ~ .help-block{display:none;}
+  &.ng-invalid:focus{
+    ~ .help-block{display:block;margin-top:0;margin-bottom:0;position:absolute;right:0;z-index:9;padding:5px 10px;background-color:red;background-color:rgba(255,0,0,.6);color:#fff !important;
+      &:after{content:"";display:block;position:absolute;top:-15px;right:10px;width:0;height:0;border-left:15px solid transparent;border-right:15px solid transparent;border-bottom:15px solid red;opacity:.6;}
+    }
+  }
+}
+
+.has-feedback .form-control {
+  padding-right: 12px;
+}
+
+.margin-bottom{
+  ol{
+    li{margin-bottom:10px;}
+  }
+}
+
+.schema-form-tabarray-left{
+  > div[class*='col']{padding:0;
+    &:last-child{padding-left:15px;}
+  }
+}
+
+table textarea.form-control{width:100%;margin:0 !important;max-width:100%;resize:vertical;}
+.toggle-button{padding:5px 5px 1px 5px;font-size:10px;background:#eee;border:1px solid #ccc;}
+
+.schema-form-arraytable{width:100%;}
+
+.subitems-table {border:1px solid #ddd;
+  > td{background:#fafafa;border-left:0 !important;border-right:0 !important;}
+}
+
+// Fix layout for half-width inside array
+li.list-group-item{overflow:hidden;
+  button.close{padding-bottom:10px;}
+  .schema-form-section{clear:both;}
+}
+.schema-form-array{
+  h3{font-size:20px;font-weight:normal;}
+  li{
+    .label-left label{width:50%;}
+  }
+}
+
+// -- WIDTHS --
+// full width
+.full-width{width:100%;}
+
+// half width (two columns)
+.half-width{width:50%;clear:none;float:left;}
+// with spacing
+.quarter-width{width: 25%;clear: none;float: left;}
+//
+.third-width{width: 33%;clear: none;float: left;}
+//
+.table-thead{width: 11%;clear: none;float: left;}
+//
+.table-tbody{width: 14%;clear: none;float: left;display: grid;margin-bottom: 0px;}
+.table-tbody input{max-width: 100%;}
+//
+.half-width-spacing{width:49%;clear:none;float:left;margin-right:1%;margin-bottom:1%;}
+
+.schema-form-array.half-width-spacing{width:100%;
+  ol{
+    li{width:49%;float:left;
+      &:nth-child(odd){margin-right:2%;margin-bottom:2%;}
+    }
+  }
+}
+
+// one third (three columns)
+.one-third{width:33.33333%;clear:none;float:left;}
+// with spacing
+.one-third-spacing{width:32.33333%;clear:none;float:left;margin-right:1%;margin-bottom:1%;}
+
+// two third
+.two-third{width:66.66666%;clear:none;float:left;}
+
+// Push fieldset legend inside fieldset
+fieldset{
+  legend{float:left !important;padding:0 5px !important;}
+}
+
+//CUSTOM
+//BORDER
+.border {border:2px solid #000 !important;
+  > tbody{
+    tr{
+      td:last-child, th:last-child{display:none !important;}
+      &.subitems-table{
+        td{display:table-cell !important;}
+      }
+      .schema-form-arraytable{
+        tr{
+          td:last-child, th:last-child{display:none !important;}
+        }
+      }
+    }
+    tr{
+      th,td{border:2px solid #000 !important;border-bottom:0 !important;border-top:0 !important;}
+      th{background:#eee !important;}
+    }
+    tr:first-child{border-bottom:2px solid #000 !important;}
+  }
+}
+
+.no-border{border:0 !important;
+  > ol{
+    > li{border:0;}
+  }
+}
+
+.zebra{
+  tr{
+    &:nth-child(odd){background:#eee;}
+  }
+}
+
+.control-label{vertical-align:top;}
+
+// -- LABELS --
+// label next to input
+.label-left{
+  label{display:inline-block;width:35%;}
+  input, textarea, select{display:inline-block;width:65%;max-width:65%;vertical-align:top;}
+  .form-control-feedback{top:0 !important;}
+  
+  &[class*=textarea]{
+    label{vertical-align:top;}
+    textarea{min-height:83px;}
+  }
+}
+.form-control-label{
+  display: block;
+  width: 65% !important;
+  height: 38px;
+  padding: 8px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #f5f5f5;
+  background-image: none;
+  border: 1px dashed #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+  -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+//
+.label-center{
+  text-align: center
+}
+sf-decorator[ng-init*="item.notitle=true"]{
+  .form-control-feedback{top:0 !important;}
+}
+/*
+.schema-form-label{
+  label{white-space:pre-line;font-weight:normal;
+    + label{padding-left:15px;height:34px;}
+  }
+}
+
+//Remove label for checkbox (notitle not working)
+.no-label{
+  label{
+    span{display:none;}
+  }
+}
+*/
+
+.schema-table{padding-bottom:20px;}
+
+// Select fix (enable border-box in Safari)
+select{-webkit-appearance:none;}
+.ng-invalid{-webkit-appearance:none;}
+.schema-form-select:after{content:"\e252";position:absolute;font-family:'Glyphicons Halflings';font-style:normal;font-weight:400;-webkit-font-smoothing:antialiased;font-size:14px;right:14px;bottom:6px;pointer-events:none;}
+
+// Required / Invalid
+// [required], .ng-invalid{box-shadow:0 0 4px 0 #ff0000;-webkit-box-shadow:0 0 4px 0 #ff0000;}
+// [required].ng-valid, form.ng-invalid{box-shadow:none;}
+// Pick a date / Pick a time
+input[pick-a-date],input[pick-a-time]{cursor:pointer !important;}
+input[pick-a-date][disable],input[pick-a-time][disable]{background:#eee !important;cursor:not-allowed !important;}
+
+.array-action-btn-group{
+  width: auto;
+}
+.disabled{
+  color: rgba(51, 51, 51, 0.34);
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.productAddBtn{
+  width: 80px;
+  position: absolute;
+  right: 10px;
+  font-size: large;
+}
+.productAddBtn button{
+  border: 0px;
+  background: #fff;
+}
+.last-child{
+  margin-bottom: 40px;
+}
+
+.schema-modal-open{
+  position: absolute;
+  padding: 10px;
+  background-color: #337ab7;
+  border-radius: 5px;
+  padding-bottom: 0px;
+  cursor: pointer;
+  float: right;
+  margin-left: 28%;
+}
+.schema-modal-open p{
+  color: #ffffff;
+}

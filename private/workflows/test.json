@@ -1,0 +1,126 @@
+{
+  "overrides": {},
+  "definitions": {
+    "A_FIRST": [],
+    "A_SECOND": [],
+    "B_FIRST": [],
+    "B_SECOND": []
+  },
+  "schemas": {
+    "A_FIRST": {
+      "type": "object",
+      "title": "A First",
+      "properties": {}
+    },
+    "B_FIRST": {
+      "type": "object",
+      "title": "B First",
+      "properties": {}
+    },
+    "A_SECOND": {
+      "type": "object",
+      "title": "A Second",
+      "properties": {}
+    },
+    "B_SECOND": {
+      "type": "object",
+      "title": "B Second",
+      "properties": {}
+    }
+  },
+  "labels": {
+    "A_FIRST": "A First",
+    "B_FIRST": "B First",
+    "A_SECOND": "A Second",
+    "B_SECOND": "B Second"
+  },
+  "nodes": {
+    "ENTRY": {
+      "type": "INBOX",
+      "to": "WORKFLOW_ENTRIES",
+      "module": {
+        "name": "attachments"
+      }
+    },
+    "WORKFLOW_ENTRIES": {
+      "type": "OPERATION",
+      "operation_type": "SelectEntryPoint",
+      "to": [
+        "A_FIRST",
+        "B_FIRST"
+      ]
+    },
+    "A_FIRST": {
+      "type": "A_FIRST",
+      "to": "A_SECOND",
+      "category": "A"
+    },
+    "A_SECOND": {
+      "type": "A_SECOND",
+      "to": "OUTBOX",
+      "category": "A"
+    },
+    "B_FIRST": {
+      "type": "B_FIRST",
+      "to": "B_SECOND",
+      "category": "B"
+    },
+    "B_SECOND": {
+      "type": "B_SECOND",
+      "to": "OUTBOX",
+      "category": "B"
+    }
+  },
+  "collections": {
+    "Customers": {
+      "schema": {
+        "type": "object",
+        "title": "Customer",
+        "properties": {
+          "Customers_Name": {
+            "title": "Company Name",
+            "type": "string"
+          },
+          "Customers_MainLine": {
+            "title": "Main Line",
+            "type": "string"
+          },
+          "Customers_Address": {
+            "title": "Address",
+            "type": "string"
+          },
+          "Customers_Website": {
+            "title": "Website",
+            "type": "string"
+          },
+          "Customers_Industry": {
+            "title": "Industry",
+            "type": "string"
+          }
+        }
+      },
+      "definitions": [
+        {
+          "key": "Customers_Name",
+          "htmlClass": "half-width label-left"
+        },
+        {
+          "key": "Customers_MainLine",
+          "htmlClass": "half-width label-left"
+        },
+        {
+          "key": "Customers_Address",
+          "htmlClass": "half-width label-left"
+        },
+        {
+          "key": "Customers_Industry",
+          "htmlClass": "half-width label-left"
+        },
+        {
+          "key": "Customers_Website",
+          "htmlClass": "halfwidth label-left"
+        }
+      ]
+    }
+  }
+}
